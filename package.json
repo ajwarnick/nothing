@@ -1,0 +1,29 @@
+{
+  "name": "nothing",
+  "version": "1.0.0",
+  "description": "A nothing App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajwarnick/nothing.git"
+  },
+  "keywords": [
+    "Art"
+  ],
+  "author": "Anthony Warnick",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ajwarnick/nothing/issues"
+  },
+  "homepage": "https://github.com/ajwarnick/nothing#readme"
+}
