@@ -1,5 +1,6 @@
 ---
 import Welcome from '../components/Welcome.astro';
+import Post from '../components/Post.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,5 +8,21 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<Post />
 </Layout>
+
+<style>
+	html{
+		background-color: lightgray;
+	}
+	body {
+		max-width: 900px;
+		margin: 1em auto;
+		width: 100vw;
+	}
+
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+</style>
