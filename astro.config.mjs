@@ -5,9 +5,11 @@ import react from '@astrojs/react';
 
 import node from '@astrojs/node';
 
+import icon from 'astro-icon';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  integrations: [react(), icon()],
 
   adapter: node({
     mode: 'standalone'

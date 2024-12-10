@@ -1,4 +1,10 @@
 ---
+import { Icon } from 'astro-icon/components'
+import App from './App';
+// import { Blurhash } from "react-blurhash";
+
+import Comment from './Comment.astro';
+
 ---
 
 <section class="post">
@@ -11,22 +17,39 @@
     </div>
     <div class="post__image">
         <img src="https://picsum.photos/900/700" alt="">
+        <div>
+            <div class="post__image__heart"><Icon name="heart" /></div>
+            <div class="post__image__speechbubble"></div>
+            <div class="post__image__share"></div>
+            <div class="post__image__bookmark"></div>
+        </div>
     </div>
     <div class="post__meta">
         <div class="post__likes">
-
+            <div class="post__likes__circle"></div>
+            <div class="post__likes__circle"></div>
+            <div class="post__likes__circle"></div>
+            <p>Liked by</p>
+            <div class="post__likes__number"></div>
         </div>
-        <div class="post__comments"></div>
+        <div class="post__comments">
+            <Comment />
+        </div>
     </div>
+    <App/>
 </section>
 
 
 <style lang="scss">
+    [data-icon="heart"] {
+        font-size: 1.5em;   
+    }
+
     .post{
-        // background-color: red;
-        border: 1px solid black;
         padding: 1em;
         width: 100%;
+        max-width: 900px;
+        margin: auto;
 
         .post__header{
             height: 2em;
@@ -44,6 +67,7 @@
             }
             .post__header__name{
                 flex-grow: 1;
+                font-size: 2rem;
             }
 
             .post__header__options > div,
@@ -51,7 +75,7 @@
             .post__header__options > div:before {
                 height: 0.25em;
                 width: 0.25em;
-                background-color: black;
+                background-color: var(--darkest);
                 border-radius: 50%;
                 -webkit-transition: 0.5s;
                 -o-transition: 0.5s;
@@ -81,10 +105,17 @@
         
         .post__image{
             // border: 1px solid black;
+
+            .post__image__heart{
+
+            }
         }
 
         .post__meta{
-            
+            .post__likes{
+                display: flex;
+                flex-direction: row;
+            }
         }
     }
 </style>
