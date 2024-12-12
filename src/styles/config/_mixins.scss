@@ -27,3 +27,12 @@
         @content;
     }
  }
+
+
+ @mixin script {
+    font-family: "redacted_scriptregular", system-ui;
+ }
+
+ @mixin script-bold {
+    font-family: "redacted_scriptbold", system-ui;
+ }

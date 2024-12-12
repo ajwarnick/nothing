@@ -1,9 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components'
-import App from './App';
-// import { Blurhash } from "react-blurhash";
+import BlurImage from './BlurImage';
 
-import Comment from './Comment.astro';
+import Comment from './Comment';
 // import '../styles/config/mixins.scss';
 
 ---
@@ -17,12 +16,12 @@ import Comment from './Comment.astro';
         <div class="post__header__options"><div></div></div>
     </div>
     <div class="post__image">
-        <img src="https://picsum.photos/900/700" alt="">
-        <div>
+        <BlurImage />
+        <div class="post__image__icons">
             <div class="post__image__heart"><Icon name="heart" /></div>
-            <div class="post__image__speechbubble"></div>
-            <div class="post__image__share"></div>
-            <div class="post__image__bookmark"></div>
+            <div class="post__image__comment"><Icon name="speech" /></div>
+            <div class="post__image__share"><Icon name="paperplane" /></div>
+            <div class="post__image__bookmark"><Icon name="bookmark" /></div>
         </div>
     </div>
     <div class="post__meta">
@@ -37,22 +36,22 @@ import Comment from './Comment.astro';
             <Comment />
         </div>
     </div>
-    <App/>
+    <!-- <App/> -->
 </section>
 
 
 <style lang="scss">
     @use '../styles/config/mixins' as *;
 
-    [data-icon="heart"] {
-        font-size: 1.5em;   
-    }
-
     .post{
         padding: 1em;
         width: 100%;
         max-width: 900px;
         margin: auto;
+
+        @include sm(){
+            padding: 1em 0em;
+        }
 
         .post__header{
             height: 2em;
@@ -61,6 +60,10 @@ import Comment from './Comment.astro';
             flex-direction: row;
             align-items: center;
             gap: 1em;
+
+            @include sm(){
+                margin: 1em;
+            }
 
             .post__header__icon{
                 height: 2em;
@@ -72,8 +75,10 @@ import Comment from './Comment.astro';
                 flex-grow: 1;
                 font-size: 2rem;
 
+                @include script-bold();
+
                 @include sm(){
-                    color:red;
+                    // color:red;
                 }
             }
 
@@ -82,7 +87,7 @@ import Comment from './Comment.astro';
             .post__header__options > div:before {
                 height: 0.25em;
                 width: 0.25em;
-                background-color: var(--darkest);
+                background-color: var(--light);
                 border-radius: 50%;
                 -webkit-transition: 0.5s;
                 -o-transition: 0.5s;
@@ -113,15 +118,56 @@ import Comment from './Comment.astro';
         .post__image{
             // border: 1px solid black;
 
-            .post__image__heart{
+            .post__image__icons{
+                display: flex;
+                flex-direction: row;
+                margin: .5rem 0;
+                font-size: 1.6rem;
+                color: var(--lighter);
+                height: 1.6rem;
+                gap: 1rem;
 
+                @include sm(){
+                    margin: 0.5em;
+                    font-size: 1.5rem;
+                    height: 1.5rem;
+                }
+
+                .post__image__heart{
+
+                }
+
+                .post__image__bookmark{
+                    margin-left: auto;
+                }
             }
+
+            
         }
 
         .post__meta{
+
+            @include sm(){
+                margin: 0 1em;
+            }
+
             .post__likes{
                 display: flex;
                 flex-direction: row;
+
+                .post__likes__circle{
+                    height: 1em;
+                    width: 1em;
+                    border-radius: 50%;
+                    background-color: aqua;
+                    border: 1px solid black;
+                    margin-left: -5px;
+                }
+
+                p{
+                    padding: 0;
+                    margin: 0 0 0 10px;
+                }
             }
         }
     }

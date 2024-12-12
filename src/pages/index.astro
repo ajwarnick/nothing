@@ -8,6 +8,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
 	<Post />
+	<Post />
 </Layout>
 
 
@@ -67,8 +68,8 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	html{
-		background-color: var(--light);
-		color: var(--lightest);
+		background-color: var(--lightest);
+		color: var(--light);
 		/* font-family: "flow_blockregular", system-ui; */
 		font-family: "redacted_scriptregular", system-ui;
 		font-weight: 400;
@@ -84,6 +85,34 @@ import Layout from '../layouts/Layout.astro';
 		display: block;
 		max-width: 100%;
 		height: auto;
+	}
+
+	a{
+		color: var(--lightest);
+	}
+
+	a:link {
+		color: var(--lightest);
+        /* color: blue; */
+	}
+
+	a:visited {
+		color: var(--lightest);
+		/* color: red; */
+	}
+
+	a:hover {
+		color: var(--lightest);
+		/* color: green; */
+	}
+
+	a:active {
+		color: var(--lightest);
+		/* color: orange; */
+	}
+
+	a:visited{
+
 	}
 
 	p {
