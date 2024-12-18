@@ -1,0 +1,139 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+
+
+.bigButton{
+    background-color: red;
+
+}
+
+.post{
+    padding: 1em;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+
+    @include sm(){
+        padding: 1em 0em;
+    }
+
+    .post__header{
+        height: 2em;
+        margin: 1em 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+
+        @include sm(){
+            margin: 1em;
+        }
+
+        .post__header__icon{
+            height: 2em;
+            width: 2em;
+            border-radius: 50%;
+            background-color: aqua;
+        }
+        .post__header__name{
+            flex-grow: 1;
+            font-size: 2rem;
+
+            @include script-bold();
+
+            @include sm(){
+                // color:red;
+            }
+        }
+
+        .post__header__options > div,
+        .post__header__options > div:after,
+        .post__header__options > div:before {
+            height: 0.25em;
+            width: 0.25em;
+            background-color: var(--light);
+            border-radius: 50%;
+            -webkit-transition: 0.5s;
+            -o-transition: 0.5s;
+            transition: 0.5s;
+        }
+        .post__header__options{
+            > div {
+                position: relative;
+            }
+
+            > div:after {
+                content: "";
+                position: absolute;
+                bottom: calc((1em / 2) - (0.25em / 2));
+                left: 0;
+            }
+
+            > div:before {
+                content: "";
+                position: absolute;
+                top: calc((1em / 2) - (0.25em / 2));
+                left: 0;
+            }
+
+        }
+    }
+    
+    .post__image{
+        // border: 1px solid black;
+
+        .post__image__icons{
+            display: flex;
+            flex-direction: row;
+            margin: .5rem 0;
+            font-size: 1.6rem;
+            color: var(--lighter);
+            height: 1.6rem;
+            gap: 1rem;
+            filter: blur(2px);
+
+            @include sm(){
+                margin: 0.5em;
+                font-size: 1.5rem;
+                height: 1.5rem;
+            }
+
+            .post__image__heart{
+
+            }
+
+            .post__image__bookmark{
+                margin-left: auto;
+            }
+        }
+
+        
+    }
+
+    .post__meta{
+
+        @include sm(){
+            margin: 0 1em;
+        }
+
+        .post__likes{
+            display: flex;
+            flex-direction: row;
+
+            .post__likes__circle{
+                height: 1em;
+                width: 1em;
+                border-radius: 50%;
+                background-color: aqua;
+                border: 1px solid black;
+                margin-left: -5px;
+            }
+
+            p{
+                padding: 0;
+                margin: 0 0 0 10px;
+            }
+        }
+    }
+}

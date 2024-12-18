@@ -1,42 +1,31 @@
 {
   "name": "nothing",
-  "version": "1.0.0",
-  "description": "A nothing App",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@astrojs/node": "^9.0.0",
-    "@astrojs/react": "^4.0.0",
-    "@types/react": "^18.3.15",
-    "@types/react-dom": "^18.3.3",
-    "astro": "^5.0.3",
-    "astro-icon": "^1.1.4",
-    "blurhash": "^2.0.5",
-    "p5": "^1.11.2",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-blurhash": "^0.3.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^18.3.1",
+    "scss": "^0.2.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ajwarnick/nothing.git"
-  },
-  "keywords": [
-    "Art"
-  ],
-  "author": "Anthony Warnick",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/ajwarnick/nothing/issues"
-  },
-  "homepage": "https://github.com/ajwarnick/nothing#readme",
   "devDependencies": {
-    "sass-embedded": "^1.82.0"
+    "@eslint/js": "^9.15.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.12.0",
+    "sass-embedded": "^1.83.0",
+    "vite": "^6.0.1"
   }
 }
