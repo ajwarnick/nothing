@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import BlurImage from './BlurImage';
+import P5Blur from './p5';
 
 import Comment from './Comment';
 // import '../styles/config/mixins.scss';
@@ -16,7 +17,7 @@ import Comment from './Comment';
         <div class="post__header__options"><div></div></div>
     </div>
     <div class="post__image">
-        <BlurImage />
+        <BlurImage client:load />
         <div class="post__image__icons">
             <div class="post__image__heart"><Icon name="heart" /></div>
             <div class="post__image__comment"><Icon name="speech" /></div>
@@ -36,6 +37,7 @@ import Comment from './Comment';
             <Comment />
         </div>
     </div>
+    <!-- <P5Blur /> -->
     <!-- <App/> -->
 </section>
 
@@ -126,6 +128,7 @@ import Comment from './Comment';
                 color: var(--lighter);
                 height: 1.6rem;
                 gap: 1rem;
+                filter: blur(2px);
 
                 @include sm(){
                     margin: 0.5em;
