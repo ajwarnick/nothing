@@ -1,0 +1,25 @@
+.post__HeartIcon{
+    height: 1.25em;
+    width: 1.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.liked{
+        svg path{
+            stroke-width: 0;
+            fill: red;
+        }
+    }
+
+    svg{
+        height: 1em;
+        width: 1.25em;
+
+        path{
+            stroke: black;
+            stroke-width: 1;
+            fill:none;
+        }
+    }
+}

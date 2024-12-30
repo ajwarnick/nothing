@@ -1,6 +1,13 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
 .post__comment{
     p{
         text-align: left;
         color:var(--light);
+        font-size: 1.5rem;
+        
+        @include script;
     }
 }

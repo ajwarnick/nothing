@@ -3,7 +3,8 @@ import { BlurhashCanvas } from "react-blurhash";
 
 function BlurImage() {
 
-  let hash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj";
+  const hashes = ['UdG7bos+59NK}qs.9vNHV@oLNHn%Iqa}t6t6', 'LEHV6nWB2yk8pyo0adR*.7kCMdnj','L5H2EC=PM+yV0g-mq.wG9c010J}I']
+  let hash = hashes[Math.floor(Math.random() * hashes.length)];
 
     return (
       <div className="BlurImage">
