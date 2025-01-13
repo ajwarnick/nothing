@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BlurImage from '../BlurImage';
-import Comment from '../Comment';
+import Comments from '../Comments';
 import HeartIcon from '../HeartIcon';
 import CommentIcon from '../CommentIcon';
 
@@ -58,9 +58,7 @@ const Post = () => {
               <div className="post__likes__circle"></div>
               <div className="post__likes__number">Liked by <span>{generateString(10)}</span> and <span>{getRandomInt(110)} others</span></div>
           </div>
-          <div className="post__comments">
-            <Comment />
-          </div>
+          <Comments />
       </div>
   </section>
   );
