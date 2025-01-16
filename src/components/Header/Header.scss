@@ -1,0 +1,11 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
+.header{
+    border-bottom: 1px solid $ui-gray;
+    padding: 1em;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}

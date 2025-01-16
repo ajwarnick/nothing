@@ -1,0 +1,21 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
+.stories{
+    border-bottom: 1px solid $ui-gray;
+    padding: 1em 1em;
+    // width: 100%;
+    max-width: 900px;
+    margin: auto;
+
+    display: flex;
+    gap: 1em;
+    
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    div{
+        flex-shrink: 0;
+    }
+}

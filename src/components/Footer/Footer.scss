@@ -1,0 +1,42 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
+$ui-gray: rgb(0, 0, 0);
+
+.footer{
+    background-color: $background-color;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    padding-top: .5em;
+    gap: 4em;
+
+    svg{
+        height: 1.5em;
+        width: 1.5em;
+        overflow: visible;
+        // filter: blur(1px);
+
+        path{
+            stroke: $ui-gray;
+            stroke-width: 1.5;
+            fill: none;
+        }
+    }
+}
+
+body{
+    margin-bottom: 3em;
+}
+
+
+
+
+
+
