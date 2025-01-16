@@ -2,8 +2,6 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/fonts' as *;
 
-$ui-gray: rgb(0, 0, 0);
-
 .footer{
     background-color: $background-color;
     position: fixed;

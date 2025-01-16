@@ -1,3 +1,7 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
 .post__CommentIcon{
     height: 1.25em;
     width: 1.25em;
@@ -11,7 +15,7 @@
         overflow: visible;
 
         path{
-            stroke: black;
+            stroke: $ui-gray;
             stroke-width: 1;
             fill: none;
         }

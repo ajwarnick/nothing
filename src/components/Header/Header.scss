@@ -4,8 +4,34 @@
 
 .header{
     border-bottom: 1px solid $ui-gray;
-    padding: 1em;
-    width: 100%;
+    padding: .5em 1em .5em 1em;
+    height: 1.5em;
+    // width: 100%;
     max-width: 900px;
     margin: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color:$ui-gray;
+
+
+    svg{
+        height: 1.5em;
+        width: 1.5em;
+        overflow: visible;
+        // filter: blur(1px);
+
+        rect{
+            stroke: $ui-gray;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        path{
+            stroke: $ui-gray;
+            stroke-width: 1.5;
+        }
+    }
 }
