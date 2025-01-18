@@ -15,7 +15,7 @@
         overflow: visible;
 
         path{
-            stroke: $ui-gray;
+            stroke: var(--light);
             stroke-width: 1;
             fill: none;
         }

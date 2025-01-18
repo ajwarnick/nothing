@@ -24,6 +24,20 @@ body {
   :root {
     color: rgb(125, 124, 124);
     background-color: #ffffff;
+
+    --light:rgb(168, 167, 167);
+    --lighter:wheat;
+    /* --lightest:blue;
+
+    --dark:violet;
+    --darker:yellow;
+    --darkest:LightGreen; */
+
+    --ui-color: rgb(125, 124, 124);
+    --background-color: #ffffff;
+
+    color: var(--light);
+    background-color: var(--background-color);
   }
   a:hover {
     color: #747bff;
@@ -32,3 +46,32 @@ body {
     background-color: #f9f9f9;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+
+    --ui-color: rgb(125, 124, 124);
+
+    --light:rgb(88, 87, 87);
+    --lighter:wheat;
+    /* --lightest:blue;
+
+    --dark:violet;
+    --darker:yellow;
+    --darkest:LightGreen; */
+
+    --background-color: black;
+
+    color: rgb(125, 124, 124);
+    background-color: black;
+
+    color: var(--light);
+    background-color: var(--background-color);
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} 

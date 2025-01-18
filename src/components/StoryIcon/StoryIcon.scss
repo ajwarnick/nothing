@@ -8,8 +8,8 @@
     width: 3em;
 
     // background: linear-gradient(to top, #3acfd5 0%, #3a4ed5 100%);
-    background-color: wheat;
-    border: 3px solid white;
+    background-color: var(--lighter);
+    border: 3px solid var(--background-color);
     border-radius: 50%;
     padding: 5px;
     position: relative;

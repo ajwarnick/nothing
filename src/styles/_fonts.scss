@@ -1,47 +1,47 @@
 @font-face {
     font-family: 'flow_blockregular';
-    src: url('./fonts/flowblock-regular-webfont.woff2') format('woff2'),
-         url('./fonts/flowblock-regular-webfont.woff') format('woff');
+    src: url('/public/fonts/flowblock-regular-webfont.woff2') format('woff2'),
+         url('/public/fonts/flowblock-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'flow_circularregular';
-    src: url('./fonts/flowcircular-regular-webfont.woff2') format('woff2'),
-         url('./fonts/flowcircular-regular-webfont.woff') format('woff');
+    src: url('/public/fonts/flowcircular-regular-webfont.woff2') format('woff2'),
+         url('/public/fonts/flowcircular-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'flow_roundedregular';
-    src: url('./fonts/flowrounded-regular-webfont.woff2') format('woff2'),
-         url('./fonts/flowrounded-regular-webfont.woff') format('woff');
+    src: url('/public/fonts/flowrounded-regular-webfont.woff2') format('woff2'),
+         url('/public/fonts/flowrounded-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'redacted_scriptregular';
-    src: url('./fonts/redactedscript-regular-webfont.woff2') format('woff2'),
-         url('./fonts/redactedscript-regular-webfont.woff') format('woff');
+    src: url('/public/fonts/redactedscript-regular-webfont.woff2') format('woff2'),
+         url('/public/fonts/redactedscript-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'redacted_scriptlight';
-    src: url('./fonts/redactedscript-light-webfont.woff2') format('woff2'),
-         url('./fonts/redactedscript-light-webfont.woff') format('woff');
+    src: url('/public/fonts/redactedscript-light-webfont.woff2') format('woff2'),
+         url('/public/fonts/redactedscript-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'redacted_scriptbold';
-    src: url('./fonts/redactedscript-bold-webfont.woff2') format('woff2'),
-         url('./fonts/redactedscript-bold-webfont.woff') format('woff');
+    src: url('/public/fonts/redactedscript-bold-webfont.woff2') format('woff2'),
+         url('/public/fonts/redactedscript-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }

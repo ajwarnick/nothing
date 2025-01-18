@@ -3,7 +3,7 @@
 @use '../../styles/fonts' as *;
 
 .header{
-    border-bottom: 1px solid $ui-gray;
+    border-bottom: 1px solid var(--light);
     padding: .5em 1em .5em 1em;
     height: 1.5em;
     // width: 100%;
@@ -14,7 +14,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color:$ui-gray;
+    color:var(--light);
 
 
     svg{
@@ -24,13 +24,13 @@
         // filter: blur(1px);
 
         rect{
-            stroke: $ui-gray;
+            stroke: var(--light);
             fill: none;
             stroke-width: 1.5;
         }
 
         path{
-            stroke: $ui-gray;
+            stroke: var(--light);
             stroke-width: 1.5;
         }
     }
