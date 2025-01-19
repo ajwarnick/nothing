@@ -6,3 +6,51 @@ $screen-md-min: 768px;
 $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
+
+
+:root {
+    color-scheme: light dark;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+    --nothing-spacer: 1em;
+}
+
+
+@media (prefers-color-scheme: light) {
+    :root {
+      --nothing-light:rgb(168, 167, 167);
+      --nothing-lighter:wheat;
+      /* --nothing-lightest:blue;
+  
+      --nothing-dark:violet;
+      --nothing-darker:yellow;
+      --nothing-darkest:LightGreen; */
+  
+      --nothing-ui-color: rgb(125, 124, 124);
+      --nothing-background-color: #ffffff;
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+  
+      --nothing-ui-color: rgb(125, 124, 124);
+  
+      --nothing-light:rgb(88, 87, 87);
+      --nothing-lighter:wheat;
+      /* --nothing-lightest:blue;
+  
+      --nothing-dark:violet;
+      --nothing-darker:yellow;
+      --nothing-darkest:LightGreen; */
+  
+      --nothing-background-color: black;
+  
+      --nothing-color: rgb(125, 124, 124);
+      --nothing-background-color: black;
+    }
+  } 

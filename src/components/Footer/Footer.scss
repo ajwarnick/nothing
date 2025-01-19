@@ -3,7 +3,7 @@
 @use '../../styles/fonts' as *;
 
 .footer{
-    background-color: var(--background-color);
+    background-color: var(--nothing-background-color);
     position: fixed;
     bottom: 0;
     width: 100vw;
@@ -23,7 +23,7 @@
         // filter: blur(1px);
 
         path{
-            stroke: var(--light);
+            stroke: var(--nothing-light);
             stroke-width: 1.5;
             fill: none;
         }

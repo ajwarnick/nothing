@@ -10,7 +10,7 @@
 
 .post{
     padding: 1em;
-    width: 100%;
+    width: calc(100% - 2em);
     max-width: 900px;
     margin: auto;
 
@@ -53,7 +53,7 @@
         .post__header__options > div:before {
             height: 0.25em;
             width: 0.25em;
-            background-color: var(--light);
+            background-color: var(--nothing-light);
             border-radius: 50%;
             -webkit-transition: 0.5s;
             -o-transition: 0.5s;
@@ -89,7 +89,7 @@
             flex-direction: row;
             margin: .5rem 0;
             font-size: 1.6rem;
-            color: var(--lighter);
+            color: var(--nothing-lighter);
             height: 1.6em;
             gap: 1rem;
             // filter: blur(2px);
