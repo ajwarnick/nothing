@@ -9,6 +9,9 @@ function Comments() {
             <Comment />
             <div>posted min</div>
             <div>View all 5 Comments</div>
+            <div className='post__comments_comments'>
+                
+            </div>
         </div>
         );
     }
