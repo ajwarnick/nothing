@@ -2,14 +2,14 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/fonts' as *;
 
-.post__ShareIcon{
+.backIcon__BackIcon{
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg{
-        height: 1em;
-        width: 1em;
+        height: 3em;
+        width: 3em;
 
         path{
             stroke: var(--nothing-light);

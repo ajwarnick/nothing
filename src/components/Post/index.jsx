@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 
 import BlurImage from '../BlurImage';
 import Comments from '../Comments';
 import HeartIcon from '../HeartIcon';
 import CommentIcon from '../CommentIcon';
+import ShareIcon from '../ShareIcon';
 
 import './Post.scss';
 
@@ -25,6 +27,9 @@ const getRandomInt = (max) => {
 
 
 const Post = () => {
+    const [sidebar, setSidebar] = useState(false);
+
+    // onClick={() => {setSidebar(!sidebar)}}
   return (
     <section className="post">
       <div className="post__header">
@@ -40,11 +45,11 @@ const Post = () => {
               <div className="post__image__heart">
                 <HeartIcon />
               </div>
-              <div className="post__image__comment">
-                <CommentIcon />
+              <div className="post__image__comment" >
+                <CommentIcon onClick={() => {console.log("Bingo Bango!")}}/>
               </div>
               <div className="post__image__share">
-                
+                <ShareIcon />
               </div>
               <div className="post__image__bookmark">
               
@@ -58,7 +63,7 @@ const Post = () => {
               <div className="post__likes__circle"></div>
               <div className="post__likes__number">Liked by <span>{generateString(10)}</span> and <span>{getRandomInt(110)} others</span></div>
           </div>
-          <Comments />
+          <Comments open={sidebar} />
       </div>
   </section>
   );

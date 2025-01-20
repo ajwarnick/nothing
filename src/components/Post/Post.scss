@@ -104,8 +104,14 @@
 
             }
 
-            .post__image__bookmark{
+            .post__image__share:not(:empty),
+            .post__image__bookmark:not(:empty){
                 margin-left: auto;
+            }
+
+            .post__image__share:empty,
+            .post__image__bookmark:empty{
+                display: none
             }
         }
 

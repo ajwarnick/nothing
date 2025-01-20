@@ -15,7 +15,7 @@ function StoryIcon() {
     }
 
 
-    var bc = { "background-image": makeGradient() };
+    var bc = { "backgroundImage": makeGradient() };
 
 return (
     <div className='storieIcon'>
