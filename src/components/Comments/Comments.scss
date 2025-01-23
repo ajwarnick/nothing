@@ -1,16 +1,20 @@
 
 .post__comments{
 
+    &.open{
+        .post__comments_comments{
+            left: 100vw;
+        }
+    }
 
     .post__comments_comments{
         position: fixed;
-        background-color: red;
+        background-color: var(--nothing-background-color);
         height: 100vh;
         top: 0;
         left: 100vw;
-        // left: 0;
         width: 100vw;
-        transition: left 0.5s ease-out;
+        transition: left 1s ease-in-out;
     }
 }
 

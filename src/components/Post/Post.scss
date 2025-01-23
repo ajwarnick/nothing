@@ -104,6 +104,10 @@
 
             }
 
+            .post__image__comment{
+                cursor: pointer;
+            }
+
             .post__image__share:not(:empty),
             .post__image__bookmark:not(:empty){
                 margin-left: auto;

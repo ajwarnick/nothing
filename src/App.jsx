@@ -2,17 +2,19 @@ import Post from './components/Post'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Stories from './components/Stories'
+import Eliza from './components/Eliza'
 
 function App() {
 
   return (
     <>
       <Header />
-      <Stories />
+      <Eliza />
+      {/* <Stories />
       <Post />
       <Post />
       <Post />
-      <Post />
+      <Post /> */}
       <Footer />
     </>
   )

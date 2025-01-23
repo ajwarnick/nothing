@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Comment from '../Comment';
 import ShareIcon from '../ShareIcon';
 import BackIcon from '../BackIcon';
@@ -5,7 +7,7 @@ import BackIcon from '../BackIcon';
 import './Comments.scss';
 
 function Comments({open}) {
-
+    
     // add class to body to frieze it
     // add class to post__comments_comments to expand it
 
@@ -15,14 +17,17 @@ function Comments({open}) {
     // comment submission
         // update 
 
+        // onClick={() => {open = !open}}
+        // onClick={() => {setSidebar(!sidebar)}}
+
     return (
-        <div className="post__comments">
+        <div className={open ? "post__comments open" : "post__comments"}>
             <Comment type={true} />
             <div>posted min</div>
             <div>View all 5 Comments</div>
             <div className='post__comments_comments'>
                 <div className='post__comments_comments___header'>
-                    <div><BackIcon /></div>
+                    <div ><BackIcon /></div>
                     <div><ShareIcon /></div>
                 </div>
                 <Comment type={false} />

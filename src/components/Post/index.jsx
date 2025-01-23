@@ -27,9 +27,11 @@ const getRandomInt = (max) => {
 
 
 const Post = () => {
-    const [sidebar, setSidebar] = useState(false);
+  let [sidebar, setSidebar] = useState(false);
 
-    // onClick={() => {setSidebar(!sidebar)}}
+  const testUser = React.useRef( generateString(10) );
+  const testNumber = React.useRef( getRandomInt(110) );
+
   return (
     <section className="post">
       <div className="post__header">
@@ -45,8 +47,8 @@ const Post = () => {
               <div className="post__image__heart">
                 <HeartIcon />
               </div>
-              <div className="post__image__comment" >
-                <CommentIcon onClick={() => {console.log("Bingo Bango!")}}/>
+              <div className="post__image__comment" onClick={() => {setSidebar(!sidebar)}}>
+                <CommentIcon />
               </div>
               <div className="post__image__share">
                 <ShareIcon />
@@ -61,7 +63,7 @@ const Post = () => {
               <div className="post__likes__circle"></div>
               <div className="post__likes__circle"></div>
               <div className="post__likes__circle"></div>
-              <div className="post__likes__number">Liked by <span>{generateString(10)}</span> and <span>{getRandomInt(110)} others</span></div>
+              <div className="post__likes__number">Liked by <span>{testUser.current}</span> and <span>{testNumber.current} others</span></div>
           </div>
           <Comments open={sidebar} />
       </div>
