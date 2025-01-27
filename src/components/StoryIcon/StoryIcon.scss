@@ -9,7 +9,7 @@
 
     // background: linear-gradient(to top, #3acfd5 0%, #3a4ed5 100%);
     background-color: var(--nothing-lighter);
-    border: 3px solid var(--nothing-background-color);
+    border: 2px solid var(--nothing-background-color);
     border-radius: 50%;
     padding: 5px;
     position: relative;
@@ -18,10 +18,10 @@
         border-radius: 100%;
         content: '';
         background-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%);
-        top: -.5em;
-        left: -.5em;
-        bottom: -.5em;
-        right: -.5em;
+        top: -5px;
+        left: -5px;
+        bottom: -5px;
+        right: -5px;
         position: absolute;
         z-index: -1;
         // -webkit-animation:spin 4s linear infinite;

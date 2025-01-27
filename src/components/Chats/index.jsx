@@ -10,9 +10,9 @@ function Chats() {
 
     return (
         <div className="chat__Chats">
-            <Chat username={"warnick"} online={true}/>
-            <Chat username={"warnick"} />
-            <Chat username={"warnick"} />
+            <Chat username={"warnick"} online={false} open={false}/>
+            <Chat username={"warnick"} open={false}/>
+            <Chat username={"warnick"} open={false}/>
             <Chat username={"warnick"} online={true}/>
         </div>
         );

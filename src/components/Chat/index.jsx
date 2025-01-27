@@ -44,25 +44,38 @@ const getRandTime = () => {
 }
 
 function Chat({open, username, online}) {
+    console.log(open);
+    const [o, setO] = useState(open);
     const [unread, setUnread] = useState(true);
+    const [firstLine, setFirstLine] = useState({ message: generateLoremText(1, 5), time: getRandTime()});
 
     const messageClick = () => {
         console.log("yo");
         setUnread(false);
+        setO(true);
+    }
+
+    const backClick = () => {
+        console.log("yo");
+        setO(false);
     }
 
     return (
-        <div className={open ? "chat__chat open" : "chat__chat"}>
+        <div className={o ? "chat__chat open" : "chat__chat"}>
             <div className={unread ? "chat__chat_preview unread" : "chat__chat_preview"} onClick={messageClick}>
                 <div className={online ? "chat__chat_preview__icon online" : "chat__chat_preview__icon"}><StoryIcon /></div>
                 <div className='chat__chat_preview__username'>{username}</div>
                 <div className='chat__chat_preview__message'>
-                    <p className='chat__chat_preview__message_p'>{ generateLoremText(1, 5) }</p>
-                    <span className='chat__chat_preview__message_hour'>{getRandTime()}</span>
+                    <p className='chat__chat_preview__message_p'>{firstLine.message}</p>
+                    <span className='chat__chat_preview__message_hour'>{firstLine.time}</span>
                 </div>
             </div>
             <dir className="chat__chat_chat">
-                <div className='chat__chat_header'><BackIcon /></div>
+                <div className='chat__chat_header' onClick={backClick}>
+                    <BackIcon  />
+                    <div className='chat__chat_chat__username'>{username}</div>
+                    {/* info icon */}
+                </div>
                 <div className='chat__chat_eliza'><Eliza /></div>
                 <div className='chat__chat_footer'></div>
             </dir>
