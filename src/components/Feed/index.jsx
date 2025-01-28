@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Stories from '../Stories'
-import Post from '../Post'
+import Stories from '../Stories';
+import Post from '../Post';
 
 import './Feed.scss';
 

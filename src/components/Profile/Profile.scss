@@ -1,0 +1,28 @@
+.profile__Profile{
+    padding: 1em;
+    width: calc(100% - 2em);
+    max-width: 900px;
+    margin: auto;
+
+    .profile__Grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 5px;
+
+        .profile__Grid_item{   
+            aspect-ratio: 1/1;
+            overflow: hidden;
+
+            .blurImage{    
+                height: 100%;
+                width: 100%;
+    
+                canvas{
+                    width: 100%;
+                    object-fit: cover;
+                    height: 100%;
+                }
+            }
+        }   
+    }
+}

@@ -1,0 +1,14 @@
+
+.darkIcon__DarkIcon{
+    svg{
+        // height: 1.5em;
+        // width: 1.5em;
+        // overflow: visible;
+        // // filter: blur(1px);
+
+        path{
+            fill: var(--nothing-light);
+            stroke-width: 1;
+        }
+    }
+}

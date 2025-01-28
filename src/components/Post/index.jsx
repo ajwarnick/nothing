@@ -6,6 +6,7 @@ import Comments from '../Comments';
 import HeartIcon from '../HeartIcon';
 import CommentIcon from '../CommentIcon';
 import ShareIcon from '../ShareIcon';
+import Carousel from '../Carousel/Index';
 
 import './Post.scss';
 
@@ -29,8 +30,17 @@ const getRandomInt = (max) => {
 const Post = () => {
   let [sidebar, setSidebar] = useState(false);
 
+  let [meta, setMeta] = useState({
+    multipleImages: 1, // if 1 is solo / if 2 is mutliple 
+    images: 2, // if multiple this number of images 2-4
+    likeUsers: 3, // between 1 and 3
+    comments: 3, // between 1 and 4
+  });
+
   const testUser = React.useRef( generateString(10) );
   const testNumber = React.useRef( getRandomInt(110) );
+
+
 
   return (
     <section className="post">
@@ -42,7 +52,16 @@ const Post = () => {
           <div className="post__header__options"><div></div></div>
       </div>
       <div className="post__image">
-          <BlurImage />
+        <Carousel 
+          show={1}
+          infiniteLoop
+          withIndicator
+        >
+          <BlurImage data-testid="carousel-item-1" />
+          <BlurImage data-testid="carousel-item-2" />
+          <BlurImage data-testid="carousel-item-3" />
+        </Carousel>
+          
           <div className="post__image__icons">
               <div className="post__image__heart">
                 <HeartIcon />
@@ -67,6 +86,7 @@ const Post = () => {
           </div>
           <Comments open={sidebar} />
       </div>
+      {meta.numberOfImages}
   </section>
   );
 };

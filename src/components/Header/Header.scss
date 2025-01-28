@@ -16,22 +16,21 @@
     justify-content: space-between;
     color:var(--nothing-light);
 
+    .header__Icons{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
 
-    svg{
-        height: 1.5em;
-        width: 1.5em;
-        overflow: visible;
-        // filter: blur(1px);
-
-        rect{
-            stroke: var(--nothing-light);
-            fill: none;
-            stroke-width: 1.5;
+        > * {
+            height: 24px;
         }
 
-        path{
-            stroke: var(--nothing-light);
-            stroke-width: 1.5;
+        svg{
+            height: 24px;
+            width: 1.5em;
         }
     }
+
+   
 }

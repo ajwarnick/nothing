@@ -1,0 +1,20 @@
+
+.addIcon__AddIcon{
+    svg{
+        // height: 1.5em;
+        // width: 1.5em;
+        // overflow: visible;
+        // // filter: blur(1px);
+
+        rect{
+            stroke: var(--nothing-light);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        path{
+            stroke: var(--nothing-light);
+            stroke-width: 1.5;
+        }
+    }
+}
