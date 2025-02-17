@@ -44,19 +44,16 @@ const getRandTime = () => {
 }
 
 function Chat({open, username, online}) {
-    console.log(open);
     const [o, setO] = useState(open);
     const [unread, setUnread] = useState(true);
     const [firstLine, setFirstLine] = useState({ message: generateLoremText(1, 5), time: getRandTime()});
 
     const messageClick = () => {
-        console.log("yo");
         setUnread(false);
         setO(true);
     }
 
     const backClick = () => {
-        console.log("yo");
         setO(false);
     }
 

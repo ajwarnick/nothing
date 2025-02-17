@@ -34,7 +34,11 @@
             height: 2em;
             width: 2em;
             border-radius: 50%;
-            background-color: aqua;
+            overflow: hidden;
+
+            .blurImage{
+                width: 5em;
+            }
         }
         .post__header__name{
             flex-grow: 1;
@@ -140,9 +144,18 @@
                 height: 1em;
                 width: 1em;
                 border-radius: 50%;
-                background-color: aqua;
                 margin-left: -10px;
+                overflow: hidden;
+
+                .blurImage{
+                    width: 4em;
+                }
             }
+
+            .post__likes__circle:empty{
+                background-color: aqua;
+            }
+
 
             .post__likes__number{
                 padding: 0;
