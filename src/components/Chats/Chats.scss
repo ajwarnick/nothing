@@ -2,3 +2,9 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/fonts' as *;
 
+.chat__Chats{
+
+    width: calc(100% - 2em);
+    max-width: 900px;
+    margin: auto;
+}

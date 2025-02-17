@@ -1,5 +1,9 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
 .profile__Profile{
-    padding: 1em;
+    // padding: 1em;
     width: calc(100% - 2em);
     max-width: 900px;
     margin: auto;

@@ -54,3 +54,33 @@ $screen-xl-min: 1200px;
       --nothing-background-color: black;
     }
   } 
+
+  [data-theme="light"] {
+    --nothing-light:rgb(168, 167, 167);
+    --nothing-lighter:wheat;
+    --nothing-lightest:rgb(248, 214, 214);
+
+    --nothing-dark:violet;
+    --nothing-darker:yellow;
+    --nothing-darkest:LightGreen; 
+
+    --nothing-ui-color: rgb(125, 124, 124);
+    --nothing-background-color: #ffffff;
+  }
+  
+  [data-theme="dark"] {
+    --nothing-ui-color: rgb(125, 124, 124);
+  
+    --nothing-light:rgb(88, 87, 87);
+    --nothing-lighter:wheat;
+    --nothing-lightest:rgb(224, 223, 223);
+
+    --nothing-dark:violet;
+    --nothing-darker:yellow;
+    --nothing-darkest:LightGreen; 
+
+    --nothing-background-color: black;
+
+    --nothing-color: rgb(125, 124, 124);
+    --nothing-background-color: black;
+  }
