@@ -9,7 +9,7 @@
 
     // background: linear-gradient(to top, #3acfd5 0%, #3a4ed5 100%);
     background-color: var(--nothing-lighter);
-    border: 2px solid var(--nothing-background-color);
+    border: 3px solid var(--nothing-background-color);
     border-radius: 50%;
     padding: 5px;
     position: relative;
@@ -18,15 +18,29 @@
         border-radius: 100%;
         content: '';
         background-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%);
-        top: -5px;
-        left: -5px;
-        bottom: -5px;
-        right: -5px;
+        top: -6px;
+        left: -6px;
+        bottom: -6px;
+        right: -6px;
         position: absolute;
         z-index: -1;
         // -webkit-animation:spin 4s linear infinite;
         // -moz-animation:spin 4s linear infinite;
         // animation:spin 4s linear infinite;
+    }
+
+    .blurImage{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        overflow: hidden;
+
+        canvas{
+            max-width: 200% !important;
+        }
     }
 }
 

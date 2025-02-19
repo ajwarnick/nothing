@@ -1,3 +1,8 @@
+import React from 'react';
+import { useState } from 'react';
+
+import BlurImage from '../BlurImage';
+
 import './StoryIcon.scss';
 
 
@@ -19,7 +24,9 @@ function StoryIcon() {
 
 return (
     <div className='storieIcon'>
-        <div className='storieIcon__border' style={bc}></div>
+        <div className='storieIcon__border' style={bc}>
+        </div>
+        <BlurImage />
     </div>
     );
 }
