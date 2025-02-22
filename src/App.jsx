@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router"
 
-import Post from './components/Post'
 import Footer from './components/Footer'
 import Header from './components/Header'
 

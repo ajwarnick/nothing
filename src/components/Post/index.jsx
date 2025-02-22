@@ -37,6 +37,16 @@ const Post = () => {
     comments: getRandomInt(3), // between 1 and 4
   });
 
+  const onClickHandler = event => {
+    console.log(yo);
+    // clearTimeout(timer.current);
+
+    // if (event.detail === 1) {
+    //     timer.current = setTimeout(onClick, 200)
+    // } else if (event.detail === 2) {
+    //     onDoubleClick()
+    // }
+  }
 
   const testUser = React.useRef( generateString( getRandomInt( 15 ) ) );
   const testNumber = React.useRef( getRandomInt(110) );
@@ -55,7 +65,7 @@ const Post = () => {
           </div>
           <div className="post__header__options"><div></div></div>
       </div>
-      <div className="post__image">
+      <div className="post__image" onClick={onClickHandler}>
         {meta.multipleImages === 0 ? (
           <Carousel show={1} withIndicator >
             {[...Array(meta.images + 1)].map((x, i) =>
