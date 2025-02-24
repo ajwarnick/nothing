@@ -15,12 +15,16 @@ function App() {
     <>
       <Header />
         <div className="container">
-          <Routes>
+          {/* <Feed /> */}
+          {/* <Chats /> */}
+          {/* <Camera /> */}
+          <Profile />
+          {/* <Routes>
             <Route path="/" element={<Feed />} />
             <Route path="/chat" element={<Chats />} />
             <Route path="/camera" element={<Camera />} />
             <Route path="/profile" element={<Profile />} />
-          </Routes>
+          </Routes> */}
         </div>
       <Footer />  
     </>

@@ -23,13 +23,14 @@ $screen-xl-min: 1200px;
 @media (prefers-color-scheme: light) {
     :root {
       --nothing-light:rgb(168, 167, 167);
-      --nothing-lighter:wheat;
-      --nothing-lightest:rgb(248, 214, 214);
+      --nothing-lighter:rgb(210, 210, 210);
+      --nothing-lightest:rgb(232, 232, 232);
   
-      --nothing-dark:violet;
-      --nothing-darker:yellow;
-      --nothing-darkest:LightGreen; 
+      --nothing-dark:rgb(81, 81, 81);
+      --nothing-darker:rgb(66, 66, 66);
+      --nothing-darkest:rgb(44, 44, 44); 
   
+      --nothing-color: rgb(125, 124, 124);
       --nothing-ui-color: rgb(125, 124, 124);
       --nothing-background-color: #ffffff;
     }
@@ -37,50 +38,44 @@ $screen-xl-min: 1200px;
   
   @media (prefers-color-scheme: dark) {
     :root {
+      --nothing-light:rgb(168, 167, 167);
+      --nothing-lighter:rgb(210, 210, 210);
+      --nothing-lightest:rgb(232, 232, 232);
   
-      --nothing-ui-color: rgb(125, 124, 124);
-  
-      --nothing-light:rgb(88, 87, 87);
-      --nothing-lighter:wheat;
-      --nothing-lightest:rgb(224, 223, 223);
-  
-      --nothing-dark:violet;
-      --nothing-darker:yellow;
-      --nothing-darkest:LightGreen; 
-  
-      --nothing-background-color: black;
-  
+      --nothing-dark:rgb(81, 81, 81);
+      --nothing-darker:rgb(66, 66, 66);
+      --nothing-darkest:rgb(44, 44, 44); 
+    
       --nothing-color: rgb(125, 124, 124);
+      --nothing-ui-color: rgb(125, 124, 124);
       --nothing-background-color: black;
     }
   } 
 
   [data-theme="light"] {
     --nothing-light:rgb(168, 167, 167);
-    --nothing-lighter:wheat;
-    --nothing-lightest:rgb(248, 214, 214);
+    --nothing-lighter:rgb(210, 210, 210);
+    --nothing-lightest:rgb(232, 232, 232);
 
-    --nothing-dark:violet;
-    --nothing-darker:yellow;
-    --nothing-darkest:LightGreen; 
+    --nothing-dark:rgb(81, 81, 81);
+    --nothing-darker:rgb(66, 66, 66);
+    --nothing-darkest:rgb(44, 44, 44); 
 
+    --nothing-color: rgb(125, 124, 124);
     --nothing-ui-color: rgb(125, 124, 124);
     --nothing-background-color: #ffffff;
   }
   
   [data-theme="dark"] {
-    --nothing-ui-color: rgb(125, 124, 124);
-  
-    --nothing-light:rgb(88, 87, 87);
-    --nothing-lighter:wheat;
-    --nothing-lightest:rgb(224, 223, 223);
+    --nothing-light:rgb(168, 167, 167);
+    --nothing-lighter:rgb(210, 210, 210);
+    --nothing-lightest:rgb(232, 232, 232);
 
-    --nothing-dark:violet;
-    --nothing-darker:yellow;
-    --nothing-darkest:LightGreen; 
-
-    --nothing-background-color: black;
+    --nothing-dark:rgb(81, 81, 81);
+    --nothing-darker:rgb(66, 66, 66);
+    --nothing-darkest:rgb(44, 44, 44); 
 
     --nothing-color: rgb(125, 124, 124);
+    --nothing-ui-color: rgb(125, 124, 124);
     --nothing-background-color: black;
   }

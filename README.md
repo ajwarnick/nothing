@@ -11,7 +11,6 @@ Currently, two official plugins are available:
 ## TODO
 
 - Add double tap like
-- fix mobile arrows
 - make others profiles
 - make video story 
 - fix hit delay on lower icons 

@@ -36,3 +36,11 @@
  @mixin script-bold {
     font-family: "redacted_scriptbold", system-ui;
  }
+
+
+ @mixin button {
+   background-color: var(--nothing-color);
+   color: var(--nothing-background-color);
+   padding: 7px 1em;
+   border-radius: 10px;
+ }

@@ -16,6 +16,10 @@
         grid-template-columns: 1fr 2fr;
         grid-template-rows: auto auto 1fr;
         gap: 1em;
+
+        @include sm(){
+            margin-bottom: 4rem;
+        }
     }
 
     .profile__Data_data{
@@ -25,10 +29,21 @@
         align-items: center;
         gap: 1rem;
 
+        @include sm(){
+            flex-wrap: wrap;
+        }
+        
+
         .profile__Data_username{
             flex-grow: 1;
             font-size: 2rem;
+
             @include script-bold;
+
+            @include sm(){
+                width: 100%;
+                flex-grow: 3;
+            }
         }
 
         .profile__Data_following,
@@ -64,6 +79,10 @@
 
         @include script;
 
+        @include sm(){
+            flex-wrap: wrap;
+        }
+
         .profile__Stats_number{
             @include script-bold;
             font-size: 1.2rem;
@@ -78,6 +97,10 @@
             overflow: hidden;
             border-radius: 100%;
             margin: 50px;
+
+            @include sm(){
+                margin: 0 10px 10px 0;
+            }
 
             canvas{
                 max-width: 200% !important;
@@ -97,11 +120,15 @@
         gap: 2rem;
         padding-bottom: 3rem;
         padding-left: 3rem;
+
+        .storieIcon{
+            margin-bottom: 0.5em;
+        }
     }
 
     .profile__Grid{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 5px;
         grid-column: 1 / 5;
 

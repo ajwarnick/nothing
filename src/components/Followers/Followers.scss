@@ -1,0 +1,9 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
+.followers_Followers{
+   max-height: 75vh;
+   padding: 5px;
+   overflow: scroll;
+}

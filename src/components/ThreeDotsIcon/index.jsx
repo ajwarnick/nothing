@@ -3,22 +3,23 @@ import { useState } from 'react';
 
 import './ThreeDotsIcon.scss';
 
-function ThreeDotsIcon() {
+function ThreeDotsIcon({ children }) {
+    const [open, setOpen] = useState(false);
+
     const showDropdown = () => {
-        console.log("yo");
+        setOpen(current => !current);
     }
 
 return (
-    <div className='threeDotsIcon'>  
+    <div className={ open ? 'threeDotsIcon open' : 'threeDotsIcon'} onClick={showDropdown}>  
         <div className="threeDotsIcon__dropdown">
-            <div className="threeDotsIcon__Icon" onClick={showDropdown()}>
+            <div className="threeDotsIcon__Icon">
                 <div className='threeDotsIcon__dot'></div>
                 <div className='threeDotsIcon__dot'></div>
                 <div className='threeDotsIcon__dot'></div>
             </div>
             <div className="threeDotsIcon__dropdown-content">
-                <a href="#home">Open</a>
-                <a href="#about">Edit</a>
+                {children}
             </div>
         </div>
     </div>

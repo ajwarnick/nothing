@@ -3,6 +3,7 @@ import Stories from '../Stories';
 import StoryIcon from '../StoryIcon';
 import AddIcon from '../AddIcon';
 import ThreeDotsIcon from '../ThreeDotsIcon';
+import Followers from '../Followers';
 
 import './Profile.scss';
 
@@ -27,7 +28,10 @@ return (
                     <AddIcon />
                 </div>
                 <div className='profile__Data_option'>
-                    <ThreeDotsIcon />
+                    <ThreeDotsIcon>
+                        {/* <a href="#">Edit</a> */}
+                        <p>Vitae cum voluptates iure dolorem. Adipisci quibusdam praesentium sed omnis ut similique ut. Omnis in saepe quis repudiandae molestiae. Nemo consequuntur maiores ut deserunt assumenda. Voluptatem qui dolorum deserunt assumenda voluptas quo. Ipsam eveniet maiores ullam debitis.</p>
+                    </ThreeDotsIcon>
                 </div>
             </div>
             <div className='profile__Stats_stats'>
@@ -43,7 +47,7 @@ return (
                 {/* Followed by _thewanderingartteacher_, wassaicproject and 130 more */}
             </div>
         </div>
-       
+       <Followers></Followers>
         <div className='profile__Stories'>
             {/* <Stories /> */}
 
