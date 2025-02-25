@@ -3,19 +3,17 @@ import { useState } from 'react';
 
 import './Modal.scss';
 
-function Modal({ children, open }) {
-    const [o, setO] = useState(open);
-
-    const openClose = () => {
-        setO(current => !current);
-    }
-
+function Modal({ children, open, close }) {
+ const backdropClick = () =>{
+    console.log("backdrop");
+    close(false);
+ }
 return (
-    <div className={ o ? 'modal__Modal' : 'modal__Modal open'} >  
+    <div className={ open ? 'modal__Modal open' : 'modal__Modal'} >  
         <div className='modal__Content'>
             {children}
         </div>
-        <div className='modal__Backdrop' onClick={openClose}></div>
+        <div className='modal__Backdrop'  onClick={backdropClick}></div>
     </div>
     );
 }

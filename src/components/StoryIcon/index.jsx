@@ -6,7 +6,7 @@ import BlurImage from '../BlurImage';
 import './StoryIcon.scss';
 
 
-function StoryIcon() {
+function StoryIcon({hash}) {
 
     const getRandomInt = (min, max) => {
         min = Math.ceil(min);
@@ -26,7 +26,7 @@ return (
     <div className='storieIcon'>
         <div className='storieIcon__border' style={bc}>
         </div>
-        <BlurImage />
+            <BlurImage hash={hash}/>
     </div>
     );
 }

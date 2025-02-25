@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 import BlurImage from '../BlurImage';
 import Comments from '../Comments';
@@ -26,9 +26,11 @@ const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 }
 
-
 const Post = () => {
+  const timer = React.useRef();
+  const userAvatar = useMemo(() => <BlurImage />);
   let [sidebar, setSidebar] = useState(false);
+  let [like, setLike] = useState(false);
 
   let [meta, setMeta] = useState({
     multipleImages: getRandomInt(2), // if 1 is solo / if 2 is mutliple 
@@ -38,26 +40,23 @@ const Post = () => {
   });
 
   const onClickHandler = event => {
-    console.log(yo);
-    // clearTimeout(timer.current);
+    clearTimeout(timer.current);
 
-    // if (event.detail === 1) {
-    //     timer.current = setTimeout(onClick, 200)
-    // } else if (event.detail === 2) {
-    //     onDoubleClick()
-    // }
+    if (event.detail === 1) {
+      timer.current = setTimeout(()=>{}, 200);
+    } else if (event.detail === 2) {
+      setLike(true);
+    }
   }
 
   const testUser = React.useRef( generateString( getRandomInt( 15 ) ) );
   const testNumber = React.useRef( getRandomInt(110) );
 
-
-
   return (
     <section className="post">
       <div className="post__header">
           <div className="post__header__icon">
-            <BlurImage />
+            {userAvatar}
           </div>
           <div className="post__header__name">
               {/* {`Multiple: ${meta.multipleImages}, Likes: ${meta.likeUsers}, Username: ${testUser.current}`} */}
@@ -77,7 +76,7 @@ const Post = () => {
         )}
         <div className="post__image__icons">
             <div className="post__image__heart">
-              <HeartIcon />
+              <HeartIcon like={like}/>
             </div>
             <div className="post__image__comment" onClick={() => {setSidebar(!sidebar)}}>
               <CommentIcon />

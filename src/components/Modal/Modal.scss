@@ -4,7 +4,7 @@
 
 .modal__Modal{
     position: fixed;
-    display: block;
+    display: none;
     top: 0;
     bottom: 0;
     right: 0;
@@ -38,8 +38,6 @@
         background-color: var(--nothing-dark);
         opacity: 0.3;
         z-index: 99;
-        overscroll-behavior: contain;
-        pointer-events: none;
     }
 
     &.open{

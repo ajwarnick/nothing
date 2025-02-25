@@ -111,6 +111,10 @@
     .profile__Bio{
         font-size: 1.2rem;
         @include script;
+
+        .profile__Bio_displayName{
+            @include script-bold;
+        }
     }
 
     .profile__Stories{

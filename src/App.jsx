@@ -1,5 +1,3 @@
-import { Route, Routes } from "react-router"
-
 import Footer from './components/Footer'
 import Header from './components/Header'
 
