@@ -29,7 +29,7 @@ function Profile() {
 
     const hhhh = getHash();
 
-    const [o, setO] = useState(false);
+    const [o, setO] = useState( true );
 
     const openFollowers = () => {
         console.log("openFollowers");
@@ -72,7 +72,7 @@ return (
        
         <div className='profile__Stories'>
             {stories.map((story, i) =>
-                <div key={i}>
+                <div className='profile__Stories_story' key={i}>
                     <StoryIcon hash={story.hash} />
                     {story.label}
                 </div>
@@ -91,7 +91,7 @@ return (
                 </div>
             )}
        </div>
-       {/* <Followers open={o} close={setO} /> */}
+       <Followers open={o} close={setO} />
     </div>
     );
 }

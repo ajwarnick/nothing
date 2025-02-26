@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useMemo } from 'react';
+import { generateDisplayname, getRandomInt, generateString } from '../Utilities/functions.js';
+
 
 import BlurImage from '../BlurImage';
 import Comments from '../Comments';
@@ -8,27 +10,18 @@ import CommentIcon from '../CommentIcon';
 import ShareIcon from '../ShareIcon';
 import Carousel from '../Carousel/Index';
 
+import images from '../BlurImage/images.json';
+const imageHashes = images.images;
+
+const getHash = () => {
+    return imageHashes[Math.floor(Math.random() * imageHashes.length)].hash
+}
+
 import './Post.scss';
-
-const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-const generateString = (length) => {
-    let result = ' ';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    return result;
-}
-
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
-}
 
 const Post = () => {
   const timer = React.useRef();
-  const userAvatar = useMemo(() => <BlurImage />);
+  const userAvatar = useMemo(getHash());
   let [sidebar, setSidebar] = useState(false);
   let [like, setLike] = useState(false);
 
@@ -38,6 +31,8 @@ const Post = () => {
     likeUsers: getRandomInt(160), // between 1 and 3
     comments: getRandomInt(3), // between 1 and 4
   });
+
+  // const posts  = [...Array(20)].map(() => getHash());
 
   const onClickHandler = event => {
     clearTimeout(timer.current);
@@ -56,7 +51,7 @@ const Post = () => {
     <section className="post">
       <div className="post__header">
           <div className="post__header__icon">
-            {userAvatar}
+          <BlurImage hash={userAvatar} />
           </div>
           <div className="post__header__name">
               {/* {`Multiple: ${meta.multipleImages}, Likes: ${meta.likeUsers}, Username: ${testUser.current}`} */}
