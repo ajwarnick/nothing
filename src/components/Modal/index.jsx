@@ -5,7 +5,6 @@ import './Modal.scss';
 
 function Modal({ children, open, close }) {
  const backdropClick = () =>{
-    console.log("backdrop");
     close(false);
  }
 return (

@@ -19,7 +19,7 @@ return (
                 <div className='threeDotsIcon__dot'></div>
             </div>
             <div className="threeDotsIcon__dropdown-content">
-                {children}
+                { children }
             </div>
         </div>
     </div>

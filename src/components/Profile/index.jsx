@@ -16,24 +16,28 @@ const getHash = () => {
     return imageHashes[Math.floor(Math.random() * imageHashes.length)].hash
 }
 
+const displayName = generateDisplayname(1,2);
+const posts  = [...Array(20)].map(() => getHash());
+const stories  = [...Array(4)].map(() => { 
+    return {hash: getHash(), label: generateDisplayname(1,1) } });
+const numberOfFollowers = getRandomInt(200);
+const numberOfFollowing = getRandomInt(200);
+
+const hhhh = getHash();
+
 import './Profile.scss';
 
 function Profile() {
-
-    const displayName = generateDisplayname(1,2);
-    const posts  = [...Array(20)].map(() => getHash());
-    const stories  = [...Array(4)].map(() => { 
-        return {hash: getHash(), label: generateDisplayname(1,1) } });
-    const numberOfFollowers = getRandomInt(200);
-    const numberOfFollowing = getRandomInt(200);
-
-    const hhhh = getHash();
-
     const [o, setO] = useState( true );
 
     const openFollowers = () => {
         console.log("openFollowers");
         setO(true);
+    }
+
+    const closeFollowers = () => {
+        console.log("closeFollowers");
+        setO(false);
     }
 
 return (
@@ -66,7 +70,7 @@ return (
                 Interdisciplinary Artist<br/>
                 recently: Material Systems, @marylandinstitutecollegeofart<br/>
                 Innovation Studio AIR<br/>
-                {/* Followed by _thewanderingartteacher_, wassaicproject and 130 more */}
+                Followed by _thewanderingartteacher_, wassaicproject and 130 more
             </div>
         </div>
        
@@ -91,7 +95,7 @@ return (
                 </div>
             )}
        </div>
-       <Followers open={o} close={setO} />
+       <Followers open={o} close={closeFollowers} />
     </div>
     );
 }

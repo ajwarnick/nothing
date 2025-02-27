@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { getRandomInt } from '../Utilities/functions.js';
 
 import Modal from '../Modal';
@@ -6,7 +5,7 @@ import Follower from '../Follower';
 
 import './Followers.scss';
 
-function Followers({ open, close }) {
+function Followers({open, close}) {
 
 return (
     <Modal open={open} close={close}> 
