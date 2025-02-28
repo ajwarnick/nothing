@@ -62,3 +62,24 @@ export function generateString(length){
 
     return result;
 }
+
+export function getRandTime(){
+  
+  const getRndInteger = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+
+  let dice = getRndInteger(1,12);
+
+  if(dice <= 1){
+      return '1s'
+  }else if(dice <= 7){
+      return '1m'
+  }else if(dice <= 9){
+      return '1h'
+  }else if(dice <= 11){
+      return '1d'
+  }else{
+      return '1y'
+  }
+}

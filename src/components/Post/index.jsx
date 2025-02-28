@@ -1,7 +1,5 @@
-import React from 'react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { generateDisplayname, getRandomInt, generateString } from '../Utilities/functions.js';
-
 
 import BlurImage from '../BlurImage';
 import Comments from '../Comments';
@@ -17,19 +15,23 @@ const getHash = () => {
     return imageHashes[Math.floor(Math.random() * imageHashes.length)].hash
 }
 
+const generateHashes = (num) => {
+  return [...Array(num+1)].map(() => getHash());;
+}
+
 import './Post.scss';
 
 const Post = () => {
-  const timer = React.useRef();
-  const userAvatar = useMemo(getHash());
+  const timer = useRef();
+  // const userAvatar = useMemo(hhhh,[]);
   let [sidebar, setSidebar] = useState(false);
   let [like, setLike] = useState(false);
 
-  let [meta, setMeta] = useState({
-    multipleImages: getRandomInt(2), // if 1 is solo / if 2 is mutliple 
-    images: getRandomInt(4), // if multiple this number of images 2-4
-    likeUsers: getRandomInt(160), // between 1 and 3
-    comments: getRandomInt(3), // between 1 and 4
+  const meta = useRef({
+    multipleImages: getRandomInt(1,2), // if 1 is solo / if 2 is mutliple 
+    images: generateHashes(getRandomInt(1,3)), // if multiple this number of images 2-4
+    likeUsers: getRandomInt(1,160), // between 1 and 3
+    comments: getRandomInt(1,4), // between 1 and 4
   });
 
   // const posts  = [...Array(20)].map(() => getHash());
@@ -44,14 +46,14 @@ const Post = () => {
     }
   }
 
-  const testUser = React.useRef( generateString( getRandomInt( 15 ) ) );
-  const testNumber = React.useRef( getRandomInt(110) );
+  const testUser = useRef( generateString( getRandomInt( 15 ) ) );
+  const testNumber = useRef( getRandomInt(110) );
 
   return (
     <section className="post">
       <div className="post__header">
           <div className="post__header__icon">
-          <BlurImage hash={userAvatar} />
+          {/* <BlurImage hash={userAvatar} /> */}
           </div>
           <div className="post__header__name">
               {/* {`Multiple: ${meta.multipleImages}, Likes: ${meta.likeUsers}, Username: ${testUser.current}`} */}
@@ -60,14 +62,14 @@ const Post = () => {
           <div className="post__header__options"><div></div></div>
       </div>
       <div className="post__image" onClick={onClickHandler}>
-        {meta.multipleImages === 0 ? (
+        {meta.current.multipleImages === 1 ? (
           <Carousel show={1} withIndicator >
-            {[...Array(meta.images + 1)].map((x, i) =>
-              <BlurImage key={i} />
+            {meta.current.images.map((x, i) =>
+              <BlurImage key={i} hash={x} />
             )}
           </Carousel>
         ) : (
-          <BlurImage />
+           <BlurImage hash={meta.current.images[0]}/>
         )}
         <div className="post__image__icons">
             <div className="post__image__heart">
@@ -86,14 +88,14 @@ const Post = () => {
       </div>
       <div className="post__meta">
           <div className="post__likes">
+              {/* <div className="post__likes__circle"><BlurImage /></div>
               <div className="post__likes__circle"><BlurImage /></div>
-              <div className="post__likes__circle"><BlurImage /></div>
-              <div className="post__likes__circle"><BlurImage /></div>
-              <div className="post__likes__number">Liked by <span>{testUser.current}</span> and <span>{meta.likeUsers} others</span></div>
+              <div className="post__likes__circle"><BlurImage /></div> */}
+              <div className="post__likes__number">Liked by <span>{testUser.current}</span> and <span>{meta.current.likeUsers} others</span></div>
           </div>
           <Comments open={sidebar} />
       </div>
-      {meta.numberOfImages}
+      {meta.current.numberOfImages}
   </section>
   );
 };

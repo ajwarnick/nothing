@@ -1,6 +1,5 @@
-import React from 'react';
+import { memo } from 'react';
 import { getRandomInt } from '../Utilities/functions.js';
-
 import BlurImage from '../BlurImage';
 
 import './StoryIcon.scss';
