@@ -15,3 +15,4 @@ Currently, two official plugins are available:
 - make video story 
 - fix hit delay on lower icons 
 - add back swipe 
+- Chat add image blur from loaded picture
