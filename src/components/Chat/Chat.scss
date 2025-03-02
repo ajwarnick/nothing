@@ -108,12 +108,36 @@
             display: flex;
             align-items: center;
             gap: 1em;
-            padding: 0 1em;
+            padding: 0.5em 1em;
             @include script();
 
             .backIcon__BackIcon{
-                font-size: .7rem;
+                font-size: .5rem;
             }
+
+            .storieIcon{
+                height: 1.5em;
+                width: 1.5em;
+
+                .storieIcon__border{
+                    top: -5px;
+                    left: -5px;
+                    bottom: -5px;
+                    right: -5px;
+                }
+            }
+
+            .chat__chat__header_meta{
+                .chat__chat__header_meta_username{
+                    font-size: 1.4rem;
+                    line-height: 1rem;
+                    margin-bottom: 5px;
+                }
+                .chat__chat__header_meta_active{
+                    font-size: .6rem;
+                }
+            }
+            
         }
 
         .chat__chat_eliza{

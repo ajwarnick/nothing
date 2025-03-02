@@ -38,8 +38,11 @@ function Chat({open, username, online}) {
             <dir className="chat__chat_chat">
                 <div className='chat__chat_header' onClick={backClick}>
                     <BackIcon  />
-                    <div className='chat__chat_chat__username'>{username}</div>
-                    {/* info icon */}
+                    <StoryIcon hash={hash.current} />
+                    <div className='chat__chat__header_meta'>
+                        <div className='chat__chat__header_meta_username'>{username}</div>
+                        <div className='chat__chat__header_meta_active'>Active {firstLine.time} ago</div>
+                    </div>
                 </div>
                 <div className='chat__chat_eliza'><Eliza /></div>
                 <div className='chat__chat_footer'></div>
