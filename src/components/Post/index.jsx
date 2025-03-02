@@ -9,10 +9,9 @@ import ShareIcon from '../ShareIcon';
 import Carousel from '../Carousel/Index';
 
 import images from '../BlurImage/images.json';
-const imageHashes = images.images;
 
 const getHash = () => {
-    return imageHashes[Math.floor(Math.random() * imageHashes.length)].hash
+    return images.images[Math.floor(Math.random() * images.images.length)].hash
 }
 
 const generateHashes = (num) => {
@@ -21,20 +20,23 @@ const generateHashes = (num) => {
 
 import './Post.scss';
 
-const Post = () => {
+const Post = ({data, isLiked}) => {
+
+  // console.log(data);
+
   const timer = useRef();
-  // const userAvatar = useMemo(hhhh,[]);
   let [sidebar, setSidebar] = useState(false);
-  let [like, setLike] = useState(false);
+  let [like, setLike] = useState(isLiked);
 
   const meta = useRef({
+    userAvatar: getHash(),
+    userName: generateString( getRandomInt( 4, 15 ) ),
     multipleImages: getRandomInt(1,2), // if 1 is solo / if 2 is mutliple 
     images: generateHashes(getRandomInt(1,3)), // if multiple this number of images 2-4
     likeUsers: getRandomInt(1,160), // between 1 and 3
+    likeAvatars: generateHashes(getRandomInt(1,3)),
     comments: getRandomInt(1,4), // between 1 and 4
   });
-
-  // const posts  = [...Array(20)].map(() => getHash());
 
   const onClickHandler = event => {
     clearTimeout(timer.current);
@@ -53,11 +55,10 @@ const Post = () => {
     <section className="post">
       <div className="post__header">
           <div className="post__header__icon">
-          {/* <BlurImage hash={userAvatar} /> */}
+            <BlurImage hash={meta.current.userAvatar} />
           </div>
           <div className="post__header__name">
-              {/* {`Multiple: ${meta.multipleImages}, Likes: ${meta.likeUsers}, Username: ${testUser.current}`} */}
-              {testUser.current}
+              { meta.current.userName }
           </div>
           <div className="post__header__options"><div></div></div>
       </div>
@@ -88,10 +89,10 @@ const Post = () => {
       </div>
       <div className="post__meta">
           <div className="post__likes">
-              {/* <div className="post__likes__circle"><BlurImage /></div>
-              <div className="post__likes__circle"><BlurImage /></div>
-              <div className="post__likes__circle"><BlurImage /></div> */}
-              <div className="post__likes__number">Liked by <span>{testUser.current}</span> and <span>{meta.current.likeUsers} others</span></div>
+            {meta.current.likeAvatars.map((x,i) => 
+              <div className="post__likes__circle" key={i}><BlurImage hash={x} /></div>
+            )}
+            <div className="post__likes__number">Liked by <span>{testUser.current}</span> and <span>{meta.current.likeUsers} others</span></div>
           </div>
           <Comments open={sidebar} />
       </div>

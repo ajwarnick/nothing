@@ -28,15 +28,13 @@ const hhhh = getHash();
 import './Profile.scss';
 
 function Profile() {
-    const [o, setO] = useState( true );
+    const [o, setO] = useState( false );
 
     const openFollowers = () => {
-        console.log("openFollowers");
         setO(true);
     }
 
     const closeFollowers = () => {
-        console.log("closeFollowers");
         setO(false);
     }
 
