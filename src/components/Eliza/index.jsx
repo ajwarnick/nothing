@@ -460,8 +460,8 @@ function Eliza({open}) {
                     <li key={line.id} className={line.user}>{line.message}</li>
                 ))}
             </ul>
-            <form onSubmit={handleSubmit}>
-                <label>
+            <form className='eliza__message_form' onSubmit={handleSubmit}>
+                <label >
                     <input 
                     className='eliza__message_input'
                     type="text" 

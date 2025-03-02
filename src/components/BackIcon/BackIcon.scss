@@ -11,9 +11,10 @@
         height: 3em;
         width: 3em;
 
+        polyline,
         path{
-            stroke: var(--nothing-light);
-            stroke-width: 1;
+            stroke: var(--nothing-ui-color);
+            stroke-width: 2;
             fill:none;
         }
     }

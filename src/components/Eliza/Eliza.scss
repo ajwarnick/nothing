@@ -51,36 +51,47 @@
        
     }
 
+    .eliza__message_form{
+        margin-bottom: 3rem;
+        background-color: var(--nothing-lighter);
+        border-radius: 22px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        // border: 1px solid var(--nothing-ui-color);
+        filter: drop-shadow(0px 10px 0.75rem var(--nothing-ui-color));
+        padding: 5px;
+    }
+
     .eliza__message_input{
         outline: none;
         padding: 0.6em 50px 0.6em 0.6em;
-        margin-bottom: 20px;
 
-        background-color: var(--nothing-background-color);
-        border: 1px solid var(--nothing-ui-color);
+        background-color: var(--nothing-lighter);
+        border: 1px solid var(--nothing-lighter);
         color:  var(--nothing-ui-color);
-        border-radius: 1em;
+        // border-radius: 16px;
 
         font-size: 0.8em;
         outline: none;
   
         &:focus {
             // background-color: var(--nothing-light);
-            border: 1px solid rgb(216, 222, 255);
+            // border: 1px solid rgb(216, 222, 255);
         }
+
+
     }
 
     .eliza__message_submit{
-        position: absolute;
-        right: 8px;
-        background-color: rgb(216, 222, 255);
         color: var(--nothing-ui-color);
         border: none;
         padding: 8px 16px;
-        border-radius: 24px;
+        border-radius: 16px;
         cursor: pointer;
         font-size: 16px;
         outline: none;
+
         @include script;
     }
 }
