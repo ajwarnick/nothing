@@ -16,3 +16,4 @@ Currently, two official plugins are available:
 - fix hit delay on lower icons 
 - add back swipe 
 - Chat add image blur from loaded picture
+- Chat cancel timeout when second message sent super fast
