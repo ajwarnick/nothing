@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { generateDisplayname, getRandomInt } from '../Utilities/functions.js';
 
 // import * from './elizabot';
 import * as elizadata from './elizadata';
 
 import './Eliza.scss';
-
-let nextId = 0;
 
 /*
   elizabot.js v.1.1 - ELIZA JS library (N.Landsteiner 2005)
@@ -382,7 +381,6 @@ ElizaBot.prototype.getInitial = function() {
 	return elizaInitials[Math.floor(Math.random()*elizaInitials.length)];
 }
 
-
 // fix array.prototype methods (push, shift) if not implemented (MSIE fix)
 if (typeof Array.prototype.push == 'undefined') {
 	Array.prototype.push=function(v) { return this[this.length]=v; };
@@ -399,58 +397,81 @@ if (typeof Array.prototype.shift == 'undefined') {
 
 // eof
 
-function Eliza({open}) {
+function Eliza({open, chadID}) {
+	// const timer = useRef();
 
     var eliza = new ElizaBot();
-    // var elizaLines = new Array();
 
-    const [name, setName] = useState('');
+    const [message, setMessage] = useState('');
     const [elizaLines, setelizaLines] = useState([]);
+	const [waiting, setWaiting] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        elizaStep(name);
+        elizaStep(message);
     }
 
-    function elizaReset() {
-        eliza.reset();
-        elizaLines.length = 0;
-        elizaStep();
-    }
+    // function elizaReset() {
+    //     eliza.reset();
+    //     elizaLines.length = 0;
+    //     elizaStep();
+    // }
 
     function elizaStep(userinput) {
-        
-        // if (eliza.quit) {
-        //     if (confirm("This session is over.\nStart over?")) elizaReset();
-        //     return;
-        // }
+		const dice = getRandomInt(1,10);
+        let nextID = elizaLines.length;
 
-        // else 
-        if (userinput != '') {
+		if (userinput != '') {
+			if(dice == 0){
+				setelizaLines([...elizaLines, {
+						id: nextID++,
+						user: "eliza__you_message",
+						message: userinput,
+					},
+					{
+						id: nextID+2,
+						user: "eliza__eliza_message",
+						message: eliza.transform(userinput),
+					}
+				]);
+			}else if (dice == 1){
+				setelizaLines([...elizaLines, {
+					id: nextID++,
+					user: "eliza__you_message",
+					message: userinput,
+				}]);
 
-            elizaLines.push({
-                id: nextId++,
-                user: "eliza__you_message",
-                message: userinput,
-            });
+			}else{
+				setelizaLines([...elizaLines, {
+					id: nextID++,
+					user: "eliza__you_message",
+					message: userinput,
+				}]);
 
-            elizaLines.push({
-                id: nextId+2,
-                user: "eliza__eliza_message",
-                message: eliza.transform(userinput),
-            });
-
-        }
-        else if (elizaLines.length == 0) {
-            elizaLines.push({
-                id: nextId++,
-                user: "eliza",
-                message: eliza.getInitial(),
-            });
-        }
-        // setelizaLines(elizaLines);
-        console.log(elizaLines);
-        setName('');
+				setWaiting(true);
+	
+				setTimeout(() => {
+					setWaiting(false);
+					setelizaLines([...elizaLines, {
+						id: nextID++,
+						user: "eliza__you_message",
+						message: userinput,
+					},{
+						id: nextID+2,
+						user: "eliza__eliza_message",
+						message: eliza.transform(userinput),
+					}]);
+				}, 5000);
+			}
+		}else if (elizaLines.length == 0) {
+			setelizaLines([...elizaLines, {
+					id: nextID++,
+					user: "eliza__eliza_message",
+					message: eliza.getInitial(),
+				}
+			]);
+		}
+		setMessage('');
     }
 
     return (
@@ -460,14 +481,15 @@ function Eliza({open}) {
                     <li key={line.id} className={line.user}>{line.message}</li>
                 ))}
             </ul>
+			<div className={waiting ? 'eliza__message_thinking isWaiting' : 'eliza__message_thinking'}><div className="dot-pulse"></div></div>
             <form className='eliza__message_form' onSubmit={handleSubmit}>
                 <label >
                     <input 
-                    className='eliza__message_input'
-                    type="text" 
-                    value={name}
-                    placeholder="Message"
-                    onChange={(e) => setName(e.target.value)}
+						className='eliza__message_input'
+						type="text" 
+						value={message}
+						placeholder="Message"
+						onChange={(e) => setMessage(e.target.value)}
                     />
                 </label>
                 <input className='eliza__message_submit' type="submit" value="Send" />

@@ -51,6 +51,98 @@
        
     }
 
+    .eliza__message_thinking{
+        padding: 1rem;
+        background-color: rgb(205, 205, 205);
+        width: 3rem;
+        display: none;
+        align-content: center;
+        justify-content: center;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+
+        &.isWaiting{
+            display: flex;
+        }
+        
+        /**
+        * ==============================================
+        * Dot Pulse
+        * ==============================================
+        */
+
+        .dot-pulse {
+            position: relative;
+            left: -9999px;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: var(--nothing-background-color);
+            color: var(--nothing-background-color);
+            box-shadow: 9999px 0 0 -0.5rem;
+            animation: dot-pulse 1.5s infinite linear;
+            animation-delay: 0.25s;
+        }
+
+        .dot-pulse::before, .dot-pulse::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: var(--nothing-background-color);
+            color: var(--nothing-background-color);
+        }
+        .dot-pulse::before {
+            box-shadow: 9984px 0 0 -0.5rem;
+            animation: dot-pulse-before 1.5s infinite linear;
+            animation-delay: 0s;
+        }
+        .dot-pulse::after {
+            box-shadow: 10014px 0 0 -0.5rem;
+            animation: dot-pulse-after 1.5s infinite linear;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes dot-pulse-before {
+            0% {
+            box-shadow: 9984px 0 0 -5px;
+            }
+            30% {
+            box-shadow: 9984px 0 0 2px;
+            }
+            60%, 100% {
+            box-shadow: 9984px 0 0 -5px;
+            }
+        }
+
+        @keyframes dot-pulse {
+            0% {
+            box-shadow: 9999px 0 0 -5px;
+            }
+            30% {
+            box-shadow: 9999px 0 0 2px;
+            }
+            60%, 100% {
+            box-shadow: 9999px 0 0 -5px;
+            }
+        }
+
+        @keyframes dot-pulse-after {
+            0% {
+            box-shadow: 10014px 0 0 -5px;
+            }
+            30% {
+            box-shadow: 10014px 0 0 2px;
+            }
+            60%, 100% {
+            box-shadow: 10014px 0 0 -5px;
+            }
+        }
+    }
+
     .eliza__message_form{
         margin-bottom: 3rem;
         background-color: var(--nothing-lighter);
