@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router";
 
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Story from './components/Story';
 
 import Chats from './components/Chats'
 import Feed from './components/Feed';
@@ -15,12 +16,12 @@ function App() {
     <>
       <Header />
         <div className="container">
-          {/* <Chats /> */}
+          <Story />
           <Routes>
-            <Route path="/" element={<Feed />} />
-            <Route path="/chat" element={<Chats />} />
+            {/* <Route path="/" element={<Feed />} /> */}
+            {/* <Route path="/chat" element={<Chats />} /> */}
             {/* <Route path="/camera" element={<Camera />} /> */}
-            <Route path="/profile" element={<Profile />} />
+            {/* <Route path="/profile" element={<Profile />} /> */}
           </Routes>
         </div>
       <Footer />  

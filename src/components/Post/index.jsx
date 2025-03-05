@@ -21,9 +21,6 @@ const generateHashes = (num) => {
 import './Post.scss';
 
 const Post = ({data, isLiked}) => {
-
-  // console.log(data);
-
   const timer = useRef();
   let [sidebar, setSidebar] = useState(false);
   let [like, setLike] = useState(isLiked);

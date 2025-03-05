@@ -11,8 +11,8 @@ const makeGradient = () => {
 
 const bc = { "backgroundImage": makeGradient() };
 
-const StoryIcon = memo(function StoryIcon({ hash }) {
-    return <div className='storieIcon'><div className='storieIcon__border' style={bc}></div><BlurImage hash={hash}/></div>
+const StoryIcon = memo(function StoryIcon({ hash, border = true }) {
+    return <div className='storieIcon'><div className={border ? 'storieIcon__border' : ''} style={bc}></div><BlurImage hash={hash}/></div>
 });
   
 export default StoryIcon;

@@ -1,0 +1,103 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
+
+.story__Story{
+    position: fixed;
+    height: 100vh;
+    width: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 100;
+
+    .story__Story_Header{
+        position: absolute;
+        width: 100vw;
+        height: 3em;
+        padding-top: 0.5em;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        .story__Story_Header_Lines{
+            padding: 5px;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        .story__Story_Header_Line{
+            flex-grow: 1;
+            height: 5px;
+            border-radius: 2.5px;
+            background-color: white;
+        }
+    }
+
+    .story__Story_Header_Meta{
+        padding: 1em;
+        display: flex;
+        flex-direction: row;
+        // justify-content: center;
+        align-items: center;
+        gap: 1em;
+        // font-size: 2rem;
+        color: white;
+
+        @include script;
+
+        .story__Story_Header__name{
+            flex-grow: 1;
+        }
+
+        .story__Story_Header__icon{
+            height: 2em;
+            width: 2em;
+            border-radius: 50%;
+            overflow: hidden;
+
+            .blurImage{
+                width: 5em;
+            }
+        }   
+    }
+
+    .story__Story_Footer{
+        position: absolute;
+        box-sizing: border-box;
+        padding: 0.5em 1em 20px 1em;
+
+        width: 100vw;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        color: white;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+
+        .story__Story_Footer_input{
+            flex-grow: 1;
+            border: 2px solid white;
+            height: 2rem;
+            border-radius: 1rem;
+        }
+
+        .post__HeartIcon,
+        .post__ShareIcon{
+            font-size: 1.3rem;
+        }
+
+        path{
+            stroke: white;
+            stroke-width: 2;
+            fill:none;
+        }
+    }
+}
