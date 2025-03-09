@@ -33,7 +33,25 @@
             flex-grow: 1;
             height: 5px;
             border-radius: 2.5px;
-            background-color: white;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.4);
+
+            &.done{
+                background-color: white;
+            }
+
+            &.active::before {
+                content : "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+
+                height: 5px;
+                border-radius: 2.5px;
+                width:  var(--timer); 
+                background-color: white;
+              }
         }
     }
 
@@ -82,22 +100,85 @@
         align-items: center;
         gap: 1em;
 
+        .story__Story_Footer_fieldset{
+            border: none;
+            position: relative;
+            margin-right: auto;
+
+            .story__Story_Footer_buttons{
+                display: none;
+                position: absolute;
+                bottom: 5rem;
+                
+                button{
+                    background-color: transparent;
+                    border: none;
+                    height: 2.5rem;
+                    width: 2.5rem;
+                }
+            }
+
+            &:focus-within{
+                .story__Story_Footer_buttons{
+                    display: block;
+                }
+            }
+        }
+
         .story__Story_Footer_input{
             flex-grow: 1;
             border: 2px solid white;
-            height: 2rem;
-            border-radius: 1rem;
+            height: 2.5rem;
+            border-radius: 1.25rem;
+            background-color: transparent;
+            padding-left: 1rem;
+            padding-bottom: 0.25rem;
+            color: white;
+            font-size: 1.5rem;
+            
+
+            &:focus,
+            &:active{
+                outline: none;
+            }
         }
 
         .post__HeartIcon,
         .post__ShareIcon{
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
         path{
             stroke: white;
-            stroke-width: 2;
+            stroke-width: 1.5;
             fill:none;
         }
     }
+
+    .story__Story_Footer_buttons_smile{
+        svg{
+            ellipse{
+                fill: white;
+            }
+    
+            path{
+                fill: white;
+                stroke: none;
+                stroke-width: 0;
+            }
+        }
+    }
+    
+    .story__Story_Footer_buttons_fire,
+    .story__Story_Footer_buttons_kiss,
+    .story__Story_Footer_buttons_funny{
+        svg{
+            path{
+                fill: white;
+                stroke: none;
+            }
+        }
+    }
 }
+
+
