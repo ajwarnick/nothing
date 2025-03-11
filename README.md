@@ -17,3 +17,5 @@ Currently, two official plugins are available:
 - add back swipe 
 - Chat add image blur from loaded picture
 - Chat cancel timeout when second message sent super fast
+- add post story example 
+- add solid block story type

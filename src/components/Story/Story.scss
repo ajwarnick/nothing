@@ -5,7 +5,9 @@
 .story__Story{
     position: fixed;
     height: 100vh;
-    width: 100vh;
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
     top: 0;
     bottom: 0;
     left: 0;
@@ -14,10 +16,11 @@
     z-index: 100;
 
     .story__Story_Header{
+        box-sizing: border-box;
         position: absolute;
-        width: 100vw;
+        width: 100%;
         height: 3em;
-        padding-top: 0.5em;
+        padding: 1em;
         top: 0;
         left: 0;
         right: 0;
@@ -49,9 +52,20 @@
 
                 height: 5px;
                 border-radius: 2.5px;
-                width:  var(--timer); 
+                width:0%;
                 background-color: white;
-              }
+                animation-name: lineWidth;
+                animation-duration: 4s;
+            }
+
+            &.paused::before {
+                animation-play-state: paused;
+            }
+
+            @keyframes lineWidth {
+                    0%   {width:0%;}
+                    100% {width:100%;}
+            }
         }
     }
 
@@ -69,6 +83,13 @@
 
         .story__Story_Header__name{
             flex-grow: 1;
+            font-size: 2rem;
+            padding-bottom: 5px;
+
+            .story__Story_Header__username{
+                @include script-bold;
+                font-size: 1.7rem;
+            }
         }
 
         .story__Story_Header__icon{
@@ -80,7 +101,13 @@
             .blurImage{
                 width: 5em;
             }
-        }   
+        } 
+        
+        .pauseIcon__PauseIcon,
+        .playIcon__PlayIcon{
+            font-size: 16px;
+            color: white;
+        }
     }
 
     .story__Story_Footer{
@@ -88,7 +115,7 @@
         box-sizing: border-box;
         padding: 0.5em 1em 20px 1em;
 
-        width: 100vw;
+        width: 100%;
         bottom: 0;
         left: 0;
         right: 0;
@@ -103,7 +130,10 @@
         .story__Story_Footer_fieldset{
             border: none;
             position: relative;
-            margin-right: auto;
+            margin: 0 auto 0 0;
+            width: 75%;
+            padding: 0;
+
 
             .story__Story_Footer_buttons{
                 display: none;
@@ -129,9 +159,9 @@
             flex-grow: 1;
             border: 2px solid white;
             height: 2.5rem;
+            width: 100%;
             border-radius: 1.25rem;
             background-color: transparent;
-            padding-left: 1rem;
             padding-bottom: 0.25rem;
             color: white;
             font-size: 1.5rem;
