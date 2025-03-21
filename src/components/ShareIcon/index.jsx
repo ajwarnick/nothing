@@ -1,22 +1,20 @@
 import './ShareIcon.scss';
 
 function ShareIcon({path}) {
-    console.log(path);
 
     async function share() {
-
-        if(navigator){
-            // console.log(navigator)
-        }
-
-        // try {
-        //   await navigator.share({
-        //     text: 'Follow me to get more web development content.',
-        //     url: 'https://ilxanlar.medium.com'
-        //   })
-        // } catch (error) {
-        //   console.log('Sharing failed!', error)
+        // if(navigator){
+        //     console.log(navigator)
         // }
+
+        try {
+          await navigator.share({
+            text: 'Nothing',
+            url: 'https://nothing.anthonywarnick.com/' + path
+          })
+        } catch (error) {
+          console.log('Sharing failed!', error)
+        }
     }
 
 return (
