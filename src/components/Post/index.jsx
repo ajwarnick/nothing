@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { generateDisplayname, getRandomInt, generateString } from '../Utilities/functions.js';
+import { generateDisplayname, getRandomInt, generateString, buildParams } from '../Utilities/functions.js';
 
 import BlurImage from '../BlurImage';
 import Comments from '../Comments';
@@ -18,6 +18,18 @@ const generateHashes = (num) => {
   return [...Array(num+1)].map(() => getHash());;
 }
 
+const generateImages = () => {
+  const coin = getRandomInt(1,2);
+  var images;
+  if (coin == 1){
+    images = [getHash()];
+  }else{
+    images = generateHashes(getRandomInt(1,3));
+  }
+
+  return images;
+}
+
 import './Post.scss';
 
 const Post = ({data, isLiked}) => {
@@ -26,13 +38,12 @@ const Post = ({data, isLiked}) => {
   let [like, setLike] = useState(isLiked);
 
   const meta = useRef({
-    userAvatar: getHash(),
-    userName: generateString( getRandomInt( 4, 15 ) ),
-    multipleImages: getRandomInt(1,2), // if 1 is solo / if 2 is mutliple 
-    images: generateHashes(getRandomInt(1,3)), // if multiple this number of images 2-4
-    likeUsers: getRandomInt(1,160), // between 1 and 3
-    likeAvatars: generateHashes(getRandomInt(1,3)),
-    comments: getRandomInt(1,4), // between 1 and 4
+      userAvatar: data.userAvatar ? data.userAvatar : getHash(),
+      userName: data.userName ? data.userName : generateString( getRandomInt( 4, 15 ) ),
+      images: data.images ? data.images : generateImages(), // if multiple this number of images 2-4
+      likeUsers: data.likeUsers ? data.likeUsers : getRandomInt(1,160), // between 1 and 3
+      likeAvatars: data.likeAvatars ? data.likeAvatars : generateHashes(getRandomInt(1,3)),
+      comments: data.comments ? data.comments : getRandomInt(1,4), // between 1 and 4
   });
 
   const onClickHandler = event => {
@@ -44,6 +55,12 @@ const Post = ({data, isLiked}) => {
       setLike(true);
     }
   }
+
+  const sharePath = () => {
+    const path = '/post/' + buildParams(meta.current)
+    return path;
+  }
+
 
   const testUser = useRef( generateString( getRandomInt( 15 ) ) );
   const testNumber = useRef( getRandomInt(110) );
@@ -60,7 +77,7 @@ const Post = ({data, isLiked}) => {
           <div className="post__header__options"><div></div></div>
       </div>
       <div className="post__image" onClick={onClickHandler}>
-        {meta.current.multipleImages === 1 ? (
+        { meta.current.images.length > 1 ? (
           <Carousel show={1} withIndicator >
             {meta.current.images.map((x, i) =>
               <BlurImage key={i} hash={x} />
@@ -77,7 +94,7 @@ const Post = ({data, isLiked}) => {
               <CommentIcon />
             </div>
             <div className="post__image__share">
-              <ShareIcon />
+              <ShareIcon path={sharePath()}/>
             </div>
             <div className="post__image__bookmark">
             

@@ -62,7 +62,7 @@ export function generateString(length){
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
 
-    return result;
+    return result.trim();
 }
 
 export function getRandTime(){
@@ -84,4 +84,17 @@ export function getRandTime(){
   }else{
       return '1y'
   }
+}
+
+export function buildParams(search){
+    if (!search) return "";
+  
+    const params = new URLSearchParams();
+  
+    Object.entries(search).forEach(([key, value]) => {
+      if (Array.isArray(value)) params.append(key, value.join(",,,"));
+      else params.append(key, encodeURIComponent(value.toString()));
+    });
+  
+    return `?${params}`;
 }
