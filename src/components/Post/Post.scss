@@ -41,7 +41,7 @@
             }
         }
         .post__header__name{
-            flex-grow: 1;
+            // flex-grow: 1;
             font-size: 2rem;
             text-align: left;
 
@@ -49,6 +49,23 @@
 
             @include sm(){
                 // color:red;
+            }
+        }
+
+        .post__header__time{
+            flex-grow: 1;
+            font-size: 1.5rem;
+
+            @include script;
+
+            &:before {
+                content:"\A";
+                width:4px;
+                height:4px;
+                border-radius:50%;
+                background: currentColor;
+                display:inline-block;
+                margin: 0 10px 0 0;
             }
         }
 

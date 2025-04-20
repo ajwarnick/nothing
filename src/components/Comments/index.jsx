@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { getRandomInt } from '../Utilities/functions.js'
 
 import Comment from '../Comment';
 import ShareIcon from '../ShareIcon';
@@ -6,7 +7,10 @@ import BackIcon from '../BackIcon';
 
 import './Comments.scss';
 
-function Comments({open}) {
+function Comments({open = false}) {
+    const [message, setMessage] = useState("");
+    const [toggle, setToggle] = useState(open);
+    const numComments = useRef(getRandomInt(1, 7));
     
     // add class to body to frieze it
     // add class to post__comments_comments to expand it
@@ -20,21 +24,39 @@ function Comments({open}) {
         // onClick={() => {open = !open}}
         // onClick={() => {setSidebar(!sidebar)}}
 
+    const openSidebar = () => {
+        setToggle(prevToggle => !prevToggle);
+    }
+
     return (
-        <div className={open ? "post__comments open" : "post__comments"}>
-            <Comment type={true} />
-            <div>posted min</div>
-            <div>View all 5 Comments</div>
+        <div className={toggle ? "post__comments open" : "post__comments"}>
+            <Comment isSlim data={{}}/>
+            <div className='post__Comments_Viewall' onClick={openSidebar}>View all { numComments.current } Comments</div>
             <div className='post__comments_comments'>
                 <div className='post__comments_comments___header'>
-                    <div ><BackIcon /></div>
+                    <div onClick={openSidebar}><BackIcon /></div>
+                    <div className='post__comments_comments___header_label'>Comments</div>
                     <div><ShareIcon /></div>
                 </div>
-                <Comment type={false} />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed haec omittamus; Inde igitur, inquit, ordiendum est. Quae est igitur causa istarum angustiarum? Duo Reges: constructio interrete. <a href='http://loripsum.net/' target='_blank'>Nescio quo modo praetervolavit oratio.</a> Ille enim occurrentia nescio quae comminiscebatur; <a href='http://loripsum.net/' target='_blank'>At ego quem huic anteponam non audeo dicere;</a> An hoc usque quaque, aliter in vita? Non laboro, inquit, de nomine. </p>
-                <p><a href='http://loripsum.net/' target='_blank'>Atqui reperies, inquit, in hoc quidem pertinacem;</a> Quod quidem nobis non saepe contingit. Istam voluptatem perpetuam quis potest praestare sapienti? Putabam equidem satis, inquit, me dixisse. </p>
-            
-                <div className='post__comments_comments___submission'></div>
+                <div className='post__comments_comments___comments'>
+                    {[...Array(numComments.current)].map((x,i) => 
+                        <Comment key={i} type={false} data={{}} />
+                    )}
+                </div>
+                <div className='post__comments_comments___submission'>
+                    <form className='post__comments_comments___form' onSubmit={()=>{console.log("YO")}}>
+                    <label >
+                        <input 
+                            className='post__comments_comments___input'
+                            type="text" 
+                            value={message}
+                            placeholder="Message"
+                            // onChange={(e) => setMessage(e.target.value)}
+                        />
+                    </label>
+                    <input className='post__comments_comments___submit' type="submit" value="Send" />
+                </form>
+                </div>
             </div>
         </div>
         );

@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { generateDisplayname, getRandomInt, generateString, buildParams } from '../Utilities/functions.js';
+import { generateDisplayname, getRandTime, getRandomInt, generateString, buildParams } from '../Utilities/functions.js';
 
 import BlurImage from '../BlurImage';
 import Comments from '../Comments';
@@ -32,7 +32,7 @@ const generateImages = () => {
 
 import './Post.scss';
 
-const Post = ({data, isLiked}) => {
+const Post = ({data = {}, isLiked}) => {
   const timer = useRef();
   let [sidebar, setSidebar] = useState(false);
   let [like, setLike] = useState(isLiked);
@@ -44,6 +44,7 @@ const Post = ({data, isLiked}) => {
       likeUsers: data.likeUsers ? data.likeUsers : getRandomInt(1,160), // between 1 and 3
       likeAvatars: data.likeAvatars ? data.likeAvatars : generateHashes(getRandomInt(1,3)),
       comments: data.comments ? data.comments : getRandomInt(1,4), // between 1 and 4
+      time: data.time ? data.time : getRandTime(),
   });
 
   const onClickHandler = event => {
@@ -65,6 +66,11 @@ const Post = ({data, isLiked}) => {
   const testUser = useRef( generateString( getRandomInt( 15 ) ) );
   const testNumber = useRef( getRandomInt(110) );
 
+  const onCommentClick = () => {
+    console.log("Yo");
+    setSidebar(current => !current);
+  }
+
   return (
     <section className="post">
       <div className="post__header">
@@ -73,6 +79,9 @@ const Post = ({data, isLiked}) => {
           </div>
           <div className="post__header__name">
               { meta.current.userName }
+          </div>
+          <div className="post__header__time">
+            { meta.current.time }
           </div>
           <div className="post__header__options"><div></div></div>
       </div>
@@ -90,7 +99,7 @@ const Post = ({data, isLiked}) => {
             <div className="post__image__heart">
               <HeartIcon like={like}/>
             </div>
-            <div className="post__image__comment" onClick={() => {setSidebar(!sidebar)}}>
+            <div className="post__image__comment" onClick={onCommentClick}>
               <CommentIcon />
             </div>
             <div className="post__image__share">
@@ -108,7 +117,7 @@ const Post = ({data, isLiked}) => {
             )}
             <div className="post__likes__number">Liked by <span>{testUser.current}</span> and <span>{meta.current.likeUsers} others</span></div>
           </div>
-          <Comments open={sidebar} />
+          <Comments open={sidebar}/>
       </div>
       {meta.current.numberOfImages}
   </section>

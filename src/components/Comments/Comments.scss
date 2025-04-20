@@ -1,10 +1,17 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/fonts' as *;
 
 .post__comments{
 
     &.open{
         .post__comments_comments{
-            left: 100vw;
+            left: 0;
         }
+    }
+
+    .post__Comments_Viewall{
+        cursor: pointer;
     }
 
     .post__comments_comments{
@@ -15,6 +22,71 @@
         left: 100vw;
         width: 100vw;
         transition: left 1s ease-in-out;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-rows: 4rem auto 4rem;
+
+        .post__ShareIcon{
+            width: 2rem;
+            height: 2rem;
+            font-size: 2rem;
+        }
+
+        .backIcon__BackIcon{
+            width: 2rem;
+            height: 2rem;
+            font-size: 2rem;
+        }
+
+        .post__comments_comments___header{
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+
+            .post__comments_comments___header_label{
+                line-height: 1rem;
+                font-size: 2rem;
+            }
+        }
+
+        .post__comments_comments___comments{
+            height: auto;
+            overflow: scroll;
+        }
+    }
+
+    .post__comments_comments___input{
+        outline: none;
+        padding: 0.6em 50px 0.6em 0.6em;
+
+        background-color: transparent;
+        border: 0px ;
+        color:  var(--nothing-ui-color);
+        border-radius: 1rem;
+
+        font-size: 0.8em;
+        outline: none;
+  
+        &:focus {
+            // background-color: var(--nothing-light);
+            // border: 1px solid rgb(216, 222, 255);
+        }
+
+
+    }
+
+    .post__comments_comments___submit{
+        color: white;
+        border: 1px solid white;
+        background-color: transparent;
+        padding: 8px 16px;
+        border-radius: 1rem;
+        cursor: pointer;
+        font-size: 16px;
+        outline: none;
+
+        @include script;
     }
 }
 

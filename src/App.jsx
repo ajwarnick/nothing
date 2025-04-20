@@ -42,7 +42,7 @@ function App() {
           {/* <Story /> */}
           <Routes>
             <Route path="/post" element={<Post data={paramsUntangle()}/>} />
-            {/* <Route path="/" element={<Feed />} /> */}
+            <Route path="/" element={<Feed />} />
             {/* <Route path="/chat" element={<Chats />} /> */}
             {/* <Route path="/camera" element={<Camera />} /> */}
             <Route path="/profile" element={<Profile />} />
