@@ -26,6 +26,7 @@ function Comments({open = false}) {
 
     const openSidebar = () => {
         setToggle(prevToggle => !prevToggle);
+        // document.body.classList.toggle('moduleOpen');
     }
 
     return (
@@ -57,6 +58,7 @@ function Comments({open = false}) {
                     <input className='post__comments_comments___submit' type="submit" value="Send" />
                 </form>
                 </div>
+                <div className='post__comments_comments___curtain'></div>
             </div>
         </div>
         );

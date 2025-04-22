@@ -7,13 +7,13 @@ function Posts() {
 
 return (
     <div className='posts__Posts'>     
+        {/* <Post />
         <Post />
         <Post />
         <Post />
         <Post />
         <Post />
-        <Post />
-        <Post />
+        <Post /> */}
     </div>
     );
 }

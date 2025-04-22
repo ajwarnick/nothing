@@ -2,6 +2,10 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/fonts' as *;
 
+// body.moduleOpen{
+//     position: fixed;
+// }
+
 .post__comments{
 
     &.open{
@@ -16,16 +20,17 @@
 
     .post__comments_comments{
         position: fixed;
-        background-color: var(--nothing-background-color);
+        
         height: 100vh;
         top: 0;
         left: 100vw;
         width: 100vw;
         transition: left 1s ease-in-out;
-        padding: 2rem;
         box-sizing: border-box;
         display: grid;
         grid-template-rows: 4rem auto 4rem;
+        z-index: 90;
+        background-color: rgba(255, 255, 255, 0);
 
         .post__ShareIcon{
             width: 2rem;
@@ -43,6 +48,15 @@
             display: flex;
             align-content: center;
             justify-content: space-between;
+            width: 500px;
+            margin-left: auto;
+            background-color: var(--nothing-background-color);
+            padding: 2rem;
+
+            @include sm{
+                width: unset;
+                margin-left: unset;
+            }
 
             .post__comments_comments___header_label{
                 line-height: 1rem;
@@ -53,6 +67,27 @@
         .post__comments_comments___comments{
             height: auto;
             overflow: scroll;
+            width: 500px;
+            margin-left: auto;
+            background-color: var(--nothing-background-color);
+            padding: 2rem;
+
+            @include sm{
+                width: unset;
+                margin-left: unset;
+            }
+        }
+    }
+
+    .post__comments_comments___submission{
+        width: 500px;
+        margin-left: auto;
+        background-color: var(--nothing-background-color);
+        padding: 2rem;
+
+        @include sm{
+            width: unset;
+            margin-left: unset;
         }
     }
 

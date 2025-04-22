@@ -81,6 +81,8 @@
             transition: 0.5s;
         }
         .post__header__options{
+            z-index: 10;
+            
             > div {
                 position: relative;
             }

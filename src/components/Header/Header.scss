@@ -3,18 +3,40 @@
 @use '../../styles/fonts' as *;
 
 .header{
-    border-bottom: 1px solid var(--nothing-light);
+    
     padding: .5em 1em .5em 1em;
     height: 1.5em;
-    // width: 100%;
-    max-width: 900px;
-    margin: auto;
-
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color:var(--nothing-light);
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    z-index: 80;
+
+    .header__logo{
+        @include script;
+        font-size: 2rem;
+    }   
+    
+
+    @include md{
+        border-bottom: 1px solid var(--nothing-light);
+        padding: .5em 1em .5em 1em;
+        height: 1.5em;
+        // width: 100%;
+        max-width: 900px;
+        margin: auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        color:var(--nothing-light);
+        background-color: var(--nothing-background-color);
+    }
 
     .header__Icons{
         display: flex;
