@@ -494,7 +494,6 @@ function Eliza({open, chadID}) {
                 </label>
                 <input className='eliza__message_submit' type="submit" value="Send" />
             </form>
-           
         </div>
         );
     }
