@@ -1,0 +1,60 @@
+---
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .darkIcon__DarkIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            height: 1m;
+            width: 1em;
+            // overflow: visible;
+            // // filter: blur(1px);
+
+            path{
+                fill: currentColor;
+                stroke-width: 1.5;
+            }
+        }
+    }
+</style>
+
+<div class="darkIcon__DarkIcon" aria-label="Toggle light mode" >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path  d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10Zm0-1.5v-17a8.5 8.5 0 0 1 0 17Z"/></svg>
+</div>
+
+<script>
+    window.addEventListener('load', function () {
+        /* This condition checks whether the user has set a site preference for dark mode OR a OS-level preference for Dark Mode AND no site preference */
+        if ( localStorage.getItem("color-mode") === "dark" ||  (window.matchMedia("(prefers-color-scheme: dark)").matches && !localStorage.getItem("color-mode")) ) {
+            document.documentElement.setAttribute("color-mode", "dark");
+        }
+    }, false);
+    
+    const toggleColorMode = (e) => {      
+        if(document.documentElement.getAttribute("color-mode") === "dark"){
+            console.log(document.documentElement.getAttribute("color-mode"));
+
+            document.documentElement.setAttribute("color-mode", "light");
+            localStorage.setItem("color-mode", "light");
+            e.ariaLabel = "Toggle dark mode";
+        }else if(document.documentElement.getAttribute("color-mode") === "light"){
+            console.log(document.documentElement.getAttribute("color-mode"));
+
+            document.documentElement.setAttribute("color-mode", "dark");
+            localStorage.setItem("color-mode", "dark");
+            e.ariaLabel = "Toggle light mode";
+        }
+    };
+
+    const toggleColorModes = document.querySelectorAll(".darkIcon__DarkIcon");
+
+    toggleColorModes.forEach((btn) => {
+        btn.addEventListener("click", () => { toggleColorMode(btn)});
+    });
+</script>

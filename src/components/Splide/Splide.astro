@@ -1,0 +1,29 @@
+---
+---
+
+<style is:global>
+    @import '@splidejs/splide/dist/css/splide.min.css';
+    @import '@splidejs/splide/dist/css/splide-core.min.css';
+
+    .splide{
+        min-height: 200px;
+    }
+
+
+</style>
+
+<section class="splide" aria-label="Splide Basic HTML Example">
+    <div class="splide__track">
+          <div class="splide__list">
+              <li class="splide__slide">Slide 01</div>
+              <li class="splide__slide">Slide 02</div>
+              <li class="splide__slide">Slide 03</div>
+          </div>
+    </div>
+  </section>
+
+<script>
+    import Splide from '@splidejs/splide';
+
+    new Splide( '.splide' ).mount();
+</script>

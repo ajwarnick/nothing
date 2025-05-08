@@ -1,0 +1,26 @@
+---
+import { getRandomInt } from "@util/getRandomInt"
+import { Follower } from '@component/Follower';
+
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .followers_Followers{
+        max-height: 75vh;
+        padding: 5px;
+        overflow: scroll;
+    }
+</style>
+
+<div class='followers_Followers'>
+    {[...Array(30)].map((x, i) =>
+        <Follower following={getRandomInt(0,i) == 1 ? false : true}/>
+    )}
+</div>
+
+<script>
+
+</script>

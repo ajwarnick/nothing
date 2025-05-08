@@ -1,0 +1,122 @@
+---
+export interface Props {
+    location?: string;
+    visible?: boolean;
+}
+
+const {
+    location = "left",
+    visible
+} = Astro.props as Props
+---
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    /* Tooltip container */
+    .tooltip {
+        --tooltip-bumper: 0.5rem;
+        position: relative;
+        display: inline-block;
+
+         /* Tooltip text */
+        .tooltiptext {
+            visibility: hidden;
+            min-width: 50px;
+            color: var(--nothing-background-color);
+			background-color: var(--nothing-color);
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 6px;
+        
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+
+            &.top{
+                bottom: calc( var(--tooltip-bumper) + 100%);
+                left: 50%;
+                transform: translate(-50%, 0);
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    top: 100%; /* At the bottom of the tooltip */
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: var(--nothing-color) transparent transparent transparent;
+                }
+            }
+
+
+
+            &.bottom{
+                top: calc( var(--tooltip-bumper) + 100%);
+                left: 50%;
+                transform: translate(-50%, 0);
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    bottom: 100%;  /* At the top of the tooltip */
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent var(--nothing-color) transparent;
+                }
+            }
+
+            &.left{
+                top: 50%;
+                right: calc( var(--tooltip-bumper) + 100%);
+                transform: translate( 0, -50%);
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%; /* To the right of the tooltip */
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent var(--nothing-color);
+                }
+            }
+
+            &.right{
+                top: 50%;
+                left: calc( var(--tooltip-bumper) + 100%);
+                transform: translate( 0, -50%);
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    top: 50%;
+                    right: 100%; /* To the left of the tooltip */
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent var(--nothing-color) transparent transparent;
+                }
+            }
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        &:hover .tooltiptext,
+        &.visible .tooltiptext {
+            visibility: visible;
+        }
+    }
+</style>
+
+<div class={ visible ? "tooltip visible" : "tooltip"}>
+    <slot />
+    <div class={ "tooltiptext " + location}>
+        <slot name="tip"></slot>
+    </div>
+</div> 
+
+<script></script>

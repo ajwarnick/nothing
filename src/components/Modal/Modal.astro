@@ -1,0 +1,86 @@
+---
+export interface Props {
+    className?: Array<string>;
+}
+
+const {
+    className,
+} = Astro.props as Props
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+        
+    .modal__Modal{
+        position: fixed;
+        display: grid;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        
+        z-index: 100;
+
+        &.closed{
+            display: none;
+        }
+
+        .modal__Content{
+            display: block;
+            margin: auto;
+            padding: 1em;
+            min-width: 25vw;
+            height: fit-content;
+            color:var(--nothing-color);
+            background-color: var(--nothing-background-color);
+
+            z-index: 101;
+        }
+
+        .modal__Backdrop{
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--nothing-dark);
+            opacity: 0.3;
+            z-index: 99;
+        }
+
+        &.open{
+            display: flex;
+
+            .modal__Backdrop,
+            .modal__Content{
+                display: block;
+            }
+        }
+    }
+
+    body.scrollFreeze{
+        overflow: hidden;
+    }
+</style>
+
+<div class:list={[ 'hello modal__Modal', className ]} >  
+    <div class='modal__Content'>
+        <slot />
+    </div>
+    <div class='modal__Backdrop'></div>
+</div>
+
+<script>
+    const modalBackdrops = document.querySelectorAll(".modal__Backdrop");
+
+    modalBackdrops.forEach((backdrop) => {
+        backdrop.addEventListener("click", () => { 
+            backdrop.parentNode.classList.add("closed");
+            document.body.classList.remove('scrollFreeze');
+        });
+    });
+</script>

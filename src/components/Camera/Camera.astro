@@ -1,0 +1,40 @@
+---
+
+---
+
+<style lang="scss">
+
+</style>
+
+<div id="camera__Camera">
+</div>
+
+<!-- p5.2.0.1.min.js -->
+<script is:inline src="js/p5.2.0.1.min.js"></script>
+<script is:inline>
+
+let capture;
+console.log(p5);
+
+var cam = function( sketch ) {
+    sketch.setup = () =>{
+        var canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+        
+        // Move the canvas so it’s inside our <div id="sketch-holder">.
+        canvas.parent('camera__Camera');
+        capture = sketch.createCapture(sketch.VIDEO,{ flipped:true });
+        capture.size(40,40);
+    };
+  
+    sketch.draw = () => {
+        sketch.image(capture, 0, 0, sketch.width, sketch.height * capture.height / capture.width);
+
+        // Invert the colors in the stream.
+        // sketch.filter(sketch.INVERT);
+        sketch.filter(sketch.BLUR, 80);
+    };
+}
+
+var mySketch = new p5(cam, 'p5sketch');
+    
+</script>

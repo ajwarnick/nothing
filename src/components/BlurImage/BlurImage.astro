@@ -1,0 +1,26 @@
+---
+import { blurhashAsGradients } from 'blurhash-gradients';
+import { getHash } from "@util/getHash"
+
+export interface Props {
+	hash?: string
+}
+
+const {
+	hash = getHash(),
+} = Astro.props as Props
+---
+
+<style lang="scss">
+    .blurImage__BlurImage{
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+<div class="blurImage__BlurImage" style={ blurhashAsGradients(hash, {
+        width: 4, //The horizontal resolution of the gradients
+        height: 3, //The vertical resolution of the gradients
+        blur: 50, //The amount of blur to apply to the gradients (in pixels). Increase this on large display sizes.
+    }) }>
+</div> 

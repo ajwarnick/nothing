@@ -1,0 +1,112 @@
+---
+import { getRandomInt } from "@util/getRandomInt"
+
+const colors = [
+    "rgb(150, 224, 154)", 
+    "rgb(150, 224, 191)", 
+    "rgb(183, 224, 150)", 
+    "rgb(224, 150, 220)", 
+    "rgb(224, 154, 150)", 
+    "rgb(150, 220, 224)", 
+    "rgb(230, 155, 142)"];
+
+const makeLinearGradient = () => {
+    const turn = getRandomInt(10, 90)/100;
+    return `background-image: linear-gradient( ${turn}turn, ${colors[getRandomInt(0, colors.length-1)]} 0%,  25%, ${colors[getRandomInt(0, colors.length-1)]} 50%, ${colors[getRandomInt(0, colors.length-1)]} 100%);`;
+}
+
+const makeRadialGradient = () => {
+    const numberOfPoints = getRandomInt(1, 3)
+    var startingPositions = ["circle 70vw at 10vw 50vw", "circle 60vw at 70vw 70vw", "circle 60vw at 70vw 7vw", "circle 50vw at 50vw 20vw", "circle 40vw at 70vw 20vw"];
+    
+    let r = `background-image: radial-gradient(${startingPositions[getRandomInt(0, startingPositions.length-1)]}, ${colors[getRandomInt(0, colors.length-1)]}, transparent)`;
+    for (let i = 0; i < numberOfPoints; i++) {
+        r += `, radial-gradient(${startingPositions[getRandomInt(0, startingPositions.length-1)]}, ${colors[getRandomInt(0, colors.length-1)]}, transparent)`
+      } 
+    //    return `linear-gradient( 257deg, ${colors[getRandomInt(0, colors.length-1)]} 0%,  25%, ${colors[getRandomInt(0, colors.length-1)]} 50%, ${colors[getRandomInt(0, colors.length-1)]} 100%)`;
+    return r + ';';
+}
+
+const makeConicGradient = () => {
+    const percentWidth = getRandomInt(10, 90);
+    const percentHeight = getRandomInt(10, 90);
+    const turn = getRandomInt(10, 90)/100;
+    return `background-image: conic-gradient(from ${turn}turn at ${percentWidth}% ${percentHeight}%, ${colors[getRandomInt(0, colors.length-1)]}, ${colors[getRandomInt(0, colors.length-1)]}, ${colors[getRandomInt(0, colors.length-1)]} );`;
+}
+
+const makeRepeatingCircles = () => {
+
+    let c1 = colors[getRandomInt(0, colors.length-1)];
+    let c2 = colors[getRandomInt(0, colors.length-1)]; 
+    return `background:
+		  radial-gradient(${c1} 49%,#0000 50%) calc(60px/-2) calc(60px/2),
+		  repeating-conic-gradient(from 45deg,${c2} 0 25%,#0000 0 50%)
+			calc(60px/2) calc(60px/2),
+		  radial-gradient(${c1} 49%,#0000 50%),radial-gradient(${c1} 49%,#0000 50%) 60px 60px ${c2};
+	background-size: calc(2*60px) calc(2*60px);`
+}
+
+const makeCheckerboard = () => {
+    let c1 = colors[getRandomInt(0, colors.length-1)];
+    let background = `background-image: linear-gradient(45deg, ${c1} 25%, transparent 25%), linear-gradient(45deg, transparent 75%, ${c1} 75%), linear-gradient(45deg, transparent 75%, ${c1} 75%), linear-gradient(45deg, ${c1} 25%, transparent 25%); background-size:100px 100px; background-position:0 0, 0 0, -50px -50px, 50px 50px;`
+    return background;
+}
+
+const makeStripes = () =>{
+    let c1 = colors[getRandomInt(0, colors.length-1)];
+    let c2 = colors[getRandomInt(0, colors.length-1)]; 
+    let c3 = colors[getRandomInt(0, colors.length-1)]; 
+
+    return `background-color: #F0CAC9;
+            background-image: 
+                linear-gradient(90deg, ${c1} 7px, transparent 0),
+                linear-gradient(90deg, ${c2} 23px, transparent 0),
+                linear-gradient(90deg, ${c3} 23px, transparent 0);
+            background-size: 43px 100%, 61px 100%, 89px 100%;`
+}
+
+
+const choseBackground = (n) => {
+    let dice = getRandomInt(1, n);
+    let background;
+
+    if(dice == 1){
+        background = makeRepeatingCircles();
+    }else if(dice == 2){
+        background = makeConicGradient();
+    }else if(dice == 3){
+        background = makeLinearGradient();
+    }else if(dice == 4){
+        background = makeRadialGradient();
+    }else if(dice == 5){
+        background = makeStripes();
+    }else{
+        background = makeCheckerboard();
+    }
+
+    return background;
+}
+
+
+export interface Props {
+    gradient?: string;
+}
+
+const {
+    gradient = choseBackground(5),
+} = Astro.props as Props
+---
+<style lang="scss">
+    .backgroundGradient__parent{
+        height: 100%;
+        width: 100%;
+
+        .animationone{
+            height: 100%;
+            width: 100%;
+        }
+    }
+</style>
+<div class={"backgroundGradient__parent "}>
+    <div class='animationone' style={ gradient }></div>
+</div>

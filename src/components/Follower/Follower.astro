@@ -1,0 +1,95 @@
+---
+import { StoryIcon } from '@component/StoryIcon';
+import { generateDisplayname } from "@util/generateDisplayname";
+import { getRandomInt } from "@util/getRandomInt";
+import { getHash } from '@util/getHash';
+import { generateUsername } from '@util/generateUsername';
+
+export interface Props {
+	userName?: string;
+    displayName?: string;
+    userAvatar?: string;
+    following?: boolean;
+}
+
+const {
+    userName = generateUsername(getRandomInt(1,30)),
+    displayName = generateDisplayname(1, 4),
+    userAvatar = getHash(),
+    following = false
+} = Astro.props as Props
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .follower__Follower{
+        @include script;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        gap: 1em;
+        margin-bottom: 1em;
+
+        .follower__Follower_icon{
+            height: 2em;
+            width: 2em;
+        }
+
+        .follower__Follower_name{
+            flex-grow: 2;
+
+            .follower__Follower_username{
+                padding: 0;
+                margin: 0;
+                @include script-bold;
+            }
+            .follower__Follower_displayname{
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .follower__Follower_button{
+            &::after{
+                content: 'Follow';
+            }
+            
+            width: fit-content;
+            height: 1rem;
+            @include button;
+
+            &.following{
+                &::after{
+                    content: 'Following';
+                }
+                background-color: var(--nothing-lighter);
+                @include script-bold;
+            }
+        }
+    }
+</style>
+
+<div class='follower__Follower'>
+    <div class='follower__Follower_icon'>
+        <StoryIcon hash={userAvatar} border={false} />
+    </div>
+    <div class='follower__Follower_name'>
+        <p class='follower__Follower_username'>{ userName }</p>
+        <p class='follower__Follower_displayname'>{ displayName }</p>
+    </div>
+    <div class={ following ? 'follower__Follower_button' : 'follower__Follower_button following'} ></div>
+</div>
+
+<script>
+    const followerButtons = document.querySelectorAll('.follower__Follower_button');
+    
+    followerButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('following');
+        });
+    });
+</script>

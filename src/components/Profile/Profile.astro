@@ -1,0 +1,285 @@
+---
+import { ThreeDotsIcon } from "@component/ThreeDotsIcon";
+import { StoryIcon } from '@component/StoryIcon';
+import { AddIcon } from "@component/AddIcon";
+import { BlurImage } from "@component/BlurImage";
+import { Followers } from "@component/Followers";
+import { Modal } from  "@component/Modal";
+import { UserIcon } from "@component/UserIcon";
+import { MessageIcon } from "@component/MessageIcon";
+
+import { generateDisplayname } from "@util/generateDisplayname";
+import { getRandomInt } from "@util/getRandomInt";
+import { getHash } from '@util/getHash';
+import { generateUsername } from '@util/generateUsername';
+
+
+export interface Props {
+	userName?: string;
+    displayName?: string;
+    userAvatar?: string;
+    posts?: Array<string>;
+    stories?: Array<string>;
+    numberOfFollowers?: number;
+    numberOfFollowing?: number;
+}
+
+const userCookie = "testtest";
+
+const {
+    userName = generateUsername(getRandomInt(1,15)),
+    displayName = generateDisplayname(1, 20),
+    userAvatar = getHash(),
+    posts= [...Array(20)].map(() => getHash()),
+    stories= [...Array(4)].map(() => { 
+        return {hash: getHash(), label: generateDisplayname(1,1) } }),
+    numberOfFollowers = getRandomInt( 1, 200 ),
+    numberOfFollowing = getRandomInt( 1, 200 ),
+} = Astro.props as Props
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+
+    .profile__Profile{
+        // padding: 1em;
+        width: calc(100% - 2em);
+        max-width: 900px;
+        margin: 1rem auto auto auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        .profile__Data{
+            grid-column: 1 / 5;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: auto auto 1fr;
+            gap: 1em;
+
+            @include sm(){
+                margin-bottom: 4rem;
+            }
+        }
+
+        .profile__Data_data{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+
+            @include sm(){
+                flex-wrap: wrap;
+            }
+            
+
+            .profile__Data_username{
+                flex-grow: 1;
+                font-size: 2rem;
+
+                @include script-bold;
+
+                @include sm(){
+                    width: 100%;
+                    flex-grow: 3;
+                }
+            }
+
+            .profile__Data_following,
+            .profile__Data_message{
+                background-color: gray;
+                color: var(--nothing-background-color);
+                padding: 7px 1em;
+                border-radius: 10px;
+                @include script-bold;
+
+                display: flex;
+                gap: 0.5em;
+            }
+
+            .profile__Data_add{
+
+                font-size: 1.5rem;
+
+                // aspect-ratio: 1/1;
+                // border: 2px solid currentColor;
+                // padding: 7px;
+                // border-radius: 10px;
+                // height: 1em;
+                // text-align: center;
+            }
+        }
+
+        .profile__Stats_stats{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+
+            font-size: 1.4rem;
+
+            @include script;
+
+            @include sm(){
+                flex-wrap: wrap;
+            }
+
+            .profile__Stats_number{
+                @include script-bold;
+                font-size: 1.2rem;
+            }
+        }
+
+        .profile__Data_avatar{
+            grid-row: 1 / 4;
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+            overflow: hidden;
+            margin: 1rem;
+
+            .blurImage{
+                aspect-ratio: 1/1;
+                overflow: hidden;
+                border-radius: 100%;
+                margin: 50px;
+
+                @include sm(){
+                    margin: 0 10px 10px 0;
+                }
+
+                canvas{
+                    max-width: 200% !important;
+                }
+            }
+        }
+
+        .profile__Bio{
+            font-size: 1.2rem;
+            @include script;
+
+            .profile__Bio_displayName{
+                @include script-bold;
+            }
+        }
+
+        .profile__Stories{
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            gap: 2rem;
+            padding-bottom: 3rem;
+            padding-left: 1rem;
+
+            .profile__Stories_story{
+                @include script;
+                width: 4rem;
+                margin-top: 3rem;
+
+                
+            }
+
+            .storyLable{
+                margin-top: 0.5rem;
+            }
+        }
+
+        .profile__Grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            grid-column: 1 / 5;
+
+            .profile__Grid_item{   
+                aspect-ratio: 1/1;
+                overflow: hidden;
+
+                .blurImage{    
+                    height: 100%;
+                    width: 100%;
+        
+                    canvas{
+                        width: 100%;
+                        object-fit: cover;
+                        height: 100%;
+                    }
+                }
+            }   
+        }
+    }
+
+</style>
+
+<div class="profile__Profile">
+    <div class='profile__Data'>
+        <div class='profile__Data_avatar'>
+            <BlurImage hash={userAvatar} />
+        </div>
+        <div class='profile__Data_data'>
+            <div class='profile__Data_username'>savannahlands</div>
+            <div class='profile__Data_following'><UserIcon /> Following</div>
+            <div class='profile__Data_message'><MessageIcon />Message</div>
+            <div class='profile__Data_add'>
+                <AddIcon />
+            </div>
+            <div class='profile__Data_option'>
+                <ThreeDotsIcon>
+                    <p>Vitae cum voluptates iure dolorem. Adipisci quibusdam praesentium sed omnis ut similique ut. Omnis in saepe quis repudiandae molestiae. Nemo consequuntur maiores ut deserunt assumenda. Voluptatem qui dolorum deserunt assumenda voluptas quo. Ipsam eveniet maiores ullam debitis.</p>
+                </ThreeDotsIcon>
+            </div>
+        </div>
+        <div class='profile__Stats_stats'>
+            <div class='profile__Stats_post'><span class='profile__Stats_number'>{ posts.length }</span> posts</div>
+            <div class='profile__Stats_followers'><span class='profile__Stats_number'>{ numberOfFollowers }</span> followers</div>
+            <div class='profile__Stats_following'><span class='profile__Stats_number'>{ numberOfFollowing }</span> following</div>
+        </div>
+        <div class='profile__Bio'>
+            <span class='profile__Bio_displayName'>{ displayName }</span><br/>
+            Danni O’Brien 🏳️‍🌈she/they<br/>
+            Interdisciplinary Artist<br/>
+            recently: Material Systems, @marylandinstitutecollegeofart<br/>
+            Innovation Studio AIR<br/>
+            Followed by _thewanderingartteacher_, wassaicproject and 130 more
+        </div>
+    </div>
+
+    <div class='profile__Stories'>
+        {stories.map((story) =>
+            <div class='profile__Stories_story'>
+                <StoryIcon hash={story.hash} />
+                <div class="storyLable">{story.label}</div>
+            </div>
+        )}
+    </div>
+    <div class='profile__Icons'>
+        <div class='profile__Icons_grid'></div>
+        <div class='profile__Icons_feed'></div>
+        <div class='profile__Icons_'></div>
+        <div class='profile__Icons_bookmark'></div>
+    </div>
+    <div class='profile__Grid'>
+        {posts.map((h, i) =>
+            <div class='profile__Grid_item'>
+                <BlurImage hash={h} />
+            </div>
+        )}
+    </div>
+    <Modal className={["closed", "modal__Followers"]}>
+        <Followers />
+    </Modal>
+   
+</div>
+
+<script data-userCookie={userCookie}>
+    const testTrigger = document.querySelectorAll(".profile__Data_following");
+	const testModal = document.querySelector(".modal__Followers");
+
+	testTrigger.forEach((trigger) => {
+		trigger.addEventListener("click", () => { 
+			testModal.classList.remove("closed");
+			document.body.classList.add('scrollFreeze');
+		});
+	});
+</script>

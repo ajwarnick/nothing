@@ -1,0 +1,1 @@
+export { default as StoryIcon } from './StoryIcon.astro'

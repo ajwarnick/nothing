@@ -1,0 +1,53 @@
+---
+import { Layout } from "@globals"
+
+import { Story } from "@component/Story"
+import { Slider } from "@component/Slider"
+import { BackgroundGradient } from "@component/BackgroundGradient";
+---
+
+<Layout title="Astro PWA Starter">
+    <!-- <div class="stories_Container">
+        <Story />
+    </div> -->
+    <div style="max-width: 600px; height: 90vh; margin: auto; aspect-ratio: 9 / 16;">
+        <Slider> 
+            <BackgroundGradient slot="slider-first"/>
+            <BackgroundGradient slot="slider-second"/>
+        </Slider>
+    </div>
+    
+</Layout>
+
+<script>
+    // Get more stories 
+    const slider = document.querySelector('.slider__Slider');
+
+    const getNewStory = () => {
+        let newStory = document.createElement("div");
+
+        fetch("/apistory", {})
+            .then(response => {
+                return response.text()
+            }).then(html => {
+                const parser = new DOMParser()
+                const doc = parser.parseFromString(html, "text/html")
+                newStory.innerHTML = doc.body.innerHTML;
+                console.log(newStory);
+
+            }).catch(error => {
+                console.error('Failed to fetch page: ', error)
+            })
+    }
+
+    getNewStory();
+
+    document.body.addEventListener("click", ()=>{
+        let newSecond = document.createElement("div");
+        slider.dispatchEvent(new CustomEvent("swap", {detail: {
+            second: newSecond,
+        },}));
+    }); 
+
+    
+</script>

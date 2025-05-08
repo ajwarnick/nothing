@@ -1,0 +1,66 @@
+---
+export interface Props {
+	path?: string
+}
+
+const {
+    path = ''
+} = Astro.props as Props
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .post__ShareIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            height: 1em;
+            width: 1em;
+
+            path{
+                stroke: currentColor;
+                stroke-width: 1.5;
+                fill: none;
+            }
+        }
+    }
+</style>
+
+<share-icon class="post__ShareIcon" data-path={path}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8m-4-6l-4-4l-4 4m4-4v13"/></svg>
+</share-icon>
+
+ <script>
+    // Define the behaviour for our new type of HTML element.
+    class ShareIcon extends HTMLElement {
+        connectedCallback() {
+            const shareIcons = this.querySelector('svg');
+            const path = this.dataset.path;
+
+            shareIcons.addEventListener('click', () => {
+                share();
+            });
+
+            async function share() {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                        text: 'void',
+                        url: '' + path
+                        })
+                    } catch (error) {
+                        console.log('Sharing failed!', error)
+                        }
+                }else{
+
+                }
+            }
+        }
+    }
+
+    customElements.define('share-icon', ShareIcon);
+ </script>

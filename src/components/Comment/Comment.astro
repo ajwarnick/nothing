@@ -1,0 +1,116 @@
+---
+import { generateString } from "@util/generateString"
+import { getHash } from "@util/getHash"
+import { generateUsername } from "@util/generateUsername"
+import { getRandomInt } from "@util/getRandomInt"
+import { getRandTime } from "@util/getRandTime"
+
+import { StoryIcon } from "@component/StoryIcon"
+import { HeartIcon } from "@component/HeartIcon"
+
+export interface Props {
+	userName?: string
+	text?: string
+  time?: string
+	userAvatar?: string
+  isSlim?: boolean
+}
+
+const {
+	userName = generateUsername(getRandomInt(1,15)),
+	text = generateString(10),
+  time = getRandTime(),
+	userAvatar = getHash(),
+  isSlim = false
+} = Astro.props as Props
+
+---
+<style lang="scss">
+  @use '../../styles/scss/variables' as *;
+  @use '../../styles/scss/mixins' as *;
+
+  .post__comment{
+
+    .post__Comment_Username{
+      font-size: 1rem;
+      padding-right: 1em;
+      @include script-bold;
+    }
+
+
+    p{
+      text-align: left;
+      // color:var(--nothing-light);
+      font-size: 1.5rem;
+      
+      @include script;
+    }
+
+    &.isSlim{
+      .post__comment_avatar,
+      .post__comment_meta,
+      .post__comment_heart{
+        display: none;
+      }
+    }
+
+    &:not(.isSlim){
+      margin: 0 auto 2rem auto;
+      display: grid;
+      grid-template-columns: 3rem auto 2rem;
+      grid-template-areas: "a b d" "a c d";
+      max-width: 900px;
+      // width: fit-content;
+      width: 100%;
+
+      // &::after{
+      //     content: "";
+      //     width: 80%;
+      //     height: 2px;
+      //     background-color: aqua;
+      // }
+
+      .post__comment_meta{
+        grid-area: c;
+        @include script;
+      }
+
+      p{
+        margin: 5px;
+      }
+
+      .post__comment_avatar{
+        grid-area: a;
+        height: 2rem;
+        width: 2rem;
+        overflow: hidden;
+        padding-top: 5px;
+        padding-left: 5px;
+
+        // .blurImage{
+        //     width: 5em;
+        // }
+      }
+
+      .post__comment_heart{
+        grid-area: d;
+        padding-top: 10px;
+      }
+    }
+  }
+</style>
+
+<div class={isSlim ? "post__comment isSlim" : "post__comment"}>
+    <div class="post__comment_avatar">
+       <StoryIcon hash={userAvatar} border={false}/>
+    </div>
+    <div>
+      <p><span class='post__Comment_Username'>{ userName }</span>{ text }</p>
+    </div>
+    <div class="post__comment_meta">
+      { time }              
+    </div>
+    <div class="post__comment_heart">
+       <HeartIcon />
+    </div>
+</div>

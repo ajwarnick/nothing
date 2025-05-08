@@ -1,0 +1,34 @@
+---
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .addIcon__AddIcon{
+        height: 1em;
+        width: 1em;
+
+        svg{
+            height: 1em;
+            width: 1em;
+            // overflow: visible;
+            // // filter: blur(1px);
+
+            rect{
+                stroke: currentColor;
+                fill: none;
+                stroke-width: 1.5;
+            }
+
+            path{
+                stroke: currentColor;
+                stroke-width: 1.5;
+            }
+        }
+    }
+</style>
+
+<div class="addIcon__AddIcon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8m-4-4v8"/></g></svg>
+</div>

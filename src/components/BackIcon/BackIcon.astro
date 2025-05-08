@@ -1,0 +1,38 @@
+---
+export interface Props {
+	userAvatar?: string
+}
+
+const {
+    userAvatar = ""
+} = Astro.props as Props
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .backIcon__BackIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            height: 1em;
+            width: 1em;
+
+            polyline,
+            path{
+                stroke: currentColor;
+                stroke-width: 1.5;
+                fill:none;
+            }
+        }
+    }
+</style>
+
+<div class="backIcon__BackIcon">
+    <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+        <polyline stroke-linecap="round" stroke-linejoin="round" points="17.41 22.82 6.59 12 17.41 1.18"/>
+    </svg>
+</div>

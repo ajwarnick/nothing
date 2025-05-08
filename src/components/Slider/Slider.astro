@@ -1,0 +1,95 @@
+---
+
+---
+
+<style lang="scss" is:global>
+
+    .slider__Slider{
+        position: relative;
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        overflow:hidden;
+        padding: 0;
+    }
+
+    .slider__Slider__first,
+    .slider__Slider__second{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    .slider__Slider__first{
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+
+    .slider__Slider__second {      
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+    }
+
+    .slide-in {
+        animation: slide-in 0.5s forwards;
+        -webkit-animation: slide-in 0.5s forwards;
+    }
+
+    .slide-out {
+        animation: slide-out 0.5s forwards;
+        -webkit-animation: slide-out 0.5s forwards;
+    }
+        
+    @keyframes slide-in {
+        100% { transform: translateX(0%); }
+    }
+
+    @-webkit-keyframes slide-in {
+        100% { -webkit-transform: translateX(0%); }
+    }
+        
+    @keyframes slide-out {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-100%); }
+    }
+
+    @-webkit-keyframes slide-out {
+        0% { -webkit-transform: translateX(0%); }
+        100% { -webkit-transform: translateX(-100%); }
+    }
+</style>
+
+
+<dir class="slider__Slider">
+    <div class="slider__Slider__first" id="first">
+        <slot name="slider-first" />
+    </div>
+    <div class="slider__Slider__second" id="second">
+        <slot name="slider-second" />
+    </div>
+</dir>
+
+
+<script>
+    const sliders = document.querySelectorAll('.slider__Slider');
+    sliders.forEach((slider) => {
+        slider.addEventListener('swap', (e) => {
+            let f = e.target.querySelector('.slider__Slider__first');
+            let s = e.target.querySelector('.slider__Slider__second');
+
+            f.classList.add("slide-out");
+            s.classList.add("slide-in");
+
+            setTimeout(() => {
+                s.classList.add("slider__Slider__first");
+                s.classList.remove("slider__Slider__second");
+                s.classList.remove("slide-in");
+                f.remove();
+
+                const newSecond = e.detail.second;
+                newSecond.classList.add("slider__Slider__second");
+                e.target.appendChild(newSecond);
+            }, 700);
+        });
+    });
+</script>

@@ -1,0 +1,1 @@
+export { default as Follower } from './Follower.astro'

@@ -1,0 +1,23 @@
+---
+import { Chat } from '@component/Chat';
+---
+
+<style lang="scss">
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .chat__Chats{
+        width: calc(100% - 2em);
+        max-width: $screen-md-min;
+        margin: auto;
+    }
+</style>
+
+<div class="chat__Chats">
+    <Chat username={"warnick"} online={true} />
+    <Chat username={"warnick"} />
+    <Chat username={"warnick"} />
+    <Chat username={"warnick"} online={true}/>
+</div>
+
+<script></script>

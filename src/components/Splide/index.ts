@@ -1,0 +1,1 @@
+export { default as Splide } from './Splide.astro'

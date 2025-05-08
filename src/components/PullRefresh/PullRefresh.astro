@@ -1,0 +1,59 @@
+---
+import {Spinner} from "@component/Spinner"
+
+---
+
+
+<style lang="scss">
+    body {
+        overscroll-behavior-y: auto;
+    }
+    .pullToRefresh {
+        position: fixed;
+        top: -50px;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: top 0.7s ease-in-out;
+    }
+    .pullToRefresh.visible {
+        top: 50px;
+    }
+</style>
+
+<div class="pullToRefresh">
+    <Spinner />
+</div>
+<div class="pullContainer">
+    <slot />
+</div>
+
+<script>
+    const pullToRefresh = document.querySelector('.pullToRefresh');
+    const refreshEvent = new Event("pullToRefresh");
+
+    let touchstartY = 0;
+
+    document.addEventListener('touchstart', e => {
+        touchstartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchmove', e => {
+        const touchY = e.touches[0].clientY;
+        const touchDiff = touchY - touchstartY;
+        if (touchDiff > 0 && window.scrollY === 0) {
+            pullToRefresh.classList.add('visible');
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('touchend', e => {
+        if (pullToRefresh.classList.contains('visible')) {
+            pullToRefresh.classList.remove('visible');
+            document.dispatchEvent(refreshEvent);
+            // location.reload();
+        }
+    });
+</script>

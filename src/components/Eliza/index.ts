@@ -1,0 +1,1 @@
+export { default as Eliza } from './Eliza.astro'

@@ -1,0 +1,71 @@
+---
+
+---
+
+<style lang="scss" is:global>
+    // @use "node_modules/@glidejs/glide/src/assets/sass/glide.core.scss";
+    // @use "node_modules/@glidejs/glide/src/assets/sass/glide.theme.scss";
+
+    @use './glide.core' as core;
+    @use './glide.theme' as theme;
+
+    .glide__arrow{
+        border: none;
+        border-radius: 4px;
+        box-shadow: unset;
+        text-shadow: unset;
+
+        svg{
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+</style>
+
+<div class="glide">
+    <div class="glide__track" data-glide-el="track">
+        <div class="glide__slides">
+            <slot/>
+        </div>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='1em' height='1em'><path fill="currentColor" d="m4 10l9 9l1.4-1.5L7 10l7.4-7.5L13 1z"/></svg>
+        </button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='1em' height='1em'><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
+        </button>
+    </div>  
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+    </div>
+</div>
+
+<script>
+    import Glide from '@glidejs/glide'
+
+    const glideElements = document.querySelectorAll(".glide");
+
+    glideElements.forEach((gld) => {
+       let glideBullets = gld.querySelector(".glide__bullets");
+        
+        for (let i = 0; i < gld.querySelector(".glide__slides").childElementCount; i++) {
+            let glideButton = document.createElement("button");
+            glideButton.classList.add("glide__bullet");
+            glideButton.setAttribute("data-glide-dir", "="+i );
+            glideBullets.appendChild(glideButton);
+        }
+
+        let glideInstance = new Glide(gld, {
+            type: 'slider',
+            animationDuration: 100,
+            rewind: false,
+            gap: 0
+        });
+
+        glideInstance.mount()
+
+        glideInstance.on('run.after', function() {
+            glideInstance.selector.closest('.post').setAttribute("data-slide-index", glideInstance.index)
+        })
+    });
+</script>
