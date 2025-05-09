@@ -23,8 +23,11 @@ import { BackgroundGradient } from "@component/BackgroundGradient";
     // Get more stories 
     const slider = document.querySelector('.slider__Slider');
 
-    const getNewStory = () => {
-        let newStory = document.createElement("div");
+    document.body.addEventListener("click", ()=>{
+        let newSecond = document.createElement("div");
+        slider.dispatchEvent(new CustomEvent("swap", {detail: {
+            second: newSecond,
+        },}));
 
         fetch("/apistory", {})
             .then(response => {
@@ -32,21 +35,10 @@ import { BackgroundGradient } from "@component/BackgroundGradient";
             }).then(html => {
                 const parser = new DOMParser()
                 const doc = parser.parseFromString(html, "text/html")
-                newStory.innerHTML = doc.body.innerHTML;
-                console.log(newStory);
-
+                newSecond.innerHTML = doc.body.innerHTML;
             }).catch(error => {
                 console.error('Failed to fetch page: ', error)
             })
-    }
-
-    getNewStory();
-
-    document.body.addEventListener("click", ()=>{
-        let newSecond = document.createElement("div");
-        slider.dispatchEvent(new CustomEvent("swap", {detail: {
-            second: newSecond,
-        },}));
     }); 
 
     
