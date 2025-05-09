@@ -266,17 +266,15 @@ const {
 			}
 
 			main{
-				margin-top: 5rem;
+				margin-top: 3rem;
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<PullRefresh>
-			<main>
-				<slot />
-			</main>
-		</PullRefresh>
+		<main>
+			<slot />
+		</main>
 		<Footer />
 		<script>
 			// This is a hack to get vite-plugin-pwa to generate a sw.js file.

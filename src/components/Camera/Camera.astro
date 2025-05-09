@@ -3,28 +3,60 @@
 ---
 
 <style lang="scss">
-    #camera__Camera{
-        z-index: 110;
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    canvas {
+        display: block;
+    }
+
+
+    #camera__Camera_P5{
+        width:fit-content;
+        margin: auto;
+    }
+
+    .camera__Controls{
+        width: 100%;
+        margin: auto;
+        margin-top: -70px;
+        z-index: 200;
         position: relative;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 8px 0px;
+    }
+
+    .camera__Shutter {
+        display: block;
+        height: 3rem;
+        width: 3rem;
+        border-radius: 100%;
+        color: var(--nothing-color);
+        background-color: var(--nothing-background-color);
+        border: 2px solid var(--nothing-color); 
+        margin: auto;
     }
 </style>
 
-<div id="camera__Camera">
+<div id="camera__Camera_P5"></div>
+<div class="camera__Controls">
+    <button class="camera__Shutter"></button>
 </div>
 
 <!-- p5.2.0.1.min.js -->
-<script is:inline src="js/p5.2.0.1.min.js"></script>
+<script is:inline src="/js/p5.2.0.1.min.js"></script>
 <script is:inline>
-
-let capture;
 console.log(p5);
+let capture;
 
-var cam = function( sketch ) {
+let cam = function( sketch ) {
     sketch.setup = () =>{
-        var canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+        let cHeight = sketch.windowHeight - 160;
+        let cWidth = cHeight * 0.5625;
+        var cameraCanvas = sketch.createCanvas(cWidth, cHeight);
         
         // Move the canvas so it’s inside our <div id="sketch-holder">.
-        canvas.parent('camera__Camera');
+        cameraCanvas.parent('camera__Camera_P5');
         capture = sketch.createCapture(sketch.VIDEO,{ flipped:true });
         capture.size(40,40);
     };
@@ -36,8 +68,15 @@ var cam = function( sketch ) {
         // sketch.filter(sketch.INVERT);
         sketch.filter(sketch.BLUR, 80);
     };
+
+    const shutter = document.querySelector(".camera__Shutter");
+
+    shutter.addEventListener("click", () =>{
+        console.log('yo');
+        // saveCanvas('myCanvas', 'jpg');
+    })
 }
 
-var mySketch = new p5(cam, 'p5sketch');
-    
+let mySketch = new p5(cam, 'p5sketch');
+
 </script>

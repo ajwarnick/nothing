@@ -3,11 +3,15 @@ import { Layout } from "@globals"
 
 import { Camera as Cmr } from "@component/Camera"
 ---
-<style>
+<style is:global>
    main{
 		margin-top: 0;
    }
+
+   video{
+      display: none;
+   }
 </style>
-<Layout title="Astro PWA Starter">
+<Layout title="void / camera">
    <Cmr />
 </Layout>
