@@ -12,7 +12,7 @@ import { generateDisplayname } from "@util/generateDisplayname";
 import { getRandomInt } from "@util/getRandomInt";
 import { getHash } from '@util/getHash';
 import { generateUsername } from '@util/generateUsername';
-
+import { generateLoremText } from '@util/generateLoremText';
 
 export interface Props {
 	userName?: string;
@@ -22,19 +22,21 @@ export interface Props {
     stories?: Array<string>;
     numberOfFollowers?: number;
     numberOfFollowing?: number;
+    bio?: string;
 }
 
 const userCookie = "testtest";
 
 const {
     userName = generateUsername(getRandomInt(1,15)),
-    displayName = generateDisplayname(1, 20),
+    displayName = generateDisplayname(1, 3),
     userAvatar = getHash(),
     posts= [...Array(20)].map(() => getHash()),
     stories= [...Array(4)].map(() => { 
         return {hash: getHash(), label: generateDisplayname(1,1) } }),
     numberOfFollowers = getRandomInt( 1, 200 ),
     numberOfFollowing = getRandomInt( 1, 200 ),
+    bio = generateLoremText(2,20),
 } = Astro.props as Props
 ---
 
@@ -54,7 +56,7 @@ const {
         .profile__Data{
             grid-column: 1 / 5;
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: minmax(200px, 1fr) 2fr;
             grid-template-rows: auto auto 1fr;
             gap: 1em;
 
@@ -94,6 +96,7 @@ const {
                 padding: 7px 1em;
                 border-radius: 10px;
                 @include script-bold;
+                cursor: pointer;
 
                 display: flex;
                 gap: 0.5em;
@@ -218,9 +221,9 @@ const {
             <BlurImage hash={userAvatar} />
         </div>
         <div class='profile__Data_data'>
-            <div class='profile__Data_username'>savannahlands</div>
+            <div class='profile__Data_username'>{userName}</div>
             <div class='profile__Data_following'><UserIcon /> Following</div>
-            <div class='profile__Data_message'><MessageIcon />Message</div>
+            <a class='profile__Data_message' href="/chats/"><MessageIcon />Message</a>
             <div class='profile__Data_add'>
                 <AddIcon />
             </div>
@@ -237,10 +240,7 @@ const {
         </div>
         <div class='profile__Bio'>
             <span class='profile__Bio_displayName'>{ displayName }</span><br/>
-            Danni O’Brien 🏳️‍🌈she/they<br/>
-            Interdisciplinary Artist<br/>
-            recently: Material Systems, @marylandinstitutecollegeofart<br/>
-            Innovation Studio AIR<br/>
+            {bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}<br/>
             Followed by _thewanderingartteacher_, wassaicproject and 130 more
         </div>
     </div>
@@ -261,9 +261,7 @@ const {
     </div>
     <div class='profile__Grid'>
         {posts.map((h, i) =>
-            <div class='profile__Grid_item'>
-                <BlurImage hash={h} />
-            </div>
+            <div class='profile__Grid_item'><a href={"/post/" + encodeURI(encodeURIComponent(h))}><BlurImage hash={h} /></a></div>
         )}
     </div>
     <Modal className={["closed", "modal__Followers"]}>

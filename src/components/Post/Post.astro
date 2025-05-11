@@ -19,12 +19,6 @@ const generateHashes = (num) => {
   return [...Array(num+1)].map(() => getHash());;
 }
 
-const sharePath = () => {
-
-    const path = window.location.hostname + '/post/' + buildParams("current") // Need to build 
-    return path;
-}
-
 const generateImages = () => {
   const coin = getRandomInt(1,2);
   var images;

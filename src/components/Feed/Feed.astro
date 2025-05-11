@@ -1,15 +1,83 @@
 ---
-import { Posts } from '@component/Posts'
+import { Posts } from '@component/Posts';
+import { Spinner } from "@component/Spinner";
 ---
 
 <style lang="scss">
-
+    .feed__Spinner{
+        height: 45vh;
+        width: fit-content;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
 <div class="feed__Feed">
     <Posts number={10} />
+
+    <div class="feed__Spinner">
+        <Spinner />
+    </div>
 </div>
 
 <script>
+    import Glide from '@glidejs/glide'
+    
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                console.log('Element is in the viewport!');
+                        fetch("/api/feed", {})
+                            .then(response => {
+                                return response.text()
+                            }).then(html => {
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(html, "text/html");
+                                console.log(doc);
+                                
+                                const spinner = document.querySelector(".feed__Spinner");
+                                spinner.insertAdjacentHTML(
+                                    "beforebegin",
+                                    doc.body.innerHTML,
+                                );
+                                startGlide();
 
+                            }).catch(error => {
+                                console.error('Failed to fetch page: ', error)
+                            })
+            }
+        });
+    });
+
+    observer.observe(document.querySelector('.feed__Spinner'));
+
+    const startGlide = () => {
+        const glideElements = document.querySelectorAll(".glide");
+
+        glideElements.forEach((gld) => {
+        let glideBullets = gld.querySelector(".glide__bullets");
+            
+            for (let i = 0; i < gld.querySelector(".glide__slides").childElementCount; i++) {
+                let glideButton = document.createElement("button");
+                glideButton.classList.add("glide__bullet");
+                glideButton.setAttribute("data-glide-dir", "="+i );
+                glideBullets.appendChild(glideButton);
+            }
+
+            let glideInstance = new Glide(gld, {
+                type: 'slider',
+                animationDuration: 100,
+                rewind: false,
+                gap: 0
+            });
+
+            glideInstance.mount()
+
+            glideInstance.on('run.after', function() {
+                glideInstance.selector.closest('.post').setAttribute("data-slide-index", glideInstance.index)
+            })
+        });
+    }
 </script>

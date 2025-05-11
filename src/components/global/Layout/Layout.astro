@@ -40,6 +40,10 @@ const {
 
 <html lang="en" color-mode="light">
 	<head>
+		<!-- Global meta tags. -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 		<!-- SEO. -->
 		<SEO
 			title={title}
@@ -66,10 +70,6 @@ const {
 				card: seoConfig.twitter.card
 			}}
 		/>
-
-		<!-- Global meta tags. -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Favicons. -->
 		<!-- <link
@@ -146,19 +146,26 @@ const {
 			type="image/x-icon"
 			href="/light-icons/favicon.ico"
 		/>
-		<!-- <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" /> -->
-		<link rel="icon" type="image/x-icon" href="/light-icons/favicon.ico" />
+
+		<link
+			href="/light-icons/favicon.ico"
+			rel="icon"
+			media="(prefers-color-scheme: light)"
+		/>
+		<link
+			href="/dark-icons/favicon.ico"
+			rel="icon"
+			media="(prefers-color-scheme: dark)"
+		/>
+		
 		<meta name="msapplication-TileColor" content="#000000" />
-		<!-- <meta
-			name="msapplication-TileImage"
-			content="/favicons/favicon-144x144.png"
-		/> -->
+
 		<meta
 			name="msapplication-TileImage"
 			content="/light-icons/icon-144x144.png"
 		/>
 		<meta name="msapplication-config" content="/browserconfig.xml" />
-		<link rel="icon" type="image/svg+xml" href="/light-icons/favicon.svg" />
+		<!-- <link rel="icon" type="image/svg+xml" href="/light-icons/favicon.svg" /> -->
 		<meta name="theme-color" content="#000000" /> 
 
 		<!-- Service worker registration. -->
@@ -172,6 +179,7 @@ const {
 					url('/fonts/flowblock-regular-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			}
 
 			@font-face {
@@ -180,6 +188,7 @@ const {
 					url('/fonts/flowcircular-regular-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			}
 
 			@font-face {
@@ -188,6 +197,7 @@ const {
 					url('/fonts/flowrounded-regular-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			} */
 
 			@font-face {
@@ -196,6 +206,7 @@ const {
 					url('/fonts/redactedscript-regular-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			}
 
 			/* @font-face {
@@ -204,6 +215,7 @@ const {
 					url('/fonts/redactedscript-light-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			} */
 
 			@font-face {
@@ -212,6 +224,7 @@ const {
 					url('/fonts/redactedscript-bold-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			}
 		</style>
 

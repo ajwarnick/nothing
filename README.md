@@ -621,3 +621,4 @@ This file should not be modified.
 # TODO
 
 - min js / css / html
+- load comments on posts dynamically 
