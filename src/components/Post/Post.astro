@@ -181,10 +181,6 @@ const {
                 height: 1.5rem;
             }
 
-            .post__image__heart{
-
-            }
-
             .post__image__comment{
                 cursor: pointer;
             }
@@ -277,17 +273,10 @@ const {
 	        </div>
       )}
       <div class="post__image__icons">
-          <div class="post__image__heart">
-            <HeartIcon />
-          </div>
-          <div class="post__image__comment">
-            <CommentIcon />
-          </div>
-          <div class="post__image__share">
-            <ShareIcon path={'/post/' + images[0]}/>
-          </div>
-          <div class="post__image__bookmark">
-          </div>
+        <HeartIcon />
+        <CommentIcon />
+        <ShareIcon path={'/post/' + images[0]}/>
+        <div class="post__image__bookmark"></div>
       </div>
     </div>
     <div class="post__meta">

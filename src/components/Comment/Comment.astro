@@ -101,16 +101,25 @@ const {
 </style>
 
 <div class={isSlim ? "post__comment isSlim" : "post__comment"}>
-    <div class="post__comment_avatar">
-       <StoryIcon hash={userAvatar} border={false}/>
-    </div>
+    {(!isSlim) &&
+      <div class="post__comment_avatar">
+        <StoryIcon hash={userAvatar} border={false}/>
+      </div>
+    }
+
     <div>
       <p><span class='post__Comment_Username'>{ userName }</span>{ text }</p>
     </div>
-    <div class="post__comment_meta">
-      { time }              
-    </div>
-    <div class="post__comment_heart">
-       <HeartIcon />
-    </div>
+
+    {(!isSlim) &&
+      <div class="post__comment_meta">
+        { time }              
+      </div>
+    }
+
+    {(!isSlim) &&
+      <div class="post__comment_heart">
+        <HeartIcon />
+      </div>
+    }
 </div>

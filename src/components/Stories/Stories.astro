@@ -1,5 +1,14 @@
 ---
+import { Spinner } from "@component/Spinner";
 import { StoryIcon } from "@component/StoryIcon";
+
+export interface Props {
+	number?: number
+}
+
+const {
+    number = 11
+} = Astro.props as Props
 ---
 
 <style lang="scss">
@@ -14,37 +23,48 @@ import { StoryIcon } from "@component/StoryIcon";
         margin: auto;
 
         display: flex;
-        gap: 1em;
+        gap: 1.5em;
         
         overflow-x: scroll;
         overflow-y: hidden;
 
         > :global(.storieIcon){
             flex-shrink: 0;
-            width: 3rem;
+            width: 4rem;
         }
+    }
+
+    .stories__Spinner{
+        width: 4rem;
+        height: 4rem;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: top 0.7s ease-in-out;
+        margin-left: 2rem;
     }
 </style>
 
-<div class='stories__Stories'>
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
-    <StoryIcon />
+<div class='stories__Stories' id="stories__Stories">
+    {[...Array(number)].map(() =>
+        <StoryIcon />
+    )}
+    <div class="stories__Spinner">
+        <Spinner />
+    </div>
 </div>
 
 <script>
+const scrollableDiv = document.getElementById('stories__Stories')
 
+scrollableDiv.addEventListener('scroll', () => {
+  if (scrollableDiv.scrollLeft === 0) {
+    console.log('Scrolled to the beginning!')
+  }
+
+  if (scrollableDiv.scrollLeft + scrollableDiv.clientWidth === scrollableDiv.scrollWidth) {
+    console.log('Scrolled to the end!')
+  }
+})
 </script>

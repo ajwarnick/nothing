@@ -616,3 +616,8 @@ Configuration file for TailwindCSS.
 Defines configurations for TypeScript.
 
 This file should not be modified.
+
+
+# TODO
+
+- min js / css / html

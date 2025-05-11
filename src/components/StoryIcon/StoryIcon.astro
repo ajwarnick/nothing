@@ -123,5 +123,7 @@ const {
     <div class="storieIcon__blurImage_container">
         <div class="storieIcon__BlurImage" style={ blurhashToGradientCssObject(hash, 3, 3) }></div>
     </div>
-    <div class="storieIcon__blurImage_border" style={"background-image: "+ gradient +";"}></div>
+    {(border) &&
+        <div class="storieIcon__blurImage_border" style={"background-image: "+ gradient +";"}></div>
+    }
 </div>
