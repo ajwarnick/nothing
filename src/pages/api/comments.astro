@@ -1,0 +1,35 @@
+---
+import { API } from "@globals"
+
+import { ShareIcon } from "@component/ShareIcon";
+import { BackIcon } from "@component/BackIcon";
+import { Comment } from "@component/Comment";
+---
+
+<API title="API Comments">
+   <div class='post__comments_comments'>
+        <div class='post__comments_comments___header'>
+            <div class="post__Comments_BackIcon"><BackIcon /></div>
+            <div class='post__comments_comments___header_label'>Comments</div>
+            <div><ShareIcon /></div>
+        </div>
+        <div class='post__comments_comments___comments'>
+            {[...Array(10)].map((x,i) => 
+                <Comment />
+            )}
+        </div>
+        <div class='post__comments_comments___submission'>
+            <form class='post__comments_comments___form'>
+            <label >
+                <input 
+                    class='post__comments_comments___input'
+                    type="text" 
+                    placeholder="Message"
+                />
+            </label>
+            <input class='post__comments_comments___submit' type="submit" value="Send" />
+        </form>
+        </div>
+        <!-- <div class='post__comments_comments___curtain'></div> -->
+    </div>
+</API>

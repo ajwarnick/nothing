@@ -38,7 +38,7 @@ const {
 } = Astro.props as Props
 ---
 
-<html lang="en" color-mode="light">
+<html lang="en" class="loading" color-mode="light">
 	<head>
 		<!-- Global meta tags. -->
 		<meta charset="utf-8" />
@@ -226,23 +226,41 @@ const {
 				font-style: normal;
 				font-display: swap;
 			}
-		</style>
 
-		<style lang="scss">
+			html {
+				/* -webkit-transition: background-color 1s;
+				transition: background-color 1s; */
+				height: auto;
+			}
+			html, body {
+				/* For the loading indicator to be vertically centered ensure */
+				/* the html and body elements take up the full viewport */
+				min-height: 100%;
+			}
+			html.loading {
+				background-size: 100px;
+				background-repeat: no-repeat;
+				background-position: center;
+				height: 100vh;
+				overflow: hidden;
+
+				/* Ensures that the transition only runs in one direction */
+				/* -webkit-transition: background-color 0; */
+				/* transition: background-color 0; */
+			}
+			body {
+				/* -webkit-transition: opacity 1s ease-in;
+				transition: opacity 1s ease-in; */
+			}
+			html.loading body {
+				/* Make the contents of the body opaque during loading */
+				opacity: 0; 
+
+				/* Ensures that the transition only runs in one direction */
+				-webkit-transition: opacity 0;
+				transition: opacity 0;
+			}
 			
-			// @use '../../styles/scss/fonts' as *;
-
-			// :root {
-			//     // color-scheme: light dark;
-			  
-			//     font-synthesis: none;
-			//     text-rendering: optimizeLegibility;
-			//     -webkit-font-smoothing: antialiased;
-			//     -moz-osx-font-smoothing: grayscale;
-			  
-			//     --nothing-spacer: 1em;
-			// }
-		
 			html[color-mode="light"] {
 				--nothing-light:rgb(168, 167, 167);
 				--nothing-lighter:rgb(210, 210, 210);
@@ -255,6 +273,11 @@ const {
 				--nothing-color: rgb(125, 124, 124);
 				--nothing-ui-color: rgb(125, 124, 124);
 				--nothing-background-color: #ffffff;
+			}
+
+			html[color-mode="light"].loading{
+				background-color: var(--nothing-background-color);
+				background-image: url('/light-icons/loading.gif');
 			}
 			
 			html[color-mode="dark"] {
@@ -269,6 +292,11 @@ const {
 				--nothing-color: rgb(125, 124, 124);
 				--nothing-ui-color: rgb(125, 124, 124);
 				--nothing-background-color: black;
+			}
+
+			html[color-mode="dark"].loading{
+				background-color: var(--nothing-background-color);
+				background-image: url('/dark-icons/loading.gif');
 			}
 		
 			body{
@@ -292,6 +320,11 @@ const {
 		<script>
 			// This is a hack to get vite-plugin-pwa to generate a sw.js file.
 			// Do not remove this script tag.
+			document.addEventListener("DOMContentLoaded", (event) => {
+				setTimeout(function(){
+					document.getElementsByTagName( "html" )[0].classList.remove( "loading" );
+				}, 1000);
+			});
 		</script>
 	</body>
 </html>
