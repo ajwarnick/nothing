@@ -1,0 +1,17 @@
+---
+export const prerender = false; // Not needed in 'server' mode
+
+import { Layout } from "@globals"
+
+import { blurhashToImageCssString } from "@unpic/placeholder";
+import {Profile} from "@component/Profile";
+
+const { image } = Astro.params;
+const img = decodeURIComponent( image );
+---
+
+
+<Layout title={img} description="test" >
+    <!-- { blurhashToImageCssString(img) }  -->
+	<Profile userAvatar={img}  />
+</Layout>

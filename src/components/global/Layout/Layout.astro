@@ -320,11 +320,13 @@ const {
 		<script>
 			// This is a hack to get vite-plugin-pwa to generate a sw.js file.
 			// Do not remove this script tag.
-			document.addEventListener("DOMContentLoaded", (event) => {
-				setTimeout(function(){
-					document.getElementsByTagName( "html" )[0].classList.remove( "loading" );
-				}, 1000);
-			});
+			// document.addEventListener("DOMContentLoaded", (event) => {
+			// 	setTimeout(function(){
+			// 		document.getElementsByTagName( "html" )[0].classList.remove( "loading" );
+			// 	}, 1000);
+			// });
+
+			document.getElementsByTagName( "html" )[0].classList.remove( "loading" );
 		</script>
 	</body>
 </html>
