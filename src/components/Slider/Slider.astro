@@ -61,10 +61,10 @@
 
 
 <dir class="slider__Slider">
-    <div class="slider__Slider__first" id="first">
+    <div class="slider__Slider__first">
         <slot name="slider-first" />
     </div>
-    <div class="slider__Slider__second" id="second">
+    <div class="slider__Slider__second">
         <slot name="slider-second" />
     </div>
 </dir>
@@ -89,6 +89,7 @@
                 const newSecond = e.detail.second;
                 newSecond.classList.add("slider__Slider__second");
                 e.target.appendChild(newSecond);
+                
             }, 700);
         });
     });

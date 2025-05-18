@@ -3,43 +3,55 @@ import { Layout } from "@globals"
 
 import { Story } from "@component/Story"
 import { Slider } from "@component/Slider"
-import { BackgroundGradient } from "@component/BackgroundGradient";
 ---
 
 <Layout title="void | stories">
-    <!-- <div class="stories_Container">
-        <Story />
-    </div> -->
     <div style="max-width: 600px; height: 90vh; margin: auto; aspect-ratio: 9 / 16;">
         <Slider> 
-            <BackgroundGradient slot="slider-first"/>
-            <BackgroundGradient slot="slider-second"/>
+            <Story slot="slider-first"/>
+            <Story slot="slider-second"/>
         </Slider>
     </div>
     
 </Layout>
 
 <script>
-    // Get more stories 
     const slider = document.querySelector('.slider__Slider');
 
-    document.body.addEventListener("click", ()=>{
+    slider.bang = (el) => {
+        console.log("Bang");
+
         let newSecond = document.createElement("div");
         slider.dispatchEvent(new CustomEvent("swap", {detail: {
             second: newSecond,
         },}));
 
-        fetch("/apistory", {})
-            .then(response => {
-                return response.text()
-            }).then(html => {
-                const parser = new DOMParser()
-                const doc = parser.parseFromString(html, "text/html")
-                newSecond.innerHTML = doc.body.innerHTML;
-            }).catch(error => {
-                console.error('Failed to fetch page: ', error)
+        setTimeout(() => {
+            const stories = document.querySelectorAll('.story__Story');
+            stories.forEach((s)=>{
+                // s.startAnimation();   
             })
-    }); 
+        }, 700);
+        
+        // const stories = first.querySelectorAll('.story__Story');
+        // stories.forEach((story) => {
+        //     story.startAnimation();
+        // })
 
-    
+        // fetch("/api/story", {})
+        //     .then(response => {
+        //         return response.text()
+        //     }).then(html => {
+        //         const parser = new DOMParser()
+        //         const doc = parser.parseFromString(html, "text/html")
+        //         newSecond.innerHTML = doc.body.innerHTML;
+        //     }).catch(error => {
+        //         console.error('Failed to fetch page: ', error)
+        //     })
+    }
+
+    const first = document.querySelector('.slider__Slider__first');
+    const firstStory = first.querySelector('.story__Story');
+    firstStory.startAnimation();
+   
 </script>

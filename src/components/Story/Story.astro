@@ -12,6 +12,8 @@ import {PlayIcon} from '@component/PlayIcon';
 import {PauseIcon} from '@component/PauseIcon';
 import {ThreeDotsIcon} from '@component/ThreeDotsIcon';
 
+import './Story.scss';
+
 export interface Props {
     userAvatar?: string;
 	userName?: string;
@@ -26,223 +28,6 @@ const {
     numOfStories = 3
 } = Astro.props as Props
 ---
-
-<style lang="scss">
-    @use '../../styles/scss/variables' as *;
-    @use '../../styles/scss/mixins' as *;
-
-    .story__Story{
-        position: fixed;
-        height: 100vh;
-        max-width: 1000px;
-        width: 100%;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        overflow: hidden;
-        z-index: 100;
-
-        .story__Story_Header{
-            box-sizing: border-box;
-            position: absolute;
-            width: 100%;
-            height: 3em;
-            padding: 1em;
-            top: 0;
-            left: 0;
-            right: 0;
-
-            .story__Story_Header_Lines{
-                padding: 5px;
-                display: flex;
-                flex-direction: row;
-                gap: 5px;
-            }
-
-            .story__Story_Header_Line{
-                flex-grow: 1;
-                height: 5px;
-                border-radius: 2.5px;
-                position: relative;
-                background-color: rgba(255, 255, 255, 0.4);
-
-                &.done{
-                    background-color: white;
-                }
-
-                &.active::before {
-                    content : "";
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-
-                    height: 5px;
-                    border-radius: 2.5px;
-                    width:0%;
-                    background-color: white;
-                    animation-name: lineWidth;
-                    animation-duration: 4s;
-                }
-
-                @keyframes lineWidth {
-                        0%   {width:0%;}
-                        100% {width:100%;}
-                }
-            }
-        }
-
-        &.paused .story__Story_Header_Line::before {
-            animation-play-state: paused;
-        }
-
-        .story__Story_Header_Meta{
-            padding: 1em;
-            display: flex;
-            flex-direction: row;
-            // justify-content: center;
-            align-items: center;
-            gap: 1em;
-            // font-size: 2rem;
-            color: white;
-
-            @include script;
-
-            .story__Story_Header__name{
-                flex-grow: 1;
-                font-size: 2rem;
-                padding-bottom: 5px;
-
-                .story__Story_Header__username{
-                    @include script-bold;
-                    font-size: 1.7rem;
-                }
-            }
-
-            .story__Story_Header__icon{
-                height: 2em;
-                width: 2em;
-                border-radius: 50%;
-                overflow: hidden;
-
-                .blurImage{
-                    width: 5em;
-                }
-            } 
-            
-            .pauseIcon__PauseIcon,
-            .playIcon__PlayIcon{
-                font-size: 16px;
-                color: white;
-            }
-        }
-
-        .story__Story_Footer{
-            position: absolute;
-            box-sizing: border-box;
-            padding: 0.5em 1em 20px 1em;
-
-            width: 100%;
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            color: white;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 1em;
-
-            font-size: 2rem;
-
-            .story__Story_Footer_fieldset{
-                border: none;
-                position: relative;
-                margin: 0 auto 0 0;
-                width: 75%;
-                padding: 0;
-
-
-                .story__Story_Footer_buttons{
-                    display: none;
-                    position: absolute;
-                    bottom: 5rem;
-                    
-                    button{
-                        background-color: transparent;
-                        border: none;
-                        height: 2.5rem;
-                        width: 2.5rem;
-                    }
-                }
-
-                &:focus-within{
-                    .story__Story_Footer_buttons{
-                        display: block;
-                    }
-                }
-            }
-
-            .story__Story_Footer_input{
-                flex-grow: 1;
-                border: 2px solid white;
-                height: 2.5rem;
-                width: 100%;
-                border-radius: 1.25rem;
-                background-color: transparent;
-                padding-bottom: 0.25rem;
-                color: white;
-                font-size: 1.5rem;
-                padding-left: 1rem;
-
-                &:focus,
-                &:active{
-                    outline: none;
-                }
-            }
-
-            .post__HeartIcon,
-            .post__ShareIcon{
-                font-size: 1.5rem;
-            }
-
-            path{
-                stroke: white;
-                stroke-width: 1.5;
-                fill:none;
-            }
-        }
-
-        .story__Story_Footer_buttons_smile{
-            svg{
-                ellipse{
-                    fill: white;
-                }
-        
-                path{
-                    fill: white;
-                    stroke: none;
-                    stroke-width: 0;
-                }
-            }
-        }
-        
-        .story__Story_Footer_buttons_fire,
-        .story__Story_Footer_buttons_kiss,
-        .story__Story_Footer_buttons_funny{
-            svg{
-                path{
-                    fill: white;
-                    stroke: none;
-                }
-            }
-        }
-    }
-
-</style>
 
 <div class="story__Story">
     <div class='story__Story_Header'>
@@ -311,77 +96,77 @@ const {
 </div>
 
 <script>
-    function Timer(callback, delay) {
-        var timerId, start, remaining = delay;
+    const stories = document.querySelectorAll(".story__Story");
 
-        this.pause = function() {
-            window.clearTimeout(timerId);
-            remaining -= new Date() - start;
-        };
+    stories.forEach((s) => {
+        function Timer(callback, delay) {
+            var timerId, start, remaining = delay;
 
-        this.resume = function() {
-            start = new Date();
-            window.clearTimeout(timerId);
-            timerId = window.setTimeout(callback, remaining);
-        };
+            this.pause = function() {
+                window.clearTimeout(timerId);
+                remaining -= new Date() - start;
+            };
 
-        this.resume();
-    }
+            this.resume = function() {
+                start = new Date();
+                window.clearTimeout(timerId);
+                timerId = window.setTimeout(callback, remaining);
+            };
 
-    let timer = new Timer(function() {
-            // console.log("basic");
-        }, 1000000);;
-    let avtiveNumber = 0;
-    let isPlaying = false;
-    const story = document.querySelector(".story__Story");
-    const lines = story.querySelectorAll(".story__Story_Header_Line");
-    const gradients = story.querySelectorAll(".backgroundGradient__parent");
+            this.resume();
+        }
 
-    const startAnimation = (el) => {
-        lines[0].classList.add('active');
+        let timer = new Timer(function() {
+                // console.log("basic");
+            }, 1000000);;
+        let avtiveNumber = 0;
+        let isPlaying = false;
 
-        timer = new Timer(function() {
-            // console.log("next");
-            nextStory();
-        }, 4000);
-    }
+                
+        const lines = s.querySelectorAll(".story__Story_Header_Line");
+        const gradients = s.querySelectorAll(".backgroundGradient__parent");
+        gradients.forEach((gradient) => {
+            gradient.addEventListener("mousedown", (event) => {
+                s.classList.add("paused");
+                timer.pause();
+            });
 
-    const nextStory = () => {
-        lines[avtiveNumber].classList.add('done');
+            gradient.addEventListener("mouseup", (event) => {
+                s.classList.remove("paused");
+                timer.resume();
+            });
+        });
 
-        if(avtiveNumber < lines.length - 1){
-            gradients[avtiveNumber].style.display = 'none';
-            lines[avtiveNumber+1].classList.add('active');
-            avtiveNumber++;
-            
+        s.startAnimation = () => {
+            lines[0].classList.add('active');
             timer = new Timer(function() {
                 // console.log("next");
-                nextStory();
+                s.nextStory();
             }, 4000);
-        }else{
-            storiesFinish();
         }
-    }
 
-    const storiesFinish = () => {
-        console.log("finish");
-    }
+        s.nextStory = () => {
+            lines[avtiveNumber].classList.add('done');
 
-    const nextUser = () => {
+            if(avtiveNumber < lines.length - 1){
+                gradients[avtiveNumber].style.display = 'none';
+                lines[avtiveNumber+1].classList.add('active');
+                avtiveNumber++;
+                
+                timer = new Timer(function() {
+                    s.nextStory();
+                }, 4000);
+            }else{
+                s.storiesFinish();
+            }
+        }
 
-    }
+        // add skip story
 
-    gradients.forEach((gradient) => {
-        gradient.addEventListener("mousedown", (event) => {
-            story.classList.add("paused");
-            timer.pause();
-        });
-
-        gradient.addEventListener("mouseup", (event) => {
-            story.classList.remove("paused");
-            timer.resume();
-        });
-    });
-
-    startAnimation(story);
+        s.storiesFinish = () => {
+            console.log("Finish");
+            const slider = document.querySelector('.slider__Slider');
+            slider.bang();
+        }
+    })
 </script>
