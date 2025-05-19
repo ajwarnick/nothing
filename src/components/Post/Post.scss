@@ -48,6 +48,15 @@
             @include sm(){
                 // color:red;
             }
+
+            a, a:visited{
+                text-decoration: none;
+                color: var(--nothing-ui-color);
+            }
+
+            a:hover{
+                text-decoration: underline;
+            }
         }
 
         .post__header__time{
@@ -133,6 +142,10 @@
             .post__image__share:empty,
             .post__image__bookmark:empty{
                 display: none
+            }
+
+            .post__ShareIcon {
+                margin-left: auto;
             }
         }
 

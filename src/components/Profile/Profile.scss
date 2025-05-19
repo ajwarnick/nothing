@@ -10,6 +10,12 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
 
+        @include sm(){
+            width: 100%;
+            padding: 0.5rem;
+            box-sizing: border-box;
+        }
+
         .profile__Data{
             grid-column: 1 / 5;
             display: grid;
@@ -18,7 +24,8 @@
             gap: 1em;
 
             @include sm(){
-                margin-bottom: 4rem;
+                margin-bottom: 2rem;
+                grid-template-columns: 100px 1fr;
             }
         }
 
@@ -31,6 +38,7 @@
 
             @include sm(){
                 flex-wrap: wrap;
+                
             }
             
 
@@ -85,6 +93,8 @@
 
             @include sm(){
                 flex-wrap: wrap;
+                grid-column: 1/3;
+                padding: 0 0.5rem;
             }
 
             .profile__Stats_number{
@@ -120,6 +130,11 @@
             font-size: 1.2rem;
             @include script;
 
+             @include sm(){
+                grid-column: 1/3;
+                padding: 0 0.5rem;
+            }
+
             .profile__Bio_displayName{
                 @include script-bold;
             }
@@ -133,12 +148,14 @@
             padding-bottom: 3rem;
             padding-left: 1rem;
 
+            overflow: scroll;
+            grid-column: 1/5;
+
             .profile__Stories_story{
                 @include script;
                 width: 4rem;
                 margin-top: 3rem;
-
-                
+                flex-shrink: 0;
             }
 
             .storyLable{
@@ -151,6 +168,10 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 1rem;
             grid-column: 1 / 5;
+
+            @include sm{
+                gap: 0.5rem;
+            }
 
             .profile__Grid_item{   
                 aspect-ratio: 1/1;
