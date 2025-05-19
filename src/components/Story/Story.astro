@@ -96,6 +96,11 @@ const {
 </div>
 
 <script>
+    export function TESTEST(){
+        console.log("TESTEST")
+    }
+
+
     const stories = document.querySelectorAll(".story__Story");
 
     stories.forEach((s) => {
@@ -164,7 +169,7 @@ const {
         // add skip story
 
         s.storiesFinish = () => {
-            console.log("Finish");
+            // console.log("Finish");
             const slider = document.querySelector('.slider__Slider');
             slider.bang();
         }

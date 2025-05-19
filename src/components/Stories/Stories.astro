@@ -48,7 +48,7 @@ const {
 
 <div class='stories__Stories' id="stories__Stories">
     {[...Array(number)].map(() =>
-        <StoryIcon />
+        <StoryIcon link="/stories" />
     )}
     <div class="stories__Spinner">
         <Spinner />
@@ -56,32 +56,32 @@ const {
 </div>
 
 <script>
-const scrollableDiv = document.getElementById('stories__Stories')
+// const scrollableDiv = document.getElementById('stories__Stories')
 
-scrollableDiv.addEventListener('scroll', () => {
-  if (scrollableDiv.scrollLeft === 0) {
-    console.log('Scrolled to the beginning!')
-  }
+// scrollableDiv.addEventListener('scroll', () => {
+//   if (scrollableDiv.scrollLeft === 0) {
+//     console.log('Scrolled to the beginning!')
+//   }
 
-  if (scrollableDiv.scrollLeft + scrollableDiv.clientWidth === scrollableDiv.scrollWidth) {
-    console.log('Scrolled to the end!');
+//   if (scrollableDiv.scrollLeft + scrollableDiv.clientWidth === scrollableDiv.scrollWidth) {
+//     console.log('Scrolled to the end!');
     
 
-    fetch("/api/stories", {})
-        .then(response => {
-            return response.text()
-        }).then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const spinner = document.querySelector(".stories__Spinner");
+//     fetch("/api/stories", {})
+//         .then(response => {
+//             return response.text()
+//         }).then(html => {
+//             const parser = new DOMParser();
+//             const doc = parser.parseFromString(html, "text/html");
+//             const spinner = document.querySelector(".stories__Spinner");
 
-            spinner.insertAdjacentHTML(
-                "beforebegin",
-                doc.body.innerHTML,
-            );
-        }).catch(error => {
-            console.error('Failed to fetch page: ', error)
-        })
-  }
-})
+//             spinner.insertAdjacentHTML(
+//                 "beforebegin",
+//                 doc.body.innerHTML,
+//             );
+//         }).catch(error => {
+//             console.error('Failed to fetch page: ', error)
+//         })
+//   }
+// })
 </script>

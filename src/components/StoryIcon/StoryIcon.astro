@@ -14,10 +14,12 @@ export interface Props {
 	border?: boolean;
     hash?: string;
     gradient?: string;
+    link?: string;
 }
 
 const {
 	border = true,
+    link,
     hash = getHash(),
     gradient = makeGradient(),
 } = Astro.props as Props
@@ -25,6 +27,7 @@ const {
 
 <style lang="scss">
     .storieIcon{     
+        display: block;
         width: 100%;
         aspect-ratio: 1/1;
         container-type: inline-size;
@@ -63,6 +66,7 @@ const {
             position: absolute;
             border-radius: 100%;
             z-index: -1;
+            pointer-events: none;
             // -webkit-animation:spin 4s linear infinite;
             // -moz-animation:spin 4s linear infinite;
             // animation:spin 4s linear infinite;
@@ -85,6 +89,7 @@ const {
             border-radius: 100%;
             overflow: hidden;
             position: relative;
+            z-index: 10;
         }
 
         .storieIcon__BlurImage{
@@ -119,11 +124,11 @@ const {
     }
 </style>
 
-<div class={border ? 'storieIcon' : 'storieIcon noBorder'}>
-    <div class="storieIcon__blurImage_container">
+<a href={link ? link : undefined} class={border ? 'storieIcon' : 'storieIcon noBorder'}>
+    <div  class="storieIcon__blurImage_container">
         <div class="storieIcon__BlurImage" style={ blurhashToGradientCssObject(hash, 3, 3) }></div>
     </div>
     {(border) &&
         <div class="storieIcon__blurImage_border" style={"background-image: "+ gradient +";"}></div>
     }
-</div>
+</a>

@@ -29,7 +29,7 @@ import { Slider } from "@component/Slider"
         setTimeout(() => {
             const stories = document.querySelectorAll('.story__Story');
             stories.forEach((s)=>{
-                // s.startAnimation();   
+                s.startAnimation();   
             })
         }, 700);
         
@@ -38,16 +38,16 @@ import { Slider } from "@component/Slider"
         //     story.startAnimation();
         // })
 
-        // fetch("/api/story", {})
-        //     .then(response => {
-        //         return response.text()
-        //     }).then(html => {
-        //         const parser = new DOMParser()
-        //         const doc = parser.parseFromString(html, "text/html")
-        //         newSecond.innerHTML = doc.body.innerHTML;
-        //     }).catch(error => {
-        //         console.error('Failed to fetch page: ', error)
-        //     })
+        fetch("/api/story", {})
+            .then(response => {
+                return response.text()
+            }).then(html => {
+                const parser = new DOMParser()
+                const doc = parser.parseFromString(html, "text/html")
+                newSecond.innerHTML = doc.body.innerHTML;
+            }).catch(error => {
+                console.error('Failed to fetch page: ', error)
+            })
     }
 
     const first = document.querySelector('.slider__Slider__first');
