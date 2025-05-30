@@ -38,9 +38,7 @@
 
             @include sm(){
                 flex-wrap: wrap;
-                
             }
-            
 
             .profile__Data_username{
                 flex-grow: 1;
@@ -68,9 +66,7 @@
             }
 
             .profile__Data_add{
-
                 font-size: 1.5rem;
-
                 // aspect-ratio: 1/1;
                 // border: 2px solid currentColor;
                 // padding: 7px;
@@ -86,7 +82,6 @@
             flex-direction: row;
             align-items: center;
             gap: 1rem;
-
             font-size: 1.4rem;
 
             @include script;
@@ -147,7 +142,6 @@
             gap: 2rem;
             padding-bottom: 3rem;
             padding-left: 1rem;
-
             overflow: scroll;
             grid-column: 1/5;
 
