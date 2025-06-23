@@ -98,12 +98,12 @@ const {
 </div>
 
 <script data-userCookie={userCookie}>
-    const testTrigger = document.querySelectorAll(".profile__Data_following");
-	const testModal = document.querySelector(".modal__Followers");
+    const followersTrigger = document.querySelectorAll(".profile__Data_following");
+	const followersModal = document.querySelector(".modal__Followers");
 
-	testTrigger.forEach((trigger) => {
+	followersTrigger.forEach((trigger) => {
 		trigger.addEventListener("click", () => { 
-			testModal.classList.remove("closed");
+			followersModal.classList.remove("closed");
 			document.body.classList.add('scrollFreeze');
 		});
 	});

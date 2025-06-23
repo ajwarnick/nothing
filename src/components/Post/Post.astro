@@ -61,7 +61,7 @@ const {
           <StoryIcon border={false} hash={userAvatar} />
         </div>
         <div class="post__header__name">
-            <a href="/profile">{ userName }</a>
+            <a href={ "/user/" +  encodeURI(encodeURIComponent(userAvatar)) }>{ userName }</a>
         </div>
         <div class="post__header__time">
           { time }

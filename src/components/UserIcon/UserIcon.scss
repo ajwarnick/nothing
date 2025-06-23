@@ -1,0 +1,13 @@
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .userIcon__UserIcon{
+        height: 1em;
+        width: 1em;
+
+        svg{
+            path{
+                fill: currentColor;
+            }
+        }
+    }

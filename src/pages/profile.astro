@@ -1,8 +1,47 @@
 ---
 import { Layout } from "@globals"
 import { Profile as Prfile } from "@component/Profile"
+
+import '@component/Profile/Profile.scss'
+import '@component/Modal/Modal.scss'
+import '@component/UserIcon/UserIcon.scss'
+import '@component/StoryIcon/StoryIcon.scss'
 ---
 
+
+
 <Layout title="void | profile">
-    <Prfile />
+    <!-- <Prfile /> -->
 </Layout>
+
+<script>
+    import { generateProfile } from '@util/generateProfile';
+
+    const makeProfile = (data) => {
+        const main = document.querySelector("main");
+        main.append(generateProfile(data))
+    }
+
+    const getProfile = (cb) => {
+        fetch("/api/profile.json")
+            .then(function (res) {
+                return res.json()
+            })
+            .then(function (data) {
+                cb(data);
+            }).catch(function (err) {
+                console.log(err)
+            })
+    }
+
+    // test if local storage
+    if (localStorage.getItem("profile") === null) {
+         getProfile( (d)=>{
+            makeProfile(d);
+            localStorage.setItem("profile", JSON.stringify(d));
+        });
+    }else{
+        const profile = JSON.parse(localStorage.getItem("profile"));
+        makeProfile(profile);
+    }
+</script>
