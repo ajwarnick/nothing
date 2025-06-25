@@ -1,0 +1,192 @@
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .eliza{
+        padding: 1em;
+        width: calc(100% - 2em);
+        max-width: 900px;
+        margin: auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+
+        .eliza__message_thread{
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margins */
+            overflow-y: scroll;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+
+            @include script;
+
+            :global(.you) {
+                display: block;
+                padding: 1em;
+                background-color: rgb(216, 222, 255);
+                color:  var(--nothing-ui-color);
+                border-radius: 1em;
+                max-width: 40ch;
+                width: fit-content;
+                margin-left: auto;
+                margin-bottom: 1em;
+            }
+
+            :global(.eliza) {
+                display: block;
+                padding: 1em;
+                background-color: rgb(205, 205, 205);
+                color: var(--nothing-background-color);
+                border-radius: 1em;
+                max-width: 40ch;
+                width: fit-content;
+                margin-bottom: 1em;
+            }
+
+        
+        }
+
+        &.isWaiting{
+            .eliza__message_thinking{
+                display: flex;
+            }
+        }
+
+        .eliza__message_thinking{
+            padding: 1rem;
+            background-color: rgb(205, 205, 205);
+            width: 3rem;
+            display: none;
+            align-content: center;
+            justify-content: center;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+
+            
+            
+            /**
+            * ==============================================
+            * Dot Pulse
+            * ==============================================
+            */
+
+            .dot-pulse {
+                position: relative;
+                left: -9999px;
+                width: 0.5rem;
+                height: 0.5rem;
+                border-radius: 0.5rem;
+                background-color: var(--nothing-background-color);
+                color: var(--nothing-background-color);
+                box-shadow: 9999px 0 0 -0.5rem;
+                animation: dot-pulse 1.5s infinite linear;
+                animation-delay: 0.25s;
+            }
+
+            .dot-pulse::before, .dot-pulse::after {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                width: 0.5rem;
+                height: 0.5rem;
+                border-radius: 0.5rem;
+                background-color: var(--nothing-background-color);
+                color: var(--nothing-background-color);
+            }
+            .dot-pulse::before {
+                box-shadow: 9984px 0 0 -0.5rem;
+                animation: dot-pulse-before 1.5s infinite linear;
+                animation-delay: 0s;
+            }
+            .dot-pulse::after {
+                box-shadow: 10014px 0 0 -0.5rem;
+                animation: dot-pulse-after 1.5s infinite linear;
+                animation-delay: 0.5s;
+            }
+            
+            @keyframes dot-pulse-before {
+                0% {
+                box-shadow: 9984px 0 0 -5px;
+                }
+                30% {
+                box-shadow: 9984px 0 0 2px;
+                }
+                60%, 100% {
+                box-shadow: 9984px 0 0 -5px;
+                }
+            }
+
+            @keyframes dot-pulse {
+                0% {
+                box-shadow: 9999px 0 0 -5px;
+                }
+                30% {
+                box-shadow: 9999px 0 0 2px;
+                }
+                60%, 100% {
+                box-shadow: 9999px 0 0 -5px;
+                }
+            }
+
+            @keyframes dot-pulse-after {
+                0% {
+                box-shadow: 10014px 0 0 -5px;
+                }
+                30% {
+                box-shadow: 10014px 0 0 2px;
+                }
+                60%, 100% {
+                box-shadow: 10014px 0 0 -5px;
+                }
+            }
+        }
+
+        .eliza__message_form{
+            margin-bottom: 3rem;
+            background-color: var(--nothing-lighter);
+            border-radius: 22px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            // border: 1px solid var(--nothing-ui-color);
+            filter: drop-shadow(0px 10px 0.75rem var(--nothing-ui-color));
+            padding: 5px;
+        }
+
+        .eliza__message_input{
+            outline: none;
+            padding: 0.6em 50px 0.6em 0.6em;
+
+            background-color: var(--nothing-lighter);
+            border: 1px solid var(--nothing-lighter);
+            color:  var(--nothing-ui-color);
+            // border-radius: 16px;
+
+            font-size: 0.8em;
+            outline: none;
+    
+            &:focus {
+                // background-color: var(--nothing-light);
+                // border: 1px solid rgb(216, 222, 255);
+            }
+
+
+        }
+
+        .eliza__message_submit{
+            color: var(--nothing-ui-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 16px;
+            outline: none;
+
+            @include script;
+        }
+    }

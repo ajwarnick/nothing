@@ -1,10 +1,108 @@
 ---
 import { Layout } from "@globals";
 
-import { Chats as Chts } from "@component/Chats";
-// import { Eliza } from "@component/Eliza";
+import { generateString } from '@util/generateString';
+
+import '@component/Chats/Chats.scss';
+import '@component/Chat/Chat.scss';
+import '@component/ShareIcon/ShareIcon.scss';
+import '@component/Eliza/Eliza.scss';
 ---
 
+<style lang="scss" is:global>
+    .chat__chat .chat__chat_preview .chat__chat_preview__icon{
+        position: unset;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+    .chat__chat .chat__chat_preview .chat__chat_preview__icon.online::after{
+        left: 3rem;
+        top: 2.75rem;
+        bottom: unset;
+        right: unset;
+    }
+
+    .eliza .eliza__message_form{
+        border: 1px solid var(--nothing-color);
+        background-color: var(--nothing-background-color);
+    }
+
+    .eliza .eliza__message_form label{
+        width: 100%;
+    }
+
+    .eliza .eliza__message_input{
+        width: 100%;
+        background-color: var(--nothing-background-color);
+        border: var(--nothing-color);
+        color: var(--nothing-color);
+    }
+
+    .chat__chat .chat__chat_chat .chat__chat_header .chat__chat_header__storyIcon{
+        border-radius: 100%;
+        overflow: hidden;
+    }
+</style>
+
 <Layout title="void | chats">
-    <Chts />
+    <div class="chat__Chats">
+    </div>
 </Layout>
+
+<script is:inline src="js/elizabot.js"></script>
+<script is:inline src="js/elizadata.js"></script> 
+<script>
+    import { generateChat } from '@util/generateChat';
+
+    import { generateUsername } from '@util/generateUsername';
+    import { getRandomInt } from '@util/getRandomInt';
+    import { generateDisplayname } from '@util/generateDisplayname';
+    import { getHash } from '@util/getHash';
+    import { getRandTime } from '@util/getRandTime';
+    import { generateLoremText } from '@util/generateLoremText';
+
+    const chatChats = document.querySelector('.chat__Chats'); 
+
+    const makeChats = () => {
+        let following = false;
+        let online = false;
+        let messages = generateLoremText(1 , getRandomInt(1,12));
+
+        chatChats.append(generateChat({
+            userName: generateUsername(getRandomInt(1,30)), 
+            displayName:  generateDisplayname(1, 4), 
+            time: getRandTime(), 
+            hash: getHash(), 
+            following: true, 
+            online: false, 
+            message: "Test",
+        }));
+    }
+    
+    makeChats();
+    makeChats();
+
+    const chatPreviews = document.querySelectorAll('.chat__chat_preview'); 
+    const chatHeader = document.querySelectorAll('.chat__chat_header');
+
+    chatPreviews.forEach((chat) => {
+		chat.addEventListener("click", () => { 
+            chat.parentNode.classList.add("open");
+		});
+	});
+
+    chatHeader.forEach((header) => {
+		header.addEventListener("click", () => { 
+            header.closest(".chat__chat").classList.remove("open");
+		});
+	});
+
+    //                  
+    // Eliza Stuff 
+    //
+    var eliza = new ElizaBot();
+    var elizaLines = new Array();
+    const elizaEl = document.querySelector('.eliza');
+
+
+</script>

@@ -90,7 +90,6 @@ export function generateProfile(data:Profile):HTMLElement {
     const base = document.createElement("div");
     base.classList.add("profile__Profile");
     const profile = `
-
     <div class='profile__Data'>
         <div class='profile__Data_avatar'>
             ${blurImage( 'LEHV6nWB2yk8pyo0adR*.7kCMdnj' )}

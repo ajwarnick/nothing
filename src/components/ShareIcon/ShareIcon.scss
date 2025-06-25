@@ -1,0 +1,19 @@
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .post__ShareIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            height: 1em;
+            width: 1em;
+
+            path{
+                stroke: currentColor;
+                stroke-width: 1.5;
+                fill: none;
+            }
+        }
+    }

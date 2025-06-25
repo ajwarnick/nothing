@@ -1,0 +1,8 @@
+    @use '../../styles/scss/variables' as *;
+    @use '../../styles/scss/mixins' as *;
+
+    .chat__Chats{
+        width: calc(100% - 2em);
+        max-width: $screen-md-min;
+        margin: auto;
+    }

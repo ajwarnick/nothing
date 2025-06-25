@@ -1,6 +1,5 @@
 ---
 import { Layout } from "@globals"
-import { Profile as Prfile } from "@component/Profile"
 
 import '@component/Profile/Profile.scss'
 import '@component/Modal/Modal.scss'
@@ -8,10 +7,7 @@ import '@component/UserIcon/UserIcon.scss'
 import '@component/StoryIcon/StoryIcon.scss'
 ---
 
-
-
 <Layout title="void | profile">
-    <!-- <Prfile /> -->
 </Layout>
 
 <script>
@@ -34,7 +30,6 @@ import '@component/StoryIcon/StoryIcon.scss'
             })
     }
 
-    // test if local storage
     if (localStorage.getItem("profile") === null) {
          getProfile( (d)=>{
             makeProfile(d);
