@@ -54,13 +54,17 @@ video.setAttribute('playsinline', '')
 
 let cam = function( sketch ) {
     sketch.setup = () =>{
-        let cHeight = sketch.windowHeight - 160;
+        let cHeight = windowHeight - 80;
         let cWidth = cHeight * 0.5625;
-        var cameraCanvas = sketch.createCanvas(cWidth, cHeight);
-        
-        // Move the canvas so it’s inside our <div id="sketch-holder">.
+        let cameraCanvas = sketch.createCanvas(cWidth, cHeight);
         cameraCanvas.parent('camera__Camera_P5');
-        capture = sketch.createCapture(sketch.VIDEO,{ flipped:true });
+        var constraints = {
+            audio: false,
+            video: {
+            facingMode: "environment"
+            }
+        };
+        capture = sketch.createCapture(constraints);
         capture.size(40,40);
     };
   
@@ -76,7 +80,7 @@ let cam = function( sketch ) {
 
     shutter.addEventListener("click", () =>{
         console.log('yo');
-        // saveCanvas('myCanvas', 'jpg');
+        saveCanvas('void', 'jpg');
     })
 }
 
