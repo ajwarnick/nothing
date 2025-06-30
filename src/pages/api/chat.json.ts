@@ -13,7 +13,6 @@ export function GET({ params, request }) {
     let time  = getRandTime();
     let following = getRandomInt( 1, 200 );
     let online = false;
-    let message = generateLoremText(1 , getRandomInt(1,12))
 
     return new Response(
         JSON.stringify({
@@ -24,7 +23,7 @@ export function GET({ params, request }) {
             time: time,
             following: following,
             online: online,
-            message: "test" 
+            message: {}
         }),
     );
 }

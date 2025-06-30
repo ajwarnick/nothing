@@ -1,7 +1,7 @@
     @use '../../styles/scss/variables' as *;
     @use '../../styles/scss/mixins' as *;
 
-    .eliza{
+    .chat__chat_eliza{
         padding: 1em;
         width: calc(100% - 2em);
         max-width: 900px;
@@ -24,28 +24,30 @@
 
             @include script;
 
-            :global(.you) {
-                display: block;
-                padding: 1em;
-                background-color: rgb(216, 222, 255);
-                color:  var(--nothing-ui-color);
-                border-radius: 1em;
-                max-width: 40ch;
-                width: fit-content;
-                margin-left: auto;
-                margin-bottom: 1em;
-            }
+            // .you,
+            // :global(.you){
+            //     display: block;
+            //     padding: 1em;
+            //     background-color: rgb(216, 222, 255);
+            //     color:  var(--nothing-ui-color);
+            //     border-radius: 1em;
+            //     max-width: 40ch;
+            //     width: fit-content;
+            //     margin-left: auto;
+            //     margin-bottom: 1em;
+            // }
 
-            :global(.eliza) {
-                display: block;
-                padding: 1em;
-                background-color: rgb(205, 205, 205);
-                color: var(--nothing-background-color);
-                border-radius: 1em;
-                max-width: 40ch;
-                width: fit-content;
-                margin-bottom: 1em;
-            }
+            // .eliza,
+            // :global(.eliza) {
+            //     display: block;
+            //     padding: 1em;
+            //     background-color: rgb(205, 205, 205);
+            //     color: var(--nothing-background-color);
+            //     border-radius: 1em;
+            //     max-width: 40ch;
+            //     width: fit-content;
+            //     margin-bottom: 1em;
+            // }
 
         
         }
@@ -174,8 +176,6 @@
                 // background-color: var(--nothing-light);
                 // border: 1px solid rgb(216, 222, 255);
             }
-
-
         }
 
         .eliza__message_submit{

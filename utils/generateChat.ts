@@ -1,9 +1,10 @@
 import { blurhashAsGradients } from 'blurhash-gradients';
 
 interface Profile {
+    key: number;
 	userName: string;
     displayName: string;
-    message: string;
+    message: Array<object>;
     time: string;
     hash: string;
     following: boolean; 
@@ -11,6 +12,29 @@ interface Profile {
 }
 
 export function generateChat(data:Profile):HTMLElement {
+
+    const generateEliza = (lines) => {
+
+        return `
+            <ul class='eliza__message_thread'>
+                ${lines.map(line => `<li class="${line.usr}">${line.msg}</li>`).join("")}
+            </ul>
+            <div class='eliza__message_thinking'><div class="dot-pulse"></div></div>
+                <form class='eliza__message_form'>
+                    <label >
+                        <input 
+                            class='eliza__message_input'
+                            type="text" 
+                            value=''
+                            placeholder="Message"
+                        />
+                    </label>
+                    <input class='eliza__message_submit' type="submit" value="Send" />
+                </form>
+            </div>
+        `;
+    }
+
     const styleToString = (style) => {
         return Object.keys(style).reduce((acc, key) => (
             acc + key.split(/(?=[A-Z])/).join('-').toLowerCase() + ':' + style[key] + ';'
@@ -29,8 +53,9 @@ export function generateChat(data:Profile):HTMLElement {
 
     const chat = document.createElement("div");
     chat.classList.add("chat__chat");
+    chat.dataset.chatid = data.key.toString();
     const inner = `
-        <div class="chat__chat_preview" >
+        <div class="chat__chat_preview">
             <div class="chat__chat_preview__icon online">
                 ${blurImage( data.hash )}
             </div>
@@ -55,24 +80,7 @@ export function generateChat(data:Profile):HTMLElement {
                 </div>
             </div>
             <div class='chat__chat_eliza'>
-                <div class='eliza'>
-                    <ul class='eliza__message_thread'>
-                        
-                    </ul>
-                    <div class='eliza__message_thinking'><div class="dot-pulse"></div></div>
-                        <form class='eliza__message_form'>
-                            <label >
-                                <input 
-                                    class='eliza__message_input'
-                                    type="text" 
-                                    value=''
-                                    placeholder="Message"
-                                />
-                            </label>
-                            <input class='eliza__message_submit' type="submit" value="Send" />
-                        </form>
-                    </div>
-                </div>
+                ${generateEliza( data.message )}
             </div>
             <div class='chat__chat_footer'></div>
         </dir>

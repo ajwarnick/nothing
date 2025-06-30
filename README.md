@@ -621,3 +621,8 @@ This file should not be modified.
 # TODO
 
 - Add explore page
+- Add delete chat
+- Add back icon to chat
+- Add button to add chat
+- Add endpoint to add chat from profile 
+

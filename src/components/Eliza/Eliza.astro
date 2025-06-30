@@ -3,7 +3,7 @@ import './Eliza.scss'
 ---
 
 
-<div class='eliza'>
+<div class='chat__chat_eliza'>
     <ul class='eliza__message_thread'>
        {elizaLines.map(line => (
            <li key={line.id} class={line.user}>{line.message}</li>
@@ -21,7 +21,8 @@ import './Eliza.scss'
        </label>
        <input class='eliza__message_submit' type="submit" value="Send" />
    </form>
- </div>
+</div>
+
 <script is:inline src="js/elizabot.js"></script>
 <script is:inline src="js/elizadata.js"></script> 
 <script>

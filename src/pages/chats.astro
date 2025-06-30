@@ -42,6 +42,31 @@ import '@component/Eliza/Eliza.scss';
         border-radius: 100%;
         overflow: hidden;
     }
+
+    .eliza__message_thread {
+        .you {
+            display: block;
+            padding: 1em;
+            background-color: rgb(216, 222, 255);
+            color:  var(--nothing-ui-color);
+            border-radius: 1em;
+            max-width: 40ch;
+            width: fit-content;
+            margin-left: auto;
+            margin-bottom: 1em;
+        }
+
+        .eliza {
+            display: block;
+            padding: 1em;
+            background-color: rgb(205, 205, 205);
+            color: var(--nothing-background-color);
+            border-radius: 1em;
+            max-width: 40ch;
+            width: fit-content;
+            margin-bottom: 1em;
+        }
+    }
 </style>
 
 <Layout title="void | chats">
@@ -60,49 +85,168 @@ import '@component/Eliza/Eliza.scss';
     import { getHash } from '@util/getHash';
     import { getRandTime } from '@util/getRandTime';
     import { generateLoremText } from '@util/generateLoremText';
+import { number } from 'astro:schema';
 
     const chatChats = document.querySelector('.chat__Chats'); 
 
     const makeChats = () => {
-        let following = false;
-        let online = false;
-        let messages = generateLoremText(1 , getRandomInt(1,12));
+        const chatKeys = JSON.parse(localStorage.getItem('chats'));
 
-        chatChats.append(generateChat({
-            userName: generateUsername(getRandomInt(1,30)), 
-            displayName:  generateDisplayname(1, 4), 
-            time: getRandTime(), 
-            hash: getHash(), 
-            following: true, 
-            online: false, 
-            message: "Test",
-        }));
+        if(!chatKeys){
+            let keys = [];
+
+            for(var i = 0; i < getRandomInt(3,7); i++) {
+                let key = getRandomInt(10000000000000,99999999999999);
+                keys.push(key);
+
+                let newChat = {
+                    key: key,
+                    userName: generateUsername(getRandomInt(1,30)), 
+                    displayName:  generateDisplayname(1, 4), 
+                    time: getRandTime(), 
+                    hash: getHash(), 
+                    following: true, 
+                    online: false, 
+                    message: [],
+                }
+
+                localStorage.setItem( key.toString(), JSON.stringify(newChat));
+                chatChats.append(generateChat(newChat));
+            }
+
+            localStorage.setItem('chats', JSON.stringify(keys))
+
+        }else{
+            chatKeys.forEach((element) => {
+                let chat = JSON.parse(localStorage.getItem(element));
+                chatChats.append(generateChat(chat));
+            });
+        }
+    }
+
+    class Chat {
+        constructor(el, id) {
+            this.element = el;
+            this.id = id;
+
+            this.json = JSON.parse( localStorage.getItem(  this.id.toString() ) );
+            this.eliza = new ElizaBot();
+            this.elizaLines = new Array();
+
+            this.chatPreview = this.element.querySelector('.chat__chat_preview'); 
+            this.chatPreview.addEventListener("click", () => { 
+                this.element.classList.add("open");
+            });
+
+            this.chatHeader = this.element.querySelector('.chat__chat_header'); 
+            this.chatHeader.addEventListener("click", () => { 
+                this.element.classList.remove("open");
+            });
+
+
+            this.elizaForms =  this.element.querySelector('.eliza__message_form');
+            if (this.elizaForms.attachEvent) {
+                this.elizaForms.attachEvent("submit", ev => this.processForm(ev));
+            } else {
+                this.elizaForms.addEventListener("submit", ev => this.processForm(ev));
+            }
+        }
+
+        renderEliza(line){
+            const messageThread = this.element.querySelector('.eliza__message_thread');
+            const li = document.createElement("li");
+            li.classList.add(line.usr);
+            li.innerText = line.msg;
+            messageThread.appendChild(li);        
+        }
+
+        elizaStep(inpt){
+            // // if (eliza.quit) {
+            // //     if (confirm("This session is over.\nStart over?")) elizaReset();
+            // //     return;
+            // // }
+
+
+            // // This is the main loop
+            // // else if (inpt != '') {
+
+            if (inpt != '') {
+                // console.log(inpt);
+                // console.log(id);
+                // not respond 10% of the time 
+                if( getRandomInt(1,10) <= 1){
+                   this.elizaLines.push({
+                        usr: 'you',
+                        msg: inpt
+                    });
+                    renderEliza({usr: 'you', msg: inpt});
+                }else{
+                    this.elizaLines.push({
+                        usr: 'you',
+                        msg: inpt
+                    },
+                    {
+                        usr: 'eliza',
+                        msg: this.eliza.transform(inpt)
+                    });
+                    this.renderEliza({usr: 'you', msg: inpt});
+                    this.renderEliza({usr: 'eliza', msg: this.eliza.transform(inpt)});
+                    // elizaEl.classList.add("isWaiting");
+
+                    // let delay = getRandomInt(1,10) * 1000;
+
+                    // const elizaLine = setTimeout(() => {
+                    //     // elizaEl.classList.remove("isWaiting");
+                    //     this.renderEliza({usr: 'eliza', msg: this.eliza.transform(inpt)});
+                    // }, delay);
+                }
+            }
+
+            else if (this.elizaLines.length == 0) {
+                // no input and no saved lines -> output initial
+                this.elizaLines.push({
+                    usr: 'eliza',
+                    msg: this.eliza.getInitial()
+                });
+            }
+
+            this.json.message = this.elizaLines;
+            localStorage.setItem( this.id.toString(), JSON.stringify(this.json))            
+        }
+
+        elizaReset(){
+            this.eliza.reset();
+            this.elizaLines.length = 0;
+            this.elizaStep();
+        }
+
+        processForm(e){
+            if (e.preventDefault) e.preventDefault();
+
+            const inpt = e.target.querySelector('.eliza__message_input');
+            this.elizaStep(inpt.value);
+
+            inpt.value = '';
+            inpt.focus();
+            return false;
+        }
     }
     
+
+
+
+    // 
+    // INIT
+    // 
+
+    const initChats = () => {
+        const chats = document.querySelectorAll('.chat__chat');
+
+        chats.forEach((chat) => {
+            let c = new Chat(chat, chat.dataset.chatid);
+        });
+    }
+
     makeChats();
-    makeChats();
-
-    const chatPreviews = document.querySelectorAll('.chat__chat_preview'); 
-    const chatHeader = document.querySelectorAll('.chat__chat_header');
-
-    chatPreviews.forEach((chat) => {
-		chat.addEventListener("click", () => { 
-            chat.parentNode.classList.add("open");
-		});
-	});
-
-    chatHeader.forEach((header) => {
-		header.addEventListener("click", () => { 
-            header.closest(".chat__chat").classList.remove("open");
-		});
-	});
-
-    //                  
-    // Eliza Stuff 
-    //
-    var eliza = new ElizaBot();
-    var elizaLines = new Array();
-    const elizaEl = document.querySelector('.eliza');
-
-
+    initChats();
 </script>
