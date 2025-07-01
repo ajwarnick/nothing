@@ -10,6 +10,12 @@
         display: block;
     }
 
+    // .noaccess#camera__Camera_P5{
+    //     display: none;
+    // }
+    #get-access{
+        margin: 300px auto auto auto;
+    }
 
     #camera__Camera_P5{
         width:fit-content;
@@ -38,7 +44,10 @@
     }
 </style>
 
-<div id="camera__Camera_P5"></div>
+<div id="camera__Camera_P5">
+    
+</div>
+<!-- <button id="get-access">Get access to camera</button> -->
 <div class="camera__Controls">
     <button class="camera__Shutter"></button>
 </div>
@@ -46,15 +55,32 @@
 <!-- p5.2.0.1.min.js -->
 <script is:inline src="/js/p5.2.0.1.min.js"></script>
 <script is:inline>
-console.log(p5);
+
+// document.querySelector('#get-access').addEventListener('click', async function init(e) {
+//     try {
+//         const stream = await navigator.mediaDevices.getUserMedia({
+//             audio: false,
+//             video: true
+//         })
+//     }
+//     catch (error) {
+//         console.error(error)
+//     }
+// })
+
+
+
 let capture;
-video.setAttribute('autoplay', '');
-video.setAttribute('muted', '');
-video.setAttribute('playsinline', '')
+
+// let video = document.querySelector('video');
+
+// video.setAttribute('autoplay', '');
+// video.setAttribute('muted', '');
+// video.setAttribute('playsinline', '')
 
 let cam = function( sketch ) {
     sketch.setup = () =>{
-        let cHeight = windowHeight - 80;
+        let cHeight = sketch.windowHeight - 80;
         let cWidth = cHeight * 0.5625;
         let cameraCanvas = sketch.createCanvas(cWidth, cHeight);
         cameraCanvas.parent('camera__Camera_P5');
@@ -80,7 +106,7 @@ let cam = function( sketch ) {
 
     shutter.addEventListener("click", () =>{
         console.log('yo');
-        saveCanvas('void', 'jpg');
+        sketch.saveCanvas('void', 'jpg');
     })
 }
 
