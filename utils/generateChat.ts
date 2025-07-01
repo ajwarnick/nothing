@@ -54,6 +54,7 @@ export function generateChat(data:Profile):HTMLElement {
     const chat = document.createElement("div");
     chat.classList.add("chat__chat");
     chat.dataset.chatid = data.key.toString();
+    
     const inner = `
         <div class="chat__chat_preview">
             <div class="chat__chat_preview__icon online">

@@ -96,9 +96,6 @@ let cam = function( sketch ) {
   
     sketch.draw = () => {
         sketch.image(capture, 0, 0, sketch.width, sketch.height * capture.height / capture.width);
-
-        // Invert the colors in the stream.
-        // sketch.filter(sketch.INVERT);
         sketch.filter(sketch.BLUR, 80);
     };
 

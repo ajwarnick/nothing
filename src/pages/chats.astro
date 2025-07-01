@@ -91,7 +91,7 @@ import { number } from 'astro:schema';
 
     const makeChats = () => {
         const chatKeys = JSON.parse(localStorage.getItem('chats'));
-
+        console.log(chatKeys);
         if(!chatKeys){
             let keys = [];
 

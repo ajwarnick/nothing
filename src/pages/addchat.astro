@@ -1,0 +1,42 @@
+---
+import { Layout } from "@globals"
+---
+
+<style lang="scss">
+
+</style>
+
+<Layout title="void | chats" description="" >
+</Layout>
+
+<script>
+    import { generateDisplayname } from "@util/generateDisplayname";
+    import { getRandomInt } from "@util/getRandomInt";
+    import { getHash } from '@util/getHash';
+    import { generateUsername } from '@util/generateUsername';
+    import { getRandTime } from '@util/getRandTime';
+
+    const chatKeys = JSON.parse(localStorage.getItem('chats'));
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    let newChat = {
+        key:  getRandomInt(10000000000000,99999999999999),
+        userName: urlParams.has("userName") ?  decodeURIComponent(urlParams.get('userName')) : generateUsername(getRandomInt(1,15)),
+        displayName: urlParams.has("displayName") ?  decodeURIComponent(urlParams.get('displayName')) : generateDisplayname(1, 3),
+        hash: urlParams.has("hash") ?  decodeURIComponent(urlParams.get('hash')) : getHash(),
+        time : getRandTime(),
+        following: getRandomInt( 1, 200 ),
+        online: false,
+        message: []
+    }
+
+    chatKeys.push(newChat.key);
+
+    localStorage.setItem( newChat.key.toString(), JSON.stringify(newChat));
+    localStorage.setItem('chats', JSON.stringify(chatKeys));
+
+    // /chats
+    window.location.href = '/chats';
+</script>

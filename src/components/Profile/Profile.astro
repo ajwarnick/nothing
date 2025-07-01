@@ -50,7 +50,7 @@ const {
         <div class='profile__Data_data'>
             <div class='profile__Data_username'>{userName}</div>
             <div class='profile__Data_following'><UserIcon /> Following</div>
-            <a class='profile__Data_message' href="/chats/"><MessageIcon />Message</a>
+            <a class='profile__Data_message' href={"/addchat?displayName=" + encodeURI(encodeURIComponent(displayName)) + "&hash=" + encodeURI(encodeURIComponent(userAvatar)) + "&userName=" +  encodeURI(encodeURIComponent(userName))}><MessageIcon />Message</a>
             <div class='profile__Data_add'>
                 <AddIcon />
             </div>
