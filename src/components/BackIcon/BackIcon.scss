@@ -12,9 +12,10 @@
 
         polyline,
         path{
-            stroke: currentColor;
+            // stroke: currentColor;
+            stroke: none;
             stroke-width: 1.5;
-            fill:none;
+            fill: currentColor;
         }
     }
 }

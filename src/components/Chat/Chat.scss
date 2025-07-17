@@ -107,14 +107,15 @@
             .chat__chat_header{
                 display: flex;
                 align-items: center;
-                gap: 1em;
+                gap: 0.5rem;
                 padding: 0.5em 1em;
                 border-bottom: 1px solid var(--nothing-ui-color);
                 font-size: 2rem;
                 @include script();
 
                 .backIcon__BackIcon{
-                    font-size: .5rem;
+                    // font-size: .5rem;
+
                 }
 
                 .chat__chat_header__storyIcon{
