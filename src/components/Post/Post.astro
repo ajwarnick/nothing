@@ -119,6 +119,7 @@ const {
             parentPost.classList.add('comments__open');
 
             // freeze body
+            document.body.classList.add('scrollFreeze');
             // !parentPost.classList.contains("comments__open") && 
             if(!parentPost.classList.contains("comments__loaded")){
                 
@@ -136,6 +137,7 @@ const {
                         );
 
                         backInit();
+                        heartsInIt();
                         parentPost.classList.add('comments__loaded');
                     }).catch(error => {
                         console.error('Failed to fetch page: ', error)
@@ -151,7 +153,18 @@ const {
             icon.addEventListener('click', () => {
                 const parentPost = icon.closest('.post');
                 parentPost.classList.remove('comments__open');
+                document.body.classList.remove('scrollFreeze');
             })
         })
+    }
+
+    const heartsInIt = () => {
+      const heartIcons = document.querySelectorAll('.post__HeartIcon');
+  
+      heartIcons.forEach((heart) => {
+          heart.addEventListener('click', () => {
+              heart.classList.toggle('liked');
+          });
+      });
     }
 </script>
