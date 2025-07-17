@@ -25,7 +25,8 @@
 
             @include sm(){
                 margin-bottom: 2rem;
-                grid-template-columns: 100px 1fr;
+                grid-template-columns: 130px 1fr;
+                grid-template-areas: "a s" "b b" "d d";
             }
         }
 
@@ -38,6 +39,9 @@
 
             @include sm(){
                 flex-wrap: wrap;
+                grid-area: d;
+                padding: 0 0.5rem;
+                box-sizing: border-box;
             }
 
             .profile__Data_username{
@@ -47,8 +51,9 @@
                 @include script-bold;
 
                 @include sm(){
-                    width: 100%;
-                    flex-grow: 3;
+                    // width: 100%;
+                    // flex-grow: 3;
+                    display: none;
                 }
             }
 
@@ -88,13 +93,22 @@
 
             @include sm(){
                 flex-wrap: wrap;
-                grid-column: 1/3;
+                // grid-column: 1/3;
                 padding: 0 0.5rem;
+                grid-area: s;
+                font-size: 1rem;
+                align-items: end;
+                box-sizing: border-box;
             }
 
             .profile__Stats_number{
                 @include script-bold;
                 font-size: 1.2rem;
+
+                @include sm(){
+                    display: block;
+                    font-size: 0.8rem;
+                }
             }
         }
 
@@ -104,6 +118,12 @@
             border-radius: 100%;
             overflow: hidden;
             margin: 1rem;
+
+            @include sm(){
+                grid-row: unset;
+                grid-area: a;
+                margin: 0.5rem;
+            }
 
             .blurImage{
                 aspect-ratio: 1/1;
@@ -125,7 +145,7 @@
             font-size: 1.2rem;
             @include script;
 
-             @include sm(){
+            @include sm(){
                 grid-column: 1/3;
                 padding: 0 0.5rem;
             }
@@ -145,11 +165,19 @@
             overflow: scroll;
             grid-column: 1/5;
 
+            @include sm(){
+                gap: 1rem;
+            }
+
             .profile__Stories_story{
                 @include script;
                 width: 4rem;
                 margin-top: 3rem;
                 flex-shrink: 0;
+
+                @include sm(){
+                    margin-top: 1rem;
+                }
             }
 
             .storyLable{

@@ -9,8 +9,8 @@ export function GET({ params, request }) {
     let displayName = generateDisplayname(1, 3);
     let userAvatar = getHash();
     let posts = [...Array(20)].map(() => getHash());
-    let stories = [...Array(4)].map(() => { 
-        return {hash: getHash(), label: generateLoremText(1,1) } });
+    let stories = [...Array(getRandomInt(2,7))].map(() => { 
+        return {hash: getHash(), label: generateDisplayname(1,1) } });
     let numberOfFollowers = getRandomInt( 1, 200 );
     let numberOfFollowing = getRandomInt( 1, 200 );
     let bio = generateLoremText(2,20);
