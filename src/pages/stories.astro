@@ -5,8 +5,29 @@ import { Story } from "@component/Story"
 import { Slider } from "@component/Slider"
 ---
 
-<Layout title="void | stories" footerVisibility={false} headerVisibility={false}>
-    <div style="width: 100%; height: 100vh; margin: auto;">
+<style lang="scss">
+    @use '../styles/scss/variables' as *;
+    @use '../styles/scss/mixins' as *;
+
+    .stories_Container {
+        max-width: 600px; 
+        height: 90vh; 
+        margin: auto; 
+        aspect-ratio: 9 / 16;
+
+        @include sm{
+            aspect-ratio: unset;
+            height: 100vh;
+            max-width: 100%;
+            margin-top: -3rem;
+            z-index: 150;
+            position: relative;
+        }
+    }
+</style>
+
+<Layout title="void | stories" bodyClass="stories">
+    <div class="stories_Container">
         <Slider> 
             <Story slot="slider-first"/>
             <Story slot="slider-second"/>
@@ -15,10 +36,13 @@ import { Slider } from "@component/Slider"
 </Layout>
 
 <script>
+    import { storyInIt } from '@util/storyInIt';
+
+    
+
     const slider = document.querySelector('.slider__Slider');
 
     slider.bang = (el) => {
-        console.log("Bang");
 
         let newSecond = document.createElement("div");
         slider.dispatchEvent(new CustomEvent("swap", {detail: {
@@ -44,6 +68,7 @@ import { Slider } from "@component/Slider"
                 const parser = new DOMParser()
                 const doc = parser.parseFromString(html, "text/html")
                 newSecond.innerHTML = doc.body.innerHTML;
+                storyInIt();
             }).catch(error => {
                 console.error('Failed to fetch page: ', error)
             })
