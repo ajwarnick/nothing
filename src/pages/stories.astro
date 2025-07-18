@@ -5,14 +5,13 @@ import { Story } from "@component/Story"
 import { Slider } from "@component/Slider"
 ---
 
-<Layout title="void | stories">
-    <div style="max-width: 600px; height: 90vh; margin: auto; aspect-ratio: 9 / 16;">
+<Layout title="void | stories" footerVisibility={false} headerVisibility={false}>
+    <div style="width: 100%; height: 100vh; margin: auto;">
         <Slider> 
             <Story slot="slider-first"/>
             <Story slot="slider-second"/>
         </Slider>
     </div>
-    
 </Layout>
 
 <script>

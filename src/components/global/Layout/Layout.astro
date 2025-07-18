@@ -27,6 +27,10 @@ export interface Props {
 
 	/** Whether or not to disable indexing */
 	disableIndexing?: boolean
+
+	/** Whether or not to the layout has a header and/or footer */
+	headerVisibility?: boolean
+	footerVisibility?: boolean
 }
 
 const {
@@ -34,7 +38,9 @@ const {
 	ogTitle,
 	description,
 	image = {url: null, alt: null},
-	disableIndexing = false
+	disableIndexing = false,
+	headerVisibility = true,
+	footerVisibility = true,
 } = Astro.props as Props
 ---
 
@@ -306,17 +312,14 @@ const {
 				padding: 0;
 			}
 
-			main{
-				margin-top: 3rem;
-			}
 		</style>
 	</head>
 	<body>
-		<Header />
-		<main>
+		{headerVisibility ? <Header /> : <></>}
+		<main style={headerVisibility ? "margin-top: 3rem;" : ""}>
 			<slot />
 		</main>
-		<Footer />
+		{footerVisibility ? <Footer /> : <></>}
 		<script>
 			// This is a hack to get vite-plugin-pwa to generate a sw.js file.
 			// Do not remove this script tag.
