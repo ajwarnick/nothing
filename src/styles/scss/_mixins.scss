@@ -37,10 +37,32 @@
     font-family: "redacted_scriptbold", system-ui;
  }
 
+ @mixin block-font {
+   font-family: "flow_blockregular", system-ui;
+ }
+
 
  @mixin button {
    background-color: var(--nothing-color);
    color: var(--nothing-background-color);
    padding: 7px 1em;
    border-radius: 10px;
+ }
+
+
+ @mixin wireframe-image{
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  position: relative;
+  
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to top right, transparent calc(50% - 1px), var(--border-color), transparent calc(50% + 1px));
+  }
+
  }

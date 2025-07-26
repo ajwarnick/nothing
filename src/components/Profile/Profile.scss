@@ -212,3 +212,114 @@
             }   
         }
     }
+
+
+
+
+
+body.wireframe {
+    // background-color: green;
+    --nothing-color:white;
+    --nothing-background-color: black;
+
+    .profile__Profile{
+        .profile__Data_data{
+            .profile__Data_username{
+                @include block-font;
+            }
+
+            .profile__Data_following,
+            .profile__Data_message{
+                @include block-font;
+                background-color: var(--nothing-color);
+                color: var(--nothing-background-color);
+
+                .userIcon__UserIcon{
+                    display: none;
+                }
+            }
+
+            a.profile__Data_message{
+                text-decoration: none;
+            }
+        }
+
+        .profile__Stats_stats{
+            @include block-font;
+
+            .profile__Stats_number{
+                @include block-font;
+                font-size: unset;
+            }
+        }
+
+        .profile__Bio{
+            @include block-font;
+            .profile__Bio_displayName{
+                 @include block-font;
+                 font-size: 2.3rem;
+            }
+        }
+
+        .profile__Data_avatar{
+            border-radius: unset;
+            --border-color: white;
+
+            @include wireframe-image;
+
+            .blurImage__BlurImage{
+                display: none;
+            }
+        }
+
+        .profile__Stories{
+
+            .storieIcon__BlurImage{
+                --border-color: white;
+                border-radius: 100%;
+                @include wireframe-image;
+
+                height: 100%;
+
+                background-color: unset;
+                top: unset;
+                left: unset;
+                bottom: unset;
+                right: unset;
+
+                 .blurImage__BlurImage{
+                    display: none;
+                 }
+            }
+
+            .storieIcon::after{
+                display: none;
+            }
+
+            .profile__Stories_story{
+                overflow: hidden;
+            }
+
+            .storyLable{
+                @include block-font;
+                font-size: 1rem;
+            }
+        }
+
+        .profile__Grid{
+            .profile__Grid_item{
+                a{
+                    --border-color: white;
+                    @include wireframe-image;
+                    display: block;
+                    height: 100%;
+
+                    .blurImage__BlurImage{
+                        display: none;
+                    }
+
+                }
+            }
+        }
+    }
+}
