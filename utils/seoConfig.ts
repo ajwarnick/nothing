@@ -10,7 +10,7 @@ export const seoConfig = {
 		"Void - asocial network", // Change this to be your website's description.
 	type: "website",
 	image: {
-		url: "public/light-icons/icon-512x512.png", // Change this to your website's thumbnail.
+		url: "/light-icons/icon-512x512.png", // Change this to your website's thumbnail.
 		alt: "Void logo", // Change this to your website's thumbnail description.
 		width: 512,
 		height: 512
