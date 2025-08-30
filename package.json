@@ -10,11 +10,11 @@
 		"astro": "astro"
 	},
 	"devDependencies": {
-		"@astrojs/sitemap": "^3.4.1",
-		"@astrojs/vercel": "^8.2.2",
+		"@astrojs/sitemap": "^3.4.2",
+		"@astrojs/vercel": "^8.2.3",
 		"@typescript-eslint/eslint-plugin": "^8.31.0",
 		"@typescript-eslint/parser": "^8.31.0",
-		"astro": "5.12.0",
+		"astro": "5.12.5",
 		"astro-compress": "^2.3.8",
 		"astro-seo": "^0.8.4",
 		"eslint": "^9.25.1",

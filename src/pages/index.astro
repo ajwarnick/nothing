@@ -3,11 +3,10 @@ import { Layout } from "@globals"
 
 import { Feed } from '@component/Feed'
 import { Stories } from '@component/Stories'
-import { PullRefresh } from '@component/PullRefresh'
 ---
 
-<Layout title="void">	
-	<Stories />
+<Layout title="void" headerVisibility={true} footerVisibility={false}>	
+	<!-- <Stories /> -->
 	<Feed />
 </Layout>
 

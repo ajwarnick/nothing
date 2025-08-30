@@ -15,11 +15,11 @@ import { Spinner } from "@component/Spinner";
 </style>
 
 <div class="feed__Feed">
-    <Posts number={10} />
+    <Posts number={20} />
 
-    <div class="feed__Spinner">
+    <!-- <div class="feed__Spinner">
         <Spinner />
-    </div>
+    </div> -->
 </div>
 
 <script>
@@ -54,7 +54,7 @@ import { Spinner } from "@component/Spinner";
     observer.observe(document.querySelector('.feed__Spinner'));
 
     const startGlide = () => {
-        const glideElements = document.querySelectorAll(".glide");
+        const glideElements = document.querySelectorAll(".glide:not(.glide--ltr)");
 
         glideElements.forEach((gld) => {
         let glideBullets = gld.querySelector(".glide__bullets");
