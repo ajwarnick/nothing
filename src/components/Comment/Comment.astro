@@ -4,6 +4,7 @@ import { getHash } from "@util/getHash"
 import { generateUsername } from "@util/generateUsername"
 import { getRandomInt } from "@util/getRandomInt"
 import { getRandTime } from "@util/getRandTime"
+import { generateLoremText } from "@util/generateLoremText";
 
 import { StoryIcon } from "@component/StoryIcon"
 import { HeartIcon } from "@component/HeartIcon"
@@ -18,7 +19,7 @@ export interface Props {
 
 const {
 	userName = generateUsername(getRandomInt(1,15)),
-	text = generateString(10),
+	text = generateLoremText(1, 10),
   time = getRandTime(),
 	userAvatar = getHash(),
   isSlim = false
