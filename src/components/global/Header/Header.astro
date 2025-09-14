@@ -20,6 +20,23 @@ import { DarkIcon } from "@component/DarkIcon";
         right: 0;
         z-index: 80;
 
+        @include lg{
+            border-bottom: 1px solid var(--nothing-light);
+            padding: .5em 1em .5em 1em;
+            padding-top: env(safe-area-inset-top);
+            height: 1.5em;
+            // width: 100%;
+            max-width: 900px;
+            margin: auto;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            color:var(--nothing-light);
+            background-color: var(--nothing-background-color);
+        }
+
         .header__text{
             @include script;
             font-size: 2rem;
@@ -39,21 +56,7 @@ import { DarkIcon } from "@component/DarkIcon";
         }
         
 
-        @include lg{
-            border-bottom: 1px solid var(--nothing-light);
-            padding: .5em 1em .5em 1em;
-            height: 1.5em;
-            // width: 100%;
-            max-width: 900px;
-            margin: auto;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            color:var(--nothing-light);
-            background-color: var(--nothing-background-color);
-        }
+        
 
         .header__Icons{
             margin-left: auto;

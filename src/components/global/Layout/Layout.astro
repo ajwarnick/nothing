@@ -47,11 +47,12 @@ const {
 } = Astro.props as Props
 ---
 
+
 <html lang="en" class="loading" color-mode="light">
 	<head>
 		<!-- Global meta tags. -->
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover" />
 
 		<!-- SEO. -->
 		<SEO
@@ -260,6 +261,7 @@ const {
 			body {
 				/* -webkit-transition: opacity 1s ease-in;
 				transition: opacity 1s ease-in; */
+				
 			}
 			html.loading body {
 				/* Make the contents of the body opaque during loading */
@@ -332,7 +334,7 @@ const {
 			document.addEventListener("DOMContentLoaded", (event) => {
 				setTimeout(function(){
 					document.getElementsByTagName( "html" )[0].classList.remove( "loading" );
-				}, 500);
+				}, 1);
 			});
 		</script>
 	</body>

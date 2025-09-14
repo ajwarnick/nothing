@@ -9,11 +9,13 @@
         margin: 1rem auto auto auto;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding-top: env(safe-area-inset-top);
 
         @include sm(){
             width: 100%;
             padding: 0.5rem;
             box-sizing: border-box;
+            padding-top: env(safe-area-inset-top);
         }
 
         .profile__Data{

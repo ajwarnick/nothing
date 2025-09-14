@@ -3,6 +3,7 @@
 
     .chat__Chats{
         width: calc(100% - 2em);
+        padding-top: env(safe-area-inset-top);
         max-width: $screen-md-min;
         margin: auto;
     }
