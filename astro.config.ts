@@ -11,7 +11,7 @@ import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   site: seoConfig.baseURL,
-  output: 'server',
+  output: 'static',
   integrations: [
       sitemap(),
       compress()
