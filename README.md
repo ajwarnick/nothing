@@ -622,7 +622,6 @@ This file should not be modified.
 
 - Add explore page
 - Add delete chat
-- Add back icon to chat
 - Add button to add chat
 - Add endpoint to add chat from profile 
-
+- Indiviual post page does not follow light/dark settings
