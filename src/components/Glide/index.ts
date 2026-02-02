@@ -1,0 +1,1 @@
+export { default as Glide } from './Glide.astro'

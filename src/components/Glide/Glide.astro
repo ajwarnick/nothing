@@ -1,0 +1,62 @@
+---
+
+---
+
+<style lang="scss" is:global>
+    // @use "node_modules/@glidejs/glide/src/assets/sass/glide.core.scss";
+    // @use "node_modules/@glidejs/glide/src/assets/sass/glide.theme.scss";
+
+    @import url('https://cdn.skypack.dev/@glidejs/glide@3.4.0/dist/css/glide.core.min.css');
+    @import url('https://cdn.skypack.dev/@glidejs/glide@3.4.0/dist/css/glide.theme.min.css');
+
+    .glide__arrow{
+        border: none;
+        border-radius: 4px;
+        box-shadow: unset;
+        text-shadow: unset;
+
+        svg{
+            height: 2rem;
+            width: 2rem;
+        }
+
+        &.glide__arrow--right{
+            right: 0;
+        }
+        
+        &.glide__arrow--left{
+            left: 0;
+        }
+    }
+</style>
+
+<div class="glide">
+    <div class="glide__track" data-glide-el="track">
+        <div class="glide__slides">
+            <slot/>
+        </div>
+    </div>
+    <div class="" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+            P
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='1em' height='1em'><path fill="currentColor" d="m4 10l9 9l1.4-1.5L7 10l7.4-7.5L13 1z"/></svg> -->
+        </button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+            N
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='1em' height='1em'><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg> -->
+        </button>
+    </div>  
+</div>
+
+
+<script>
+    import Glide from 'https://cdn.skypack.dev/@glidejs/glide@3.4.0'
+
+    new Glide('.glide', { 
+        animationDuration: 100,
+        rewind: false,
+        perView: 1,
+        perTouch: 1,
+        gap: 0 
+    }).mount()
+</script>
