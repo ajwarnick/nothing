@@ -39,7 +39,7 @@
             <slot/>
         </div>
     </div>
-    <div class="" data-glide-el="controls">
+    <div class="glide__arrows" data-glide-el="controls">
         <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='1em' height='1em'><path fill="currentColor" d="m4 10l9 9l1.4-1.5L7 10l7.4-7.5L13 1z"/></svg>
         </button>
@@ -47,6 +47,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='1em' height='1em'><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
         </button>
     </div>  
+        
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+        <!-- <button class="glide__bullet" data-glide-dir="=0"></button> -->
+    </div>
 </div>
 
 <script>
@@ -56,14 +60,15 @@
     const glideElements = document.querySelectorAll(".glide");
 
     glideElements.forEach((gld) => {
-    //    let glideBullets = gld.querySelector(".glide__bullets");
+        let glideBullets = gld.querySelector(".glide__bullets");
+        console.log(glideBullets);
         
-    //     for (let i = 0; i < gld.querySelector(".glide__slides").childElementCount; i++) {
-    //         let glideButton = document.createElement("button");
-    //         glideButton.classList.add("glide__bullet");
-    //         glideButton.setAttribute("data-glide-dir", "="+i );
-    //         glideBullets.appendChild(glideButton);
-    //     }
+        for (let i = 0; i < gld.querySelector(".glide__slides").childElementCount; i++) {
+            let glideButton = document.createElement("button");
+            glideButton.classList.add("glide__bullet");
+            glideButton.setAttribute("data-glide-dir", "="+i );
+            glideBullets.appendChild(glideButton);
+        }
 
         let glideInstance = new Glide(gld, {
             animationDuration: 100,
@@ -75,9 +80,9 @@
 
         glideInstance.mount();
 
-        glideInstance.on('run', function() {
-            console.log("run");
-        })
+        // glideInstance.on('run', function() {
+        //     console.log("run");
+        // })
 
         // glideInstance.on('run.after', function() {
         //     glideInstance.selector.closest('.post').setAttribute("data-slide-index", glideInstance.index)
