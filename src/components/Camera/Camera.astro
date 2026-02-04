@@ -30,31 +30,140 @@
         position: relative;
         background-color: rgba(255, 255, 255, 0.4);
         padding: 8px 0px;
+        display: flex;
+        gap:2rem;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        .camera__Shutter {
+            display: block;
+            height: 3rem;
+            width: 3rem;
+            border-radius: 100%;
+            color: var(--nothing-color);
+            background-color: var(--nothing-background-color);
+            border: 2px solid var(--nothing-color); 
+        }
+
+        .camera__flip{
+            display: block;
+            height: 3rem;
+            width: 3rem;
+
+            // color: var(--nothing-color);
+            color:green;
+            background-color: transparent;
+            border: 2px solid var(--nothing-color); 
+            border: none;
+
+            &::-moz-focus-inner {
+                border: 0;
+                padding: 0;
+            }
+        }
     }
 
-    .camera__Shutter {
-        display: block;
-        height: 3rem;
-        width: 3rem;
-        border-radius: 100%;
-        color: var(--nothing-color);
-        background-color: var(--nothing-background-color);
-        border: 2px solid var(--nothing-color); 
-        margin: auto;
+        
+
+    
+
+    .camera__Flash{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        background-color: rgba(255, 255, 255, 0.001);
+        
+        &.animated{          
+            background-color: rgba(255, 255, 255, 0.001);
+            animation-name: animateFade;
+            animation-duration: 250ms;
+            animation-timing-function: ease-in;
+            animation-direction: normal;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes animateFade {
+            from {
+                background-color: rgba(255, 255, 255, .99); 
+            }
+
+            to {
+               background-color: rgba(255, 255, 255, 0.001);
+            }
+        }
     }
 </style>
 
+<div class="camera__Flash"></div>
 <div id="camera__Camera_P5">
     
 </div>
 <!-- <button id="get-access">Get access to camera</button> -->
 <div class="camera__Controls">
     <button class="camera__Shutter"></button>
+    <button class="camera__flip">
+        <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 6h-1.5a.5.5 0 0 1-.5-.5A1.502 1.502 0 0 0 17.5 4h-6A1.502 1.502 0 0 0 10 5.5a.5.5 0 0 1-.5.5H8V5H4v1H3a2.002 2.002 0 0 0-2 2v10a2.002 2.002 0 0 0 2 2h18a2.002 2.002 0 0 0 2-2V8a2.002 2.002 0 0 0-2-2zm1 12a1.001 1.001 0 0 1-1 1H3a1.001 1.001 0 0 1-1-1V8a1.001 1.001 0 0 1 1-1h2V6h2v1h2.5A1.502 1.502 0 0 0 11 5.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5A1.502 1.502 0 0 0 19.5 7H21a1.001 1.001 0 0 1 1 1zM8.2 13h-1a4.796 4.796 0 0 1 8.8-2.644V9h1v3h-3v-1h1.217A3.79 3.79 0 0 0 8.2 13zm7.6 0h1A4.796 4.796 0 0 1 8 15.644V17H7v-3h3v1H8.783a3.79 3.79 0 0 0 7.017-2z"/><path fill="none" d="M0 0h24v24H0z"/></svg>
+    </button>
 </div>
 
 <!-- p5.2.0.1.min.js -->
 <script is:inline src="/js/p5.2.0.1.min.js"></script>
 <script is:inline>
+
+const flash = document.querySelector(".camera__Flash");
+
+let cam = function( sketch ) {
+    sketch.setup = () =>{
+        let cHeight = sketch.windowHeight;
+        let cWidth = cHeight * 0.5625;
+        let cameraCanvas = sketch.createCanvas(cWidth, cHeight);
+        cameraCanvas.parent('camera__Camera_P5');
+
+        var constraints = {
+            audio: false,
+            video: {
+            facingMode: "environment"
+            }
+        };
+
+        capture = sketch.createCapture(constraints);
+        capture.size(40,40);
+    };
+  
+    sketch.draw = () => {
+        sketch.image(capture, 0, 0, sketch.width, sketch.height * capture.height / capture.width);
+        sketch.filter(sketch.BLUR, 80);
+    };
+
+    const shutter = document.querySelector(".camera__Shutter");
+   
+
+    shutter.addEventListener("click", () =>{
+        flash.classList.add('animated');
+        
+        setTimeout(() => { 
+            flash.classList.remove('animated');
+            sketch.saveCanvas('void', 'jpg');
+        }, 700);
+    })
+}
+
+
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+        // Access to the camera granted
+        console.log('Camera access granted!');
+        // Do something with the video stream
+        let mySketch = new p5(cam, 'p5sketch');
+    })
+    .catch(function(err) {
+        // Access to the camera denied
+        console.error('Camera access denied:', err);
+    });
 
 // document.querySelector('#get-access').addEventListener('click', async function init(e) {
 //     try {
@@ -78,35 +187,8 @@ let capture;
 // video.setAttribute('muted', '');
 // video.setAttribute('playsinline', '')
 
-let cam = function( sketch ) {
-    sketch.setup = () =>{
-        let cHeight = sketch.windowHeight - 80;
-        let cWidth = cHeight * 0.5625;
-        let cameraCanvas = sketch.createCanvas(cWidth, cHeight);
-        cameraCanvas.parent('camera__Camera_P5');
-        var constraints = {
-            audio: false,
-            video: {
-            facingMode: "environment"
-            }
-        };
-        capture = sketch.createCapture(constraints);
-        capture.size(40,40);
-    };
-  
-    sketch.draw = () => {
-        sketch.image(capture, 0, 0, sketch.width, sketch.height * capture.height / capture.width);
-        sketch.filter(sketch.BLUR, 80);
-    };
 
-    const shutter = document.querySelector(".camera__Shutter");
 
-    shutter.addEventListener("click", () =>{
-        console.log('yo');
-        sketch.saveCanvas('void', 'jpg');
-    })
-}
 
-let mySketch = new p5(cam, 'p5sketch');
 
 </script>
