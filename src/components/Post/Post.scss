@@ -5,6 +5,11 @@
     background-color: red;
 }
 
+
+body.scrollFreeze{
+    overflow: hidden;
+}
+
 .post{
     padding: 1em;
     padding: 0 1em 1em 1em;

@@ -63,7 +63,7 @@
         }
 
         .post__comments_comments___comments{
-            height: auto;
+            height: 100%;
             overflow: scroll;
             width: 500px;
             margin-left: auto;
@@ -90,16 +90,16 @@
     }
 
     .post__comments_comments___input{
-        outline: none;
-        padding: 0.6em 50px 0.6em 0.6em;
+        // outline: none;
+        // padding: 0.6em 50px 0.6em 0.6em;
 
-        background-color: transparent;
-        border: 0px ;
-        color:  var(--nothing-ui-color);
-        border-radius: 1rem;
+        // background-color: transparent;
+        // border: 0px ;
+        // color:  var(--nothing-ui-color);
+        // border-radius: 1rem;
 
-        font-size: 0.8em;
-        outline: none;
+        // font-size: 0.8em;
+        // outline: none;
 
         &:focus {
             // background-color: var(--nothing-light);
@@ -119,4 +119,5 @@
 
         @include script;
     }
+
 }
