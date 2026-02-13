@@ -63,17 +63,17 @@
         }
 
         .post__comments_comments___comments{
-            height: 100%;
-            overflow: scroll;
-            width: 500px;
-            margin-left: auto;
-            background-color: var(--nothing-background-color);
-            padding: 2rem;
+            // height: 100%;
+            // overflow: scroll;
+            // width: 500px;
+            // margin-left: auto;
+            // background-color: var(--nothing-background-color);
+            // padding: 2rem;
 
-            @include sm{
-                width: unset;
-                margin-left: unset;
-            }
+            // @include sm{
+            //     width: unset;
+            //     margin-left: unset;
+            // }
         }
     }
 
