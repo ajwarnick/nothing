@@ -234,7 +234,7 @@ body.scrollFreeze{
             transition: left 1s ease-in-out;
             box-sizing: border-box;
             display: grid;
-            grid-template-rows: 4rem auto 4rem;
+            grid-template-rows: 4rem auto 2rem;
             z-index: 90;
             // background-color: rgba(255, 255, 255, 0);
             background-color: var(--nothing-background-color);
@@ -261,10 +261,24 @@ body.scrollFreeze{
             }
 
             .post__comments_comments___submission{
-                width: 500px;
-                margin-left: auto;
-                background-color: var(--nothing-background-color);
-                padding: 2rem;
+                  margin: 0 2em 0 2em;
+            }
+
+
+            .post__comments_comments___form{    
+                margin: 0 0 10px 0;
+                background-color: var(--nothing-lighter);
+                border-radius: 22px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: 1px solid var(--nothing-ui-color);
+
+
+                filter: drop-shadow(0px 10px 0.75rem var(--nothing-ui-color));
+                padding: 5px 10px;
+                z-index: 100;
+
 
                 @include sm{
                     width: unset;
@@ -273,15 +287,27 @@ body.scrollFreeze{
             }
 
             .post__comments_comments___input{
+                // padding: 0.6em 50px 0.6em 0.6em;
+
+                // background-color: transparent;
+                // border: 0px ;
+                // color:  var(--nothing-ui-color);
+                // border-radius: 1rem;
+
+                // font-size: 0.8em;
+                // outline: none;
+
+                outline: none;
                 padding: 0.6em 50px 0.6em 0.6em;
 
-                background-color: transparent;
-                border: 0px ;
+                background-color: var(--nothing-lighter);
+                border: 1px solid var(--nothing-lighter);
                 color:  var(--nothing-ui-color);
-                border-radius: 1rem;
+                // border-radius: 16px;
 
                 font-size: 0.8em;
                 outline: none;
+        
 
                 &:focus {
                     // background-color: var(--nothing-light);
@@ -290,11 +316,21 @@ body.scrollFreeze{
             }
 
             .post__comments_comments___submit{
-                color: white;
-                border: 1px solid white;
-                background-color: transparent;
+                // color: white;
+                // border: 1px solid white;
+                // background-color: transparent;
+                // padding: 8px 16px;
+                // border-radius: 1rem;
+                // cursor: pointer;
+                // font-size: 16px;
+                // outline: none;
+
+                // @include script;
+
+                color: var(--nothing-ui-color);
+                border: none;
                 padding: 8px 16px;
-                border-radius: 1rem;
+                border-radius: 16px;
                 cursor: pointer;
                 font-size: 16px;
                 outline: none;
