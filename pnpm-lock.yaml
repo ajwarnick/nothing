@@ -9,17 +9,14 @@ importers:
   .:
     dependencies:
       '@capacitor/android':
-        specifier: ^7.6.4
-        version: 7.6.4(@capacitor/core@7.6.4)
+        specifier: ^7.6.5
+        version: 7.6.5(@capacitor/core@7.6.5)
       '@capacitor/core':
-        specifier: ^7.6.4
-        version: 7.6.4
+        specifier: ^7.6.5
+        version: 7.6.5
       '@capacitor/ios':
-        specifier: ^7.6.4
-        version: 7.6.4(@capacitor/core@7.6.4)
-      '@glidejs/glide':
-        specifier: ^3.7.1
-        version: 3.7.1
+        specifier: ^7.6.5
+        version: 7.6.5(@capacitor/core@7.6.5)
       '@unpic/placeholder':
         specifier: ^0.1.2
         version: 0.1.2
@@ -37,8 +34,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6(astro@6.3.1(@types/node@25.7.0)(@vercel/functions@3.5.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.47.1)(yaml@2.9.0))(rollup@2.80.0)
       '@capacitor/cli':
-        specifier: ^7.6.4
-        version: 7.6.4
+        specifier: ^7.6.5
+        version: 7.6.5
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.59.3
         version: 8.59.3(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)
@@ -643,21 +640,21 @@ packages:
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
 
-  '@capacitor/android@7.6.4':
-    resolution: {integrity: sha512-ETk+B1q+kt7H5ArRK+OG478L1LtDQFtFpYbY37M3T8jzYe7BDZEem2QJEsNX6Mszy4hhPkhdOiogohR2YrlDvw==}
+  '@capacitor/android@7.6.5':
+    resolution: {integrity: sha512-FCNSo5bWkqCIuNt2OgG6IUsJJaYlghzbzlFf4IiHkFtir18FCyqHVGHszvtXB+npT7HQ9JQOZ4MQRDsgczKEGQ==}
     peerDependencies:
       '@capacitor/core': ^7.6.0
 
-  '@capacitor/cli@7.6.4':
-    resolution: {integrity: sha512-lW692IiFQC5gd1fvMxrwLN3exS/Z9VmiCBL+k440edNSl4VxE+LhVmTXkqFg0tW46VJUbIdW3PXkx/Y64On7ag==}
+  '@capacitor/cli@7.6.5':
+    resolution: {integrity: sha512-nlhNoWZIL7YcV1JgNP8+p7WAVIG+zwsY20ZQJ0zd+2lLeCx9MijfELLhLzMCq33c2pILwOvLww8HUqZ5uYCvHg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
-  '@capacitor/core@7.6.4':
-    resolution: {integrity: sha512-wRq5d8+EGaIztp5sEvmOyA5kmqFwwE+Ceocw2XTQSePFD11msdLXNERGfyQhMCyxnrPfrwhWqO3SjfC73Nxq6g==}
+  '@capacitor/core@7.6.5':
+    resolution: {integrity: sha512-JWyxD9LaK1oY588B/khJIG3Ec4NHI/Ki4v1b4XzqPNt2a27au0F2AhLTwYexV4Bp3Ruxf+8oYqxFAC8/7sGBWA==}
 
-  '@capacitor/ios@7.6.4':
-    resolution: {integrity: sha512-yoF91mlnIK/+sMa9oWNWiWtAj7rVY4N32HOTp2vKL9UwEIFTN4Vul/w5WvMEbLabrs/tIqBIKcnPH7FkhO3j1Q==}
+  '@capacitor/ios@7.6.5':
+    resolution: {integrity: sha512-jJK3wW65GAsmzgaswoePWDQ7mADIwQNWqWGcOeZyrPP7+lzW5/8gGqu9ASFGbG+GplFfgwRWzd4oH/7xb+lYFw==}
     peerDependencies:
       '@capacitor/core': ^7.6.0
 
@@ -890,9 +887,6 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@glidejs/glide@3.7.1':
-    resolution: {integrity: sha512-8he0pZpLSqTesSFYiuWdhBmtdlYSPWxfPUCKtkkiX6ZmT8UdMdmoFPtJaOwLBXv4p2JiGxqbuPdiRGGo2e/htQ==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -2143,8 +2137,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.353:
-    resolution: {integrity: sha512-kOrWphBi8TOZyiJZqsgqIle0lw+tzmnQK83pV9dZUd01Nm2POECSyFQMAuarzZdYqQW7FH9RaYOuaRo3h+bQ3w==}
+  electron-to-chromium@1.5.354:
+    resolution: {integrity: sha512-JaBHwWcfIdmSAfWM5l3uwjGd431j8YEMikZ+K/2nXVuBqJKyZ0f+2h4n4JY5AyNiZmnY9qQr2RU3v9DxDmHMNg==}
 
   elementtree@0.1.7:
     resolution: {integrity: sha512-wkgGT6kugeQk/P6VZ/f4T+4HB41BVgNBq5CDIZVbQ02nvTVqAiVTbskxxu3eA/X96lMlfYOwnLQpN2v5E1zDEg==}
@@ -5172,11 +5166,11 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@capacitor/android@7.6.4(@capacitor/core@7.6.4)':
+  '@capacitor/android@7.6.5(@capacitor/core@7.6.5)':
     dependencies:
-      '@capacitor/core': 7.6.4
+      '@capacitor/core': 7.6.5
 
-  '@capacitor/cli@7.6.4':
+  '@capacitor/cli@7.6.5':
     dependencies:
       '@ionic/cli-framework-output': 2.2.8
       '@ionic/utils-subprocess': 3.0.1
@@ -5198,13 +5192,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@capacitor/core@7.6.4':
+  '@capacitor/core@7.6.5':
     dependencies:
       tslib: 2.8.1
 
-  '@capacitor/ios@7.6.4(@capacitor/core@7.6.4)':
+  '@capacitor/ios@7.6.5(@capacitor/core@7.6.5)':
     dependencies:
-      '@capacitor/core': 7.6.4
+      '@capacitor/core': 7.6.5
 
   '@capsizecss/unpack@4.0.0':
     dependencies:
@@ -5373,8 +5367,6 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
-
-  '@glidejs/glide@3.7.1': {}
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -6549,7 +6541,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.29
       caniuse-lite: 1.0.30001792
-      electron-to-chromium: 1.5.353
+      electron-to-chromium: 1.5.354
       node-releases: 2.0.44
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
@@ -6805,7 +6797,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.353: {}
+  electron-to-chromium@1.5.354: {}
 
   elementtree@0.1.7:
     dependencies:
