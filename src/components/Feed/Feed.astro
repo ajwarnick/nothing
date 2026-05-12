@@ -26,28 +26,47 @@ import { Spinner } from "@component/Spinner";
 </div>
 
 <script>    
-    // const observer = new IntersectionObserver(entries => {
-    //     entries.forEach(entry => {
-    //         if(entry.isIntersecting){
-    //             console.log('Element is in the viewport!');
-    //                     fetch("/api/feed", {})
-    //                         .then(response => {
-    //                             return response.text()
-    //                         }).then(html => {
-    //                             const parser = new DOMParser();
-    //                             const doc = parser.parseFromString(html, "text/html");
-    //                             console.log(doc);
-    //                             const spinner = document.querySelector(".feed__Spinner");
-    //                             spinner.insertAdjacentHTML(
-    //                                 "beforebegin",
-    //                                 doc.body.innerHTML,
-    //                             );
-    //                         }).catch(error => {
-    //                             console.error('Failed to fetch page: ', error)
-    //                         })
-    //         }
-    //     });
-    // });
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                console.log('Element is in the viewport!');
+                        fetch("/api/feed", {})
+                            .then(response => {
+                                return response.text()
+                            }).then(html => {
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(html, "text/html");
+                                // console.log(doc);
+                                const spinner = document.querySelector(".feed__Spinner");
+                                spinner.insertAdjacentHTML(
+                                    "beforebegin",
+                                    doc.body.innerHTML,
+                                );
+                                carouselInIt();
+                            }).catch(error => {
+                                console.error('Failed to fetch page: ', error)
+                            })
+            }
+        });
+    });
 
-    // observer.observe(document.querySelector('.feed__Spinner'));
+    const carouselInIt = () => {
+        // @ts-ignore
+        // import Glider from 'glider-js';
+        const glideElements = document.querySelectorAll(".glider");
+        
+        glideElements.forEach((gld) => {            
+            new Glider(gld, {
+                slidesToShow: 1,
+                dots: gld.parentNode.querySelector('.glider-dots'),
+                draggable: false,
+                arrows: {
+                    prev: gld.parentNode.querySelector('.glider-prev'),
+                    next: gld.parentNode.querySelector('.glider-next')
+                }
+            });
+        });
+    }
+
+    observer.observe(document.querySelector('.feed__Spinner'));
 </script>

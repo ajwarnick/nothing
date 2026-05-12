@@ -69,9 +69,7 @@ import '../../../node_modules/glider-js/glider.css';
     import Glider from 'glider-js';
     const glideElements = document.querySelectorAll(".glider");
     
-    glideElements.forEach((gld) => {
-        console.log(gld);
-            
+    glideElements.forEach((gld) => {            
         new Glider(gld, {
             slidesToShow: 1,
             dots: gld.parentNode.querySelector('.glider-dots'),
