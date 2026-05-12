@@ -22,7 +22,7 @@ export default defineConfig({
 	},
   vite: {
     optimizeDeps: {
-      include: ['@glidejs/glide'],
+      include: [''],
     },
 	},
 
